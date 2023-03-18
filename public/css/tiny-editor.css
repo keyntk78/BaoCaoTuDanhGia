@@ -1,0 +1,52 @@
+.mce-content-body {
+    font-family: 'Times New Roman', Times, serif
+}
+.mce-content-body a.is-minhchung,
+.mce-content-body a.is-minhchung:visited,
+.mce-content-body a.is-minhchung:focus,
+.mce-content-body a.is-minhchung:hover {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
+.mce-content-body p {
+    font-size: 17.333333px;
+    margin-top: 0;
+    padding-top: 0;
+    text-indent: 37.467px;
+    line-height: 150%;
+    text-align: justify;
+}
+
+.mce-content-body table {
+    font-size: 17.333333px;
+}
+
+.mce-content-body h1 {
+    font-size: 18.6666666667px;
+    line-height: 130%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.mce-content-body h2,
+.mce-content-body h3,
+.mce-content-body .h3 {
+    font-size: 17.333333px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    text-indent: 37.467px;
+    line-height: 150%;
+}
+
+.mce-content-body h1,
+.mce-content-body h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.mce-content-body h3, .mce-content-body .h3 {
+    font-weight: bold;
+    line-height: 150%;
+}
+

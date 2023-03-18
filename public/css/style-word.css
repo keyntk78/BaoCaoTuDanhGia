@@ -1,0 +1,70 @@
+.wrap-word-content {
+    text-align: justify;
+    line-height: 150%;
+    color: #000;
+}
+.wrap-word-content p {
+    font-size: 17.333333px;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    text-indent: 37.467px;
+    line-height: 150%;
+}
+
+.wrap-word-contenttable {
+    font-size: 17.333333px;
+}
+
+.wrap-word-content h1 {
+    font-size: 18.6666666667px;
+    margin: 0;
+    padding: 0;
+    line-height: 150%;
+}
+
+.wrap-word-content h2,
+.wrap-word-content h3,
+.wrap-word-content .h3 {
+    font-size: 17.333333px;
+    margin: 0;
+    padding: 0;
+    text-indent: 37.467px;
+    line-height: 150%;
+}
+
+.wrap-word-content h1,
+.wrap-word-content h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.wrap-word-content h3,
+.wrap-word-content .h3 {
+    font-weight: bold;
+}
+
+.wrap-word-content a.is-minhchung,
+.wrap-word-content a.is-minhchung:visited,
+.wrap-word-content a.is-minhchung:focus,
+.wrap-word-content a.is-minhchung:hover {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all .25s;
+}
+
+.wrap-word-content a.is-minhchung:hover {
+    color: #4e73df !important;
+}
+
+.is-focus {
+    animation: color-change 3s linear;
+    animation-delay: 0.5s;
+}
+
+@keyframes color-change {
+    0% { color: #4e73df; background-color: cyan; }
+    60% {background-color: transparent; }
+    100% { color: #000; }
+}

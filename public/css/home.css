@@ -1,0 +1,32 @@
+.home-card:hover {
+    text-decoration: none !important;
+    transition: all 0.25s;
+}
+
+.home-card.hover-primary:hover {
+    box-shadow: 0px 0px 24px 0px #4e73df !important;
+}
+
+.home-card.hover-secondary:hover {
+    box-shadow: 0px 0px 24px 0px #858796 !important;
+}
+
+.home-card.hover-success:hover {
+    box-shadow: 0px 0px 24px 0px #1cc88a !important;
+}
+
+.home-card.hover-danger:hover {
+    box-shadow: 0px 0px 24px 0px #e74a3b !important;
+}
+
+.home-card.hover-warning:hover {
+    box-shadow: 0px 0px 24px 0px #f6c23e !important;
+}
+
+.home-card.hover-info:hover {
+    box-shadow: 0px 0px 24px 0px #36b9cc !important;
+}
+
+.home-card.hover-dark:hover {
+    box-shadow: 0px 0px 24px 0px #5a5c69 !important;
+}
