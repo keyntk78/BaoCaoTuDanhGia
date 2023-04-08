@@ -79,6 +79,10 @@ class TieuChiController extends Controller
         if (!empty($filterTen)) {
             $tieuChis->where('tieu_chis.ten', 'like', '%'.$filterTen.'%');
         }
+
+        if (!empty($filterBoTieuChuanId)) {
+            $tieuChis->where('tieu_chis.tieuChuan_id', $filterTieuChuanId);
+        }
         if (!empty($filterTieuChuanId)) {
             $tieuChis->where('tieu_chis.tieuChuan_id', $filterTieuChuanId);
         }

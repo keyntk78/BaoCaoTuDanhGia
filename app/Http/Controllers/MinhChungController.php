@@ -26,29 +26,23 @@ class MinhChungController extends Controller
             $request->validate([
                 'ten' => 'required|unique:minh_chungs' . ',ten,' . $id,
                 'donVi_id' => 'numeric|min:1',
-                'loaiMinhChung_id' => 'numeric|min:1',
             ], [
                 'ten.required' => 'Bạn chưa nhập tên minh chứng',
                 'ten.unique' => 'Tên minh chứng đã tồn tại',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
-                'loaiMinhChung_id.min' => 'Bạn chưa chọn loại minh chứng',
-                'loaiMinhChung_id.numeric' => 'Bạn chưa chọn loại minh chứng',
             ]);
         } else {
             $request->validate([
                 'ten' => 'required|unique:minh_chungs',
                 'fileMinhChung' => 'required',
                 'donVi_id' => 'numeric|min:1',
-                'loaiMinhChung_id' => 'numeric|min:1',
             ], [
                 'ten.required' => 'Bạn chưa nhập tên minh chứng',
                 'ten.unique' => 'Tên minh chứng đã tồn tại',
                 'fileMinhChung.required' => 'Bạn chưa chèn tệp minh chứng',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
-                'loaiMinhChung_id.min' => 'Bạn chưa chọn loại minh chứng',
-                'loaiMinhChung_id.numeric' => 'Bạn chưa chọn loại minh chứng',
             ]);
         }
     }
@@ -59,8 +53,7 @@ class MinhChungController extends Controller
         $filterNoiBanHanh = $request->query('noiBanHanh');
         $filterDonViId = $request->query('donVi_id');
         $filterIsMCGop = $request->query('isMCGop');
-        $filterLoaiMinhChungId = $request->query('loaiMinhChung_id');
-        $loaiMinhChungs = $this->loaiMinhChungModel->all();
+
         $minhChungs = $this->minhChungModel->sortable('ten');
         $donVis = $this->donViModel->all();
 
@@ -69,9 +62,6 @@ class MinhChungController extends Controller
         }
         if (!empty($filterNoiBanHanh)) {
             $minhChungs->where('minh_chungs.noiBanHanh', 'like', '%'.$filterNoiBanHanh.'%');
-        }
-        if (!empty($filterLoaiMinhChungId)) {
-            $minhChungs->where('minh_chungs.loaiMinhChung_id', $filterLoaiMinhChungId);
         }
         if (!empty($filterDonViId)) {
             $minhChungs->where('minh_chungs.donVi_id', $filterDonViId);
@@ -82,7 +72,7 @@ class MinhChungController extends Controller
         $minhChungs = $minhChungs->paginate(10);
         $trashCount = count($this->minhChungModel->onlyTrashed()->get());
         return view('pages.minhchung.index',
-            compact('minhChungs', 'trashCount', 'filterLoaiMinhChungId','donVis','loaiMinhChungs' ,'filterTen', 'filterNoiBanHanh', 'filterDonViId', 'filterIsMCGop'));
+            compact('minhChungs', 'trashCount','donVis' ,'filterTen', 'filterNoiBanHanh', 'filterDonViId', 'filterIsMCGop'));
     }
 
     public function create()
