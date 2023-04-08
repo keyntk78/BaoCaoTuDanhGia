@@ -1,13 +1,14 @@
 @extends('layouts.index', ['title' => 'Thêm mới minh chứng'])
 
 @php
-$controller = (object) [
-    'name' => 'Minh chứng',
-    'href' => '/minhchung',
-];
-$action = (object) [
-    'name' => 'Thêm mới',
-];
+   use Carbon\Carbon;
+   $controller = (object) [
+       'name' => 'Minh chứng',
+       'href' => '/minhchung',
+   ];
+   $action = (object) [
+       'name' => 'Thêm mới',
+   ];
 @endphp
 
 @section('styles')
@@ -45,7 +46,7 @@ $action = (object) [
                 <div class="form-group">
                     <label for="ngayKhaoSat">Ngày khảo sát</label>
                     <input type="date" class="form-control {{ $errors->has('ngayKhaoSat') ? 'is-invalid' : '' }}" id="ngayKhaoSat"
-                        name="ngayKhaoSat" value="{{ old('ngayKhaoSat', '') }}">
+                        name="ngayKhaoSat" value="{{ old('ngayKhaoSat', now()->format('Y-m-d')) }}">
                     @if ($errors->has('ngayKhaoSat'))
                         <div class="invalid-feedback">
                             {{ $errors->first('ngayKhaoSat') }}
@@ -55,7 +56,7 @@ $action = (object) [
                 <div class="form-group">
                     <label for="ngayBanHanh">Ngày ban hành</label>
                     <input type="date" class="form-control {{ $errors->has('ngayBanHanh') ? 'is-invalid' : '' }}" id="ngayBanHanh"
-                        name="ngayBanHanh" value="{{ old('ngayBanHanh', '') }}">
+                        name="ngayBanHanh" value="{{ old('ngayBanHanh', now()->format('Y-m-d')) }}">
                     @if ($errors->has('ngayBanHanh'))
                         <div class="invalid-feedback">
                             {{ $errors->first('ngayBanHanh') }}
@@ -118,7 +119,7 @@ $action = (object) [
                 </div>
 
                 <div class="multi-minhchung {{ old('isMCGop', '') != 'on' ? 'd-none' : '' }}">
-                    <p class="font-italic">Minh chứng thành phần sẽ được thêm ở mục "Quản lý MCTP" sau khi tạo thành công minh chứng.</p>
+                    <p class="font-italic">Minh chứng thành phần sẽ được thêm ở mục "Xem chi tiết" sau khi tạo thành công minh chứng.</p>
                 </div>
                 <button type="submit" class="btn btn-primary">Xác nhận</button>
             </form>

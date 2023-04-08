@@ -277,7 +277,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/show/{id}', [MinhChungController::class, 'show'])->name('minhchung.show')->middleware('can:minhchung-chitiet');
         Route::get('/edit/{id}', [MinhChungController::class, 'edit'])->name('minhchung.edit')->middleware('can:minhchung-sua');
         Route::post('/update/{id}', [MinhChungController::class, 'update'])->name('minhchung.update')->middleware('can:minhchung-sua');
-        Route::post('/destroy/{id}', [MinhChungController::class, 'destroy'])->name('minhchung.destroy')->middleware('can:minhchung-xoa');
+        Route::post('/destroy', [MinhChungController::class, 'destroy'])->name('minhchung.destroy')->middleware('can:minhchung-xoa');
         Route::get('/trash', [MinhChungController::class, 'trash'])->name('minhchung.trash')->middleware('can:minhchung-xoa');
         Route::post('/restore', [MinhChungController::class, 'restore'])->name('minhchung.restore')->middleware('can:minhchung-xoa');
         Route::post('/restore-all', [MinhChungController::class, 'restoreAll'])->name('minhchung.restore-all')->middleware('can:minhchung-xoa');
