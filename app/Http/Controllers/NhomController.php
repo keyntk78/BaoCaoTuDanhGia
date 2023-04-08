@@ -69,7 +69,14 @@ class NhomController extends Controller
     public function create()
     {
         $quyenNhoms = $this->quyenNhomModel->all();
-        $nganhs = $this->nganhModel->all();
+        $nganhs = $this->nganhModel
+            ->join('nganh_dot_danh_gias','nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id' )
+            ->join('dot_danh_gias','dot_danh_gias.id', '=', 'nganh_dot_danh_gias.dotDanhGia_id' )
+            ->where('dot_danh_gias.trangThai', '=', 0)
+            ->select('nganhs.id as nganh_id', 'nganhs.ten as ten_nganh')
+            ->groupby('nganhs.id')
+            ->get();
+
         $tieuChuans = $this->tieuChuanModel->all();
         $thanhViens = $this->userModel->all();
         return view('pages.nhom.create', compact('quyenNhoms', 'nganhs', 'tieuChuans', 'thanhViens'));

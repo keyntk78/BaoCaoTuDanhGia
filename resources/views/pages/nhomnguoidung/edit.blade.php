@@ -42,6 +42,7 @@ $action = (object) [
 @section('content')
     <div class="card shadow mb-4 w-75">
         <div class="card-body">
+            <h5>Tên thành viên: {{$nhomNguoiDung->nguoidung->hoTen}}</h5>
             <form action="{{ route('nhomnguoidung.update', ['id' => $nhomNguoiDung->id]) }}" method="POST">
                 @csrf
                 <input type="hidden" id="nhomNguoiDung_id" name="nhomNguoiDung_id" value="{{ $nhomNguoiDung->id }}">
