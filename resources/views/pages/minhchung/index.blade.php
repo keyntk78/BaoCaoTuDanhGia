@@ -162,6 +162,12 @@ $action = (object) [
                         @endif
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-between">
+                    {{ $minhChungs->appends(Request::except('page'))->render('pagination::bootstrap-4') }}
+                    <div>
+                        <a href="{{ route('minhchung.index') }}" class="btn btn-primary mx-2">Làm mới</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

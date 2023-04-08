@@ -1,0 +1,1021 @@
+<head>
+    <title>Export HTML to WORD</title>
+    <style>
+        @page  Section1 {
+            size: 841.7pt 595.45pt;
+            mso-page-orientation: landscape;
+            margin: 3cm 2cm 2cm 2cm;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        body {
+            line-height: 150%;
+        }
+
+        p {
+            font-size: 17.333333px;
+            margin: 10px 0;
+            padding: 0;
+            line-height: 150%;
+        }
+
+        table {
+            font-size: 17.333333px;
+        }
+
+        h1 {
+            font-size: 18.6666666667px;
+            margin: 10px 0;
+            padding: 0;
+            line-height: 150%;
+        }
+
+        h2,
+        h3,
+        .h3 {
+            font-size: 17.333333px;
+            margin: 0;
+            padding: 0;
+            text-indent: 37.467px;
+            line-height: 150%;
+        }
+
+        h1,
+        h2 {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        h3,
+        .h3 {
+            font-weight: bold;
+        }
+
+        a.is-minhchung,
+        a.is-minhchung:visited,
+        a.is-minhchung:focus,
+        a.is-minhchung:hover {
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        table {
+            margin-left: 3.95pt;
+            border-collapse: collapse;
+            mso-table-layout-alt: fixed;
+            border: none;
+            mso-border-alt: solid windowtext .75pt;
+            mso-padding-alt: 0cm 2.55pt 0cm 2.55pt;
+            mso-border-insideh: .75pt solid windowtext;
+            mso-border-insidev: .75pt solid windowtext;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-content" class="Section1">
+        <h1 style="text-align:center">Danh mục minh chứng</h1>
+        <table border="1" width="968" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr style="mso-yfti-irow: 0; mso-yfti-firstrow: yes;">
+                    <td style="width: 72.2pt; border: solid windowtext 1.0pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="96">
+                        <p align="center"><strong>Tiêu Chí</strong></p>
+                    </td>
+                    <td style="width: 35.45pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="47">
+                        <p align="center"><strong>Số TT</strong>
+                        </p>
+                    </td>
+                    <td style="width: 92.15pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="123">
+                        <p align="center"><strong>Mã minh chứng</strong></p>
+                    </td>
+                    <td style="width: 207.25pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="276">
+                        <p align="center"><strong>Tên minh chứng</strong></p>
+                    </td>
+                    <td style="width: 154.2pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="206">
+                        <p align="center"><strong>Ngày ban hành, nơi ban hành, ngày khảo sát</strong></p>
+                    </td>
+                    <td style="width: 4.0cm; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="151">
+                        <p align="center"><strong>Đơn vị</strong></p>
+                    </td>
+                    <td style="width: 51.15pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        width="68">
+                        <p align="center"><strong>Ghi chú</strong></p>
+                    </td>
+                </tr>
+                
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 1: Mục tiêu và chuẩn đầu ra của chương trình đào tạo</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="4" valign="top" width="96">
+                            <p><strong>Tiêu chí 1.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Mục tiêu của chương trình đào tạo được xác định rõ ràng, phù hợp với sứ mạng và tầm nhìn của cơ sở giáo dục đại học, phù hợp với mục tiêu của giáo dục đại học quy định tại Luật Giáo dục Đại học</strong></p>
+                        </td>
+                    </tr>
+                                                                                <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">1</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.01.01</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>CTĐT ngành NTTS (2018)</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2018</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Viện nuôi trồng thủy sản</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                    <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">2</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.01.02</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Quy định khối lượng kiến thức tối thiểu</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 07-01-2015</p>
+                                                                                    <p>Nơi BH: Bộ GD&amp;ĐT</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Đào tạo đại học</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                    <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">3</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.01.03</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Mục tiêu của trường</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2020</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Đào tạo đại học</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="2" valign="top" width="96">
+                            <p><strong>Tiêu chí 1.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>CĐR của CTĐT được xác định rõ ràng, bao quát được cả các yêu cầu chung và yêu cầu chuyên biệt mà NH cần đạt được sau khi hoàn thành CTĐT.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                        <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">1</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.02.01</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Chuẩn đầu ra CTĐT ngành NTTS</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2011</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Đào tạo đại học</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="4" valign="top" width="96">
+                            <p><strong>Tiêu chí 1.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>CĐR của CTĐT phản ánh được yêu cầu của các bên liên quan, được định kỳ rà soát, điều chỉnh và được công bố công khai.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">1</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.03.01</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Thành lập Ban Chủ nhiệm CTĐT ngành NTTS</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2019</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Đào tạo đại học</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                    <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">2</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.03.02</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Phiếu khảo sát các bên liên quan phục vụ cập nhật CĐR</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2020</p>
+                                                                                    <p>Nơi BH: BCN CTĐT ngành NTTS</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Viện nuôi trồng thủy sản</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                    <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">3</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H1.01.03.03</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Biên bản hội nghị lấy ý kiến các bên liên quan phục vụ cập nhật CTĐT (có CĐR)</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2020</p>
+                                                                                    <p>Nơi BH: BCN CTĐT ngành NTTS</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Viện nuôi trồng thủy sản</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                        
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 2: Bản mô tả chương trình đào tạo</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="3" valign="top" width="96">
+                            <p><strong>Tiêu chí 2.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Bản mô tả CTĐT đầy đủ thông tin và cập nhật.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                        <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">1</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H2.02.01.01</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Quy định/quy trình xây dựng CTĐT và Quy định về tiêu chuẩn đánh giá chất lượng CTĐT</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2016</p>
+                                                                                    <p>Nơi BH: Bộ GD&amp;ĐT</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Đào tạo đại học</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                    <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">2</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H2.02.01.02</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Giao quản lý ngành đào tạo</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2018</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 02-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Đào tạo đại học</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 2.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Đề cương các học phần đầy đủ thông tin và cập nhật.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="2" valign="top" width="96">
+                            <p><strong>Tiêu chí 2.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Bản mô tả CTĐT và đề cương các học phần được công bố công khai và các bên liên quan dễ dàng tiếp cận.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">1</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H2.02.03.01</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Công bố CTĐT ngành NTTS trên website đơn vị</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2020</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 01-01-2021</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Viện nuôi trồng thủy sản</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 3: Cấu trúc và nội dung chương trình dạy học</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 3.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>CTDH được thiết kế dựa trên CĐR.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 3.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Đóng góp của mỗi học phần trong việc đạt được CĐR là rõ ràng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 3.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>CTDH có cấu trúc, trình tự logic; nội dung cập nhật và có tính tích hợp.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 4: Phương pháp tiếp cận trong dạy và học</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 4.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Triết lý giáo dục hoặc mục tiêu giáo dục được tuyên bố rõ ràng và được phổ biến tới các bên liên quan.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 4.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các hoạt động dạy và học được thiết kế phù hợp để đạt được CĐR.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 4.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các hoạt động dạy và học thúc đẩy việc rèn luyện các kỹ năng, nâng cao khả năng học tập suốt đời của NH.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 5: Đánh giá kết quả học tập của người học</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 5.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Việc đánh giá kết quả học tập của NH được thiết kế phù hợp với mức độ đạt được CĐR.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 5.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các quy định về đánh giá kết quả học tập của NH (bao gồm thời gian, phương pháp, tiêu chí, trọng số, cơ chế phản hồi và các nội dung liên quan) rõ ràng và được thông báo công khai tới NH.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 5.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Phương pháp đánh giá kết quả học tập đa dạng, đảm bảo độ giá trị, độ tin cậy và sự công bằng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 5.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Kết quả đánh giá được phản hồi kịp thời để NH cải thiện việc học tập .</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 5.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>NH tiếp cận dễ dàng với quy trình khiếu nại về kết quả học tập.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 6: Đội ngũ giảng viên, nghiên cứu viên</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Việc quy hoạch đội ngũ GV, NCV (bao gồm việc thu hút, tiếp nhận, bổ nhiệm, bố trí, chấm dứt hợp đồng và cho nghỉ hưu) được thực hiện đáp ứng nhu cầu về đào tạo, NCKH và các hoạt động phục vụ cộng đồng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Tỉ lệ GV/NH và khối lượng công việc của đội ngũ GV, NCV được đo lường, giám sát làm căn cứ cải tiến chất lượng hoạt động đào tạo, NCKH và các hoạt động phục vụ cộng đồng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các tiêu chí tuyển dụng và lựa chọn GV, NCV (bao gồm cả đạo đức và năng lực học thuật) để bổ nhiệm, điều chuyển được xác định và phổ biến công khai.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Năng lực của đội ngũ GV, NCV được xác định và được đánh giá.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Nhu cầu về đào tạo và phát triển chuyên môn của đội ngũ GV, NCV được xác định và có các hoạt động triển khai để đáp ứng nhu cầu đó.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.6</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Việc quản trị theo kết quả công việc của GV, NCV (gồm cả khen thưởng và công nhận) được triển khai để tạo động lực và hỗ trợ cho đào tạo, NCKH và các hoạt động phục vụ cộng đồng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 6.7</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các loại hình và số lượng các hoạt động nghiên cứu của GV và NCV được xác lập, giám sát và đối sánh để cải tiến chất lượng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 7: Đội ngũ nhân viên</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 7.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Việc quy hoạch đội ngũ nhân viên (làm việc tại thư viện, phòng thí nghiệm, hệ thống công nghệ thông tin và các dịch vụ hỗ trợ khác) được thực hiện đáp ứng nhu cầu về đào tạo, NCKH và các hoạt động phục vụ cộng đồng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 7.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các tiêu chí tuyển dụng và lựa chọn nhân viên để bổ nhiệm, điều chuyển được xác định và phổ biến công khai.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 7.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Năng lực của đội ngũ nhân viên được xác định và được đánh giá.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 7.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Nhu cầu về đào tạo và phát triển chuyên môn, nghiệp vụ của nhân viên được xác định và có các hoạt động triển khai để đáp ứng nhu cầu đó</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 7.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Việc quản trị theo kết quả công việc của nhân viên (gồm cả khen thưởng và công nhận) được triển khai để tạo động lực và hỗ trợ cho đào tạo, NCKH và các hoạt động phục vụ cộng đồng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 8: Người học và hoạt động hỗ trợ người học</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 8.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Chính sách tuyển sinh được xác định rõ ràng, được công bố công khai và được cập nhật.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 8.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Tiêu chí và phương pháp tuyển chọn NH được xác định rõ ràng và được đánh giá</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 8.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Có hệ thống giám sát phù hợp về sự tiến bộ trong học tập và rèn luyện, kết quả học tập, khối lượng học tập của NH.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 8.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Có các hoạt động tư vấn học tập, hoạt động ngoại khóa, hoạt động thi đua và các dịch vụ hỗ trợ khác để giúp cải thiện việc học tập và khả năng có việc làm của NH.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 8.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Môi trường tâm lý, xã hội và cảnh quan tạo thuận lợi cho hoạt động đào tạo, nghiên cứu và sự thoải mái cho cá nhân NH.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 9: Cơ sở vật chất và trang thiết bị</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 9.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Có hệ thống phòng làm việc, phòng học và các phòng chức năng với các trang thiết bị phù hợp để hỗ trợ các hoạt động đào tạo và nghiên cứu.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 9.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Thư viện và các nguồn học liệu phù hợp và được cập nhật để hỗ trợ các hoạt động đào tạo và nghiên cứu.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 9.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Phòng thí nghiệm, thực hành và trang thiết bị phù hợp và được cập nhật để hỗ trợ các hoạt động đào tạo và nghiên cứu.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 9.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Hệ thống công nghệ thông tin (bao gồm cả hạ tầng cho học tập trực tuyến) phù hợp và được cập nhật để hỗ trợ các hoạt động đào tạo và nghiên cứu.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 9.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các tiêu chuẩn về môi trường, sức khỏe, an toàn được xác định và triển khai có lưu ý đến nhu cầu đặc thù của người khuyết tật.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 10: Nâng cao chất lượng</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 10.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Thông tin phản hồi và nhu cầu của các bên liên quan được sử dụng làm căn cứ để thiết kế và phát triển CTDH.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 10.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Việc thiết kế và phát triển CTDH được thiết lập, được đánh giá và cải tiến.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 10.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Quá trình dạy và học, việc đánh giá kết quả học tập của NH được rà soát và đánh giá thường xuyên để đảm bảo sự tương thích và phù hợp với CĐR.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 10.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Các kết quả NCKH được sử dụng để cải tiến việc dạy và học.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 10.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Chất lượng các dịch vụ hỗ trợ và tiện ích (tại thư viện, phòng thí nghiệm, hệ thống công nghệ thông tin và các dịch vụ hỗ trợ khác) được đánh giá và cải tiến.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 10.6</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Cơ chế phản hồi của các bên liên quan có tính hệ thống, được đánh giá và cải tiến</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                <tr>
+                    <td style="width: 725.8pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                        colspan="7" valign="top" width="968">
+                        <h1 align="left" style="font-size: 17.333333px;">TIÊU CHUẨN 11: Kết quả đầu ra</h1>
+                    </td>
+                </tr>
+                    
+                                                                                                     <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 11.1</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Tỉ lệ thôi học, tốt nghiệp được xác lập, giám sát và đối sánh để cải tiến chất lượng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="2" valign="top" width="96">
+                            <p><strong>Tiêu chí 11.2</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Thời gian tốt nghiệp trung bình được xác lập, giám sát và đối sánh để cải tiến chất lượng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <tr>
+                        <td style="width: 35.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="47">
+                            <p align="center">1</p>
+                        </td>
+                        <td style="width: 92.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="123">
+                            <p>H11.11.02.01</p>
+                        </td>
+                        <td style="width: 207.25pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="276">
+                            <p>Minh chứng gộp</p>
+                        </td>
+                        <td style="width: 154.2pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="206">
+                                                        <p>Ngày BH: 01-01-2019</p>
+                                                                                    <p>Nơi BH: Đại học Nha Trang</p>
+                                                                                    <p>Ngày KS: 01-01-2020</p>
+                                                    </td>
+                        <td style="width: 4.0cm; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            width="151">
+                                                        <p>Phòng Khoa Học - Công Nghệ</p>
+                                                    </td>
+                        <td style="width: 51.15pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt; height: 14.15pt;"
+                            valign="top" width="68">
+                            <p></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 11.3</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Tỉ lệ có việc làm sau tốt nghiệp được xác lập, giám sát và đối sánh để cải tiến chất lượng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 11.4</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Loại hình và số lượng các hoạt động nghiên cứu của NH được xác lập, giám sát và đối sánh để cải tiến chất lượng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <tr>
+                        <td style="width: 72.2pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            rowspan="1" valign="top" width="96">
+                            <p><strong>Tiêu chí 11.5</strong></p>
+                        </td>
+                        <td style="width: 653.6pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .75pt; mso-border-left-alt: solid windowtext .75pt; mso-border-alt: solid windowtext .75pt; padding: 0cm 2.55pt 0cm 2.55pt;"
+                            colspan="6" width="871">
+                            <p><strong>Mức độ hài lòng của các bên liên quan được xác lập, giám sát và đối sánh để cải tiến chất lượng.</strong></p>
+                        </td>
+                    </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
