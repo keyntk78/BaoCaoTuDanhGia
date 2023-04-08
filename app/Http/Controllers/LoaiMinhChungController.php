@@ -88,7 +88,6 @@ class LoaiMinhChungController extends Controller
 
     public function trash()
     {
-
         $loaiMinhChungs = $this->loaiMinhChungModel->onlyTrashed()->paginate(10);
         return view('pages.loaiminhchung.trash', compact('loaiMinhChungs'));
     }

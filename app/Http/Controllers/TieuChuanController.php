@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\TieuChuan;
 use App\Models\BoTieuChuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Fluent;
+use Illuminate\Validation\Rule;
 
 class TieuChuanController extends Controller
 {
@@ -18,13 +20,21 @@ class TieuChuanController extends Controller
 
     protected function callValidate(Request $request, $id = null)
     {
+
         if ($id) {
             $request->validate([
-                'stt' => 'required',
-                'ten' => 'required|unique:tieu_chuans' . ',ten,' . $id,
+                'stt' => ['required',Rule::unique('tieu_chuans')->where(function ($query) use ($request, $id){
+                    return $query->where('boTieuChuan_id', $request->input('boTieuChuan_id'))
+                        ->where('id', '!=',$id);
+                })],
+                'ten' => ['required',Rule::unique('tieu_chuans')->where(function ($query) use ($request, $id){
+                    return $query->where('boTieuChuan_id', $request->input('boTieuChuan_id'))
+                        ->where('id', '!=',$id);
+                })],
                 'boTieuChuan_id' => 'numeric|min:1'
             ], [
                 'stt.required' => 'Bạn chưa nhập số thứ tự tiêu chuẩn',
+                'stt.unique' =>'Số thứ tự tiêu chuẩn đã tồn tại',
                 'ten.required' => 'Bạn chưa nhập tên tiêu chuẩn',
                 'ten.unique' => 'Tên tiêu chuẩn đã tồn tại',
                 'boTieuChuan_id.min' => 'Bạn chưa chọn bộ tiêu chuẩn',
@@ -32,11 +42,16 @@ class TieuChuanController extends Controller
             ]);
         } else {
             $request->validate([
-                'stt' => 'required',
-                'ten' => 'required|unique:tieu_chuans',
+                'stt' => ['required',Rule::unique('tieu_chuans')->where(function ($query) use ($request) {
+                    return $query->where('boTieuChuan_id', $request->input('boTieuChuan_id'));
+                })],
+                'ten' => ['required',Rule::unique('tieu_chuans')->where(function ($query) use ($request) {
+                    return $query->where('boTieuChuan_id', $request->input('boTieuChuan_id'));
+                })],
                 'boTieuChuan_id' => 'numeric|min:1'
             ], [
                 'stt.required' => 'Bạn chưa nhập số thứ tự tiêu chuẩn',
+                'stt.unique' =>'Số thứ tự tiêu chuẩn đã tồn tại',
                 'ten.required' => 'Bạn chưa nhập tên tiêu chuẩn',
                 'ten.unique' => 'Tên tiêu chuẩn đã tồn tại',
                 'boTieuChuan_id.min' => 'Bạn chưa chọn bộ tiêu chuẩn',

@@ -54,10 +54,10 @@ $action = (object) [
                             <th>Đơn vị:</th>
                             <td>{{ $minhChung->donVi->ten }}</td>
                         </tr>
-                        <tr>
-                            <th>Loại minh chứng:</th>
-                            <td>{{ $minhChung->loaiMinhChung->ten }}</td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <th>Loại minh chứng:</th>--}}
+{{--                            <td>{{ $minhChung->loaiMinhChung->ten }}</td>--}}
+{{--                        </tr>--}}
                         @if ($minhChung->isMCGop)
                         <tr>
                             <th>Minh chứng thành phần:</th>
