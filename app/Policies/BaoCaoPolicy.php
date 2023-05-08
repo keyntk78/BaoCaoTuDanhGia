@@ -41,6 +41,7 @@ class BaoCaoPolicy
     {
         $baoCao = BaoCao::find($id);
         $nhomNguoiDungs = NhomNguoiDung::where('nguoiDung_id', $user->id)->get();
+
         $dotDanhGia = DotDanhGia::find($baoCao->dotDanhGia_id);
         $isInprocess = $dotDanhGia->trangThai == 0 ? true : false;
         $baoCaoPer = new BaoCaoPermission();

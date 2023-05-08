@@ -13,6 +13,7 @@ class CapDanhGiaController extends Controller
         $this->capDanhGiaModel = $capDanhGiaModel;
     }
 
+    //validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($id) {
@@ -33,6 +34,7 @@ class CapDanhGiaController extends Controller
 
     }
 
+    //danh sách cấp đánh giá
     public function index()
     {
         $capDanhGias = $this->capDanhGiaModel->all();
@@ -40,11 +42,13 @@ class CapDanhGiaController extends Controller
         return view('pages.capdanhgia.index', compact('capDanhGias', 'trashCount'));
     }
 
+    // form thêm cấp ánh giá
     public function create()
     {
         return view('pages.capdanhgia.create');
     }
 
+    // xử lý thêm câấp đánh giá
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -54,12 +58,14 @@ class CapDanhGiaController extends Controller
         return redirect()->route('capdanhgia.index')->with('message', 'Thêm thành công!');
     }
 
+    //form chỉnh sữa
     public function edit($id)
     {
         $capDanhGia = $this->capDanhGiaModel->find($id);
         return view('pages.capdanhgia.edit', compact('capDanhGia'));
     }
 
+    // Xử lý chỉnh sửa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -69,6 +75,7 @@ class CapDanhGiaController extends Controller
         return redirect()->route('capdanhgia.index')->with('message', 'Sửa thành công!');
     }
 
+    // Xử lý xóa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -85,12 +92,14 @@ class CapDanhGiaController extends Controller
         }
     }
 
+    // Danh sách cấp đánh giá trong thùng rác
     public function trash()
     {
         $capDanhGias = $this->capDanhGiaModel->onlyTrashed()->paginate(10);
         return view('pages.capdanhgia.trash', compact('capDanhGias'));
     }
 
+    // xử lý khôi phục
     public function restore(Request $request)
     {
         try {
@@ -107,6 +116,7 @@ class CapDanhGiaController extends Controller
         }
     }
 
+    // Xử lý khôi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -123,6 +133,7 @@ class CapDanhGiaController extends Controller
         }
     }
 
+    //xóa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -139,6 +150,7 @@ class CapDanhGiaController extends Controller
         }
     }
 
+    // xóa vĩnh viễn tất cả
     public function forceDestroyAll(Request $request)
     {
         try {
