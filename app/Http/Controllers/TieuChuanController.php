@@ -18,6 +18,7 @@ class TieuChuanController extends Controller
         $this->tieuChuanModel = $tieuChuanModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
 
@@ -61,6 +62,7 @@ class TieuChuanController extends Controller
 
     }
 
+    // danh sách tiêu chuẩn
     public function index(Request $request)
     {
         $filterBoTieuChuanId = $request->query('boTieuChuan_id');
@@ -78,12 +80,14 @@ class TieuChuanController extends Controller
         return view('pages.tieuchuan.index', compact('tieuChuans', 'trashCount', 'boTieuChuans', 'filterBoTieuChuanId'));
     }
 
+    // form thêm tiêu chuẩn
     public function create()
     {
         $boTieuChuans = $this->boTieuChuanModel->all();
         return view('pages.tieuchuan.create', compact('boTieuChuans'));
     }
 
+    // xữ lý thêm
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -95,6 +99,7 @@ class TieuChuanController extends Controller
         return redirect()->route('tieuchuan.index')->with('message', 'Thêm thành công!');
     }
 
+    // form chỉnh sữa
     public function edit($id)
     {
         $tieuChuan = $this->tieuChuanModel->find($id);
@@ -102,6 +107,7 @@ class TieuChuanController extends Controller
         return view('pages.tieuchuan.edit', compact('tieuChuan', 'boTieuChuans'));
     }
 
+    // xữ lý chiỉnh sữa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -113,6 +119,7 @@ class TieuChuanController extends Controller
         return redirect()->route('tieuchuan.index')->with('message', 'Sửa thành công!');
     }
 
+    // xóa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -129,12 +136,14 @@ class TieuChuanController extends Controller
         }
     }
 
+    // danh sách trong thùng rác
     public function trash()
     {
         $tieuChuans = $this->tieuChuanModel->onlyTrashed()->paginate(10);
         return view('pages.tieuchuan.trash', compact('tieuChuans'));
     }
 
+    // khôi phục
     public function restore(Request $request)
     {
         try {
@@ -151,6 +160,7 @@ class TieuChuanController extends Controller
         }
     }
 
+    //Khơi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -167,6 +177,7 @@ class TieuChuanController extends Controller
         }
     }
 
+    // xóa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -183,6 +194,7 @@ class TieuChuanController extends Controller
         }
     }
 
+    // xóa tất cả vĩnh viễn
     public function forceDestroyAll(Request $request)
     {
         try {

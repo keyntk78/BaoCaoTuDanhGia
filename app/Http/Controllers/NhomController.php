@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Services\HandleUpdateThreeMany;
-
+use Carbon\Carbon;
 class NhomController extends Controller
 {
     private $nhomModel;
@@ -68,10 +68,14 @@ class NhomController extends Controller
 
     public function create()
     {
+        $dateNow = Carbon::now();
+
+
         $quyenNhoms = $this->quyenNhomModel->all();
         $nganhs = $this->nganhModel
             ->join('nganh_dot_danh_gias','nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id' )
             ->join('dot_danh_gias','dot_danh_gias.id', '=', 'nganh_dot_danh_gias.dotDanhGia_id' )
+            ->where('dot_danh_gias.namHoc', '=', $dateNow->year)
             ->where('dot_danh_gias.trangThai', '=', 0)
             ->select('nganhs.id as nganh_id', 'nganhs.ten as ten_nganh')
             ->groupby('nganhs.id')

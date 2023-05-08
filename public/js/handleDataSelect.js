@@ -1,5 +1,7 @@
 
 $('#nganh_id').on('change', (e) => {
+
+
     if ($(e.currentTarget).val() !== '') {
         $('#select-1').prop('disabled', false);
         $("#select-1").val('').change();

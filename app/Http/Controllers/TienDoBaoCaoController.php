@@ -49,6 +49,7 @@ class TienDoBaoCaoController extends Controller
     public function index()
     {
         $vaiTroHTs = auth()->user()->vaiTroHT;
+
         $nganhIds = [];
         foreach ($vaiTroHTs as $vaiTroHT) {
             foreach ($vaiTroHT->quyenHT as $quyenHT) {
@@ -65,7 +66,9 @@ class TienDoBaoCaoController extends Controller
                         ->where('nganh_dot_danh_gias.nganh_id', $nganhId)->first();
             $nganhs[] = $nganh;
         }
+
         $tieuChuans = $this->tieuChuanModel->all();
+
         return view('pages.tiendobaocao.index', compact('nganhs', 'tieuChuans'));
     }
 

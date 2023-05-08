@@ -20,6 +20,7 @@ class MinhChungController extends Controller
         $this->loaiMinhChungModel = $loaiMinhChungModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($request->isMCGop == 'on' || $id) {
