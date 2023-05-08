@@ -16,6 +16,7 @@ class NganhController extends Controller
         $this->donViModel = $donViModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($id) {
@@ -42,6 +43,7 @@ class NganhController extends Controller
 
     }
 
+    // danh sách ngành
     public function index()
     {
         $nganhs = $this->nganhModel->paginate(10);
@@ -49,12 +51,14 @@ class NganhController extends Controller
         return view('pages.nganh.index', compact('nganhs', 'trashCount'));
     }
 
+    // form thêm
     public function create()
     {
         $donVis = $this->donViModel->all();
         return view('pages.nganh.create', compact('donVis'));
     }
 
+    // xữ lý thêm
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -65,6 +69,7 @@ class NganhController extends Controller
         return redirect()->route('nganh.index')->with('message', 'Thêm thành công!');
     }
 
+    // form chỉnh sữa
     public function edit($id)
     {
         $nganh = $this->nganhModel->find($id);
@@ -72,6 +77,7 @@ class NganhController extends Controller
         return view('pages.nganh.edit', compact('nganh', 'donVis'));
     }
 
+    // xữ lý chỉnh sữa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -82,6 +88,7 @@ class NganhController extends Controller
         return redirect()->route('nganh.index')->with('message', 'Sửa thành công!');
     }
 
+    // xoa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -98,12 +105,14 @@ class NganhController extends Controller
         }
     }
 
+    // thùng rác
     public function trash()
     {
         $nganhs = $this->nganhModel->onlyTrashed()->paginate(10);
         return view('pages.nganh.trash', compact('nganhs'));
     }
 
+    //khooi phục
     public function restore(Request $request)
     {
         try {
@@ -120,6 +129,7 @@ class NganhController extends Controller
         }
     }
 
+    // khôi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -136,6 +146,7 @@ class NganhController extends Controller
         }
     }
 
+    //xóa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -152,6 +163,7 @@ class NganhController extends Controller
         }
     }
 
+    // xóa tất cã vĩnh viên
     public function forceDestroyAll(Request $request)
     {
         try {

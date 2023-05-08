@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\DonVi;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class DonViController extends Controller
 {
     private $donViModel;
     public function __construct(DonVi $donViModel)
     {
+        
         $this->donViModel = $donViModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($id) {
@@ -32,6 +35,7 @@ class DonViController extends Controller
         }
     }
 
+    // danh sách đơn vị
     public function index()
     {
         $donVis = $this->donViModel->paginate(10);
@@ -39,11 +43,13 @@ class DonViController extends Controller
         return view('pages.donvi.index', compact('donVis', 'trashCount'));
     }
 
+    // Form thêm đơn vị
     public function create()
     {
         return view('pages.donvi.create');
     }
 
+    // xử lý thêm
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -53,12 +59,14 @@ class DonViController extends Controller
         return redirect()->route('donvi.index')->with('message', 'Thêm thành công!');
     }
 
+    // form chỉnh sữa
     public function edit($id)
     {
         $donVi = $this->donViModel->find($id);
         return view('pages.donvi.edit', compact('donVi'));
     }
 
+    // xữa lý chỉnh sửa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -68,6 +76,7 @@ class DonViController extends Controller
         return redirect()->route('donvi.index')->with('message', 'Sửa thành công!');
     }
 
+    // xóa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -84,12 +93,14 @@ class DonViController extends Controller
         }
     }
 
+    // danh sách trong thùng rác
     public function trash()
     {
         $donVis = $this->donViModel->onlyTrashed()->paginate(10);
         return view('pages.donvi.trash', compact('donVis'));
     }
 
+    // khôi phục
     public function restore(Request $request)
     {
         try {
@@ -106,6 +117,7 @@ class DonViController extends Controller
         }
     }
 
+    // khôi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -122,6 +134,7 @@ class DonViController extends Controller
         }
     }
 
+    // xóa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -138,6 +151,7 @@ class DonViController extends Controller
         }
     }
 
+    // xóa tất cả vĩnh viễn
     public function forceDestroyAll(Request $request)
     {
         try {

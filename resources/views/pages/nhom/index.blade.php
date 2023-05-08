@@ -8,6 +8,7 @@ $controller = (object) [
 $action = (object) [
     'name' => 'Danh sách',
 ];
+
 @endphp
 
 @section('head')

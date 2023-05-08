@@ -15,7 +15,7 @@ class BoTieuChuanController extends Controller
         $this->boTieuChuanModel = $boTieuChuanModel;
         $this->capDanhGiaModel = $capDanhGiaModel;
     }
-
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($id) {
@@ -42,6 +42,7 @@ class BoTieuChuanController extends Controller
 
     }
 
+    // danh sách bộ tiêu chuẩn
     public function index()
     {
         $boTieuChuans = $this->boTieuChuanModel->all();
@@ -49,12 +50,14 @@ class BoTieuChuanController extends Controller
         return view('pages.botieuchuan.index', compact('boTieuChuans', 'trashCount'));
     }
 
+    // form thêm bộ tiêu chuẩn
     public function create()
     {
         $capDanhGias = $this->capDanhGiaModel->all();
         return view('pages.botieuchuan.create', compact('capDanhGias'));
     }
 
+    // xử lý bộ tiêu chuẩn
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -65,6 +68,7 @@ class BoTieuChuanController extends Controller
         return redirect()->route('botieuchuan.index')->with('message', 'Thêm thành công!');
     }
 
+    //form chỉnh sửa
     public function edit($id)
     {
         $boTieuChuan = $this->boTieuChuanModel->find($id);
@@ -72,6 +76,7 @@ class BoTieuChuanController extends Controller
         return view('pages.botieuchuan.edit', compact('boTieuChuan', 'capDanhGias'));
     }
 
+    // xủ lý chỉnh sửa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -82,6 +87,7 @@ class BoTieuChuanController extends Controller
         return redirect()->route('botieuchuan.index')->with('message', 'Sửa thành công!');
     }
 
+    // xử lý xóa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -98,12 +104,14 @@ class BoTieuChuanController extends Controller
         }
     }
 
+    // danh sách xóa trong thùng rác
     public function trash()
     {
         $boTieuChuans = $this->boTieuChuanModel->onlyTrashed()->paginate(10);
         return view('pages.botieuchuan.trash', compact('boTieuChuans'));
     }
 
+    // khôi phục
     public function restore(Request $request)
     {
         try {
@@ -120,6 +128,7 @@ class BoTieuChuanController extends Controller
         }
     }
 
+    //khôi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -136,6 +145,7 @@ class BoTieuChuanController extends Controller
         }
     }
 
+    // xóa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -152,6 +162,7 @@ class BoTieuChuanController extends Controller
         }
     }
 
+    // xóa tất cả vĩnh viễn
     public function forceDestroyAll(Request $request)
     {
         try {
