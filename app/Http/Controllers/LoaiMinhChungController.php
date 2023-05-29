@@ -14,6 +14,7 @@ class LoaiMinhChungController extends Controller
         $this->loaiMinhChungModel = $loaiMinhChungModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($id) {
@@ -34,6 +35,7 @@ class LoaiMinhChungController extends Controller
 
     }
 
+    // danh sách loại minh chứng
     public function index()
     {
         $loaiMinhChungs = $this->loaiMinhChungModel->all();
@@ -41,11 +43,13 @@ class LoaiMinhChungController extends Controller
         return view('pages.loaiminhchung.index', compact('loaiMinhChungs', 'trashCount'));
     }
 
+    // form thêm
     public function create()
     {
         return view('pages.loaiminhchung.create');
     }
 
+    // xữ lý thêm
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -55,12 +59,14 @@ class LoaiMinhChungController extends Controller
         return redirect()->route('loaiminhchung.index')->with('message', 'Thêm thành công!');
     }
 
+    // form chỉnh sữa
     public function edit($id)
     {
         $loaiMinhChung = $this->loaiMinhChungModel->find($id);
         return view('pages.loaiminhchung.edit', compact('loaiMinhChung'));
     }
 
+    // xuwx lý chỉnh sữa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -70,6 +76,7 @@ class LoaiMinhChungController extends Controller
         return redirect()->route('loaiminhchung.index')->with('message', 'Sửa thành công!');
     }
 
+    // xóa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -86,13 +93,14 @@ class LoaiMinhChungController extends Controller
         }
     }
 
+    // thùng rác
     public function trash()
     {
-
         $loaiMinhChungs = $this->loaiMinhChungModel->onlyTrashed()->paginate(10);
         return view('pages.loaiminhchung.trash', compact('loaiMinhChungs'));
     }
 
+    // khôi phục
     public function restore(Request $request)
     {
         try {
@@ -109,6 +117,7 @@ class LoaiMinhChungController extends Controller
         }
     }
 
+    // khôi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -125,6 +134,7 @@ class LoaiMinhChungController extends Controller
         }
     }
 
+    // xóa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -141,6 +151,7 @@ class LoaiMinhChungController extends Controller
         }
     }
 
+    //xóa tâất cả vĩnh viễn
     public function forceDestroyAll(Request $request)
     {
         try {

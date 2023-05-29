@@ -20,6 +20,7 @@ class MinhChungController extends Controller
         $this->loaiMinhChungModel = $loaiMinhChungModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
         if ($request->isMCGop == 'on' || $id) {
@@ -51,8 +52,7 @@ class MinhChungController extends Controller
         $filterNoiBanHanh = $request->query('noiBanHanh');
         $filterDonViId = $request->query('donVi_id');
         $filterIsMCGop = $request->query('isMCGop');
-        $filterLoaiMinhChungId = $request->query('loaiMinhChung_id');
-        $loaiMinhChungs = $this->loaiMinhChungModel->all();
+
         $minhChungs = $this->minhChungModel->sortable('ten');
         $donVis = $this->donViModel->all();
 
@@ -61,9 +61,6 @@ class MinhChungController extends Controller
         }
         if (!empty($filterNoiBanHanh)) {
             $minhChungs->where('minh_chungs.noiBanHanh', 'like', '%'.$filterNoiBanHanh.'%');
-        }
-        if (!empty($filterLoaiMinhChungId)) {
-            $minhChungs->where('minh_chungs.loaiMinhChung_id', $filterLoaiMinhChungId);
         }
         if (!empty($filterDonViId)) {
             $minhChungs->where('minh_chungs.donVi_id', $filterDonViId);
@@ -74,7 +71,7 @@ class MinhChungController extends Controller
         $minhChungs = $minhChungs->paginate(10);
         $trashCount = count($this->minhChungModel->onlyTrashed()->get());
         return view('pages.minhchung.index',
-            compact('minhChungs', 'trashCount', 'filterLoaiMinhChungId','donVis','loaiMinhChungs' ,'filterTen', 'filterNoiBanHanh', 'filterDonViId', 'filterIsMCGop'));
+            compact('minhChungs', 'trashCount','donVis' ,'filterTen', 'filterNoiBanHanh', 'filterDonViId', 'filterIsMCGop'));
     }
 
     public function create()

@@ -32,6 +32,7 @@ class TieuChiController extends Controller
         $this->boTieuChuanModel = $boTieuChuanModel;
     }
 
+    // validate
     protected function callValidate(Request $request, $id = null)
     {
 
@@ -65,6 +66,7 @@ class TieuChiController extends Controller
 
     }
 
+    // danh sách tiêu chí
     public function index(Request $request)
     {
         $filterStt = $request->query('stt');
@@ -78,6 +80,10 @@ class TieuChiController extends Controller
         if (!empty($filterTen)) {
             $tieuChis->where('tieu_chis.ten', 'like', '%'.$filterTen.'%');
         }
+
+        if (!empty($filterBoTieuChuanId)) {
+            $tieuChis->where('tieu_chis.tieuChuan_id', $filterTieuChuanId);
+        }
         if (!empty($filterTieuChuanId)) {
             $tieuChis->where('tieu_chis.tieuChuan_id', $filterTieuChuanId);
         }
@@ -86,11 +92,12 @@ class TieuChiController extends Controller
         $trashCount = count($this->tieuChiModel->onlyTrashed()->get());
         $tieuChuan = $this->tieuChuanModel->find($filterTieuChuanId);
 
+
         return view('pages.tieuchi.index', compact('tieuChis', 'trashCount', 'tieuChuan', 'filterStt' ,'filterTen',
             'filterTieuChuanId', 'boTieuChuans', 'filterBoTieuChuanId'));
     }
 
-
+    //form thêm tiêu chí
     public function create()
     {
         $tieuChuans = $this->tieuChuanModel->all();
@@ -98,6 +105,7 @@ class TieuChiController extends Controller
         return view('pages.tieuchi.create', compact('tieuChuans', 'boTieuChuans'));
     }
 
+    //xử lý thêm
     public function store(Request $request)
     {
         $this->callValidate($request);
@@ -141,15 +149,16 @@ class TieuChiController extends Controller
         }
     }
 
+    // Chiêt tiết tiêu chí
     public function show($id)
     {
         $tieuChi = $this->tieuChiModel->find($id);
         return view('pages.tieuchi.show', compact('tieuChi'));
     }
 
+    //form chỉnh sữa
     public function edit($id)
     {
-
 
         $tieuChi = $this->tieuChiModel
             ->join('tieu_chuans','tieu_chuans.id', '=', 'tieu_chis.tieuChuan_id')
@@ -161,6 +170,7 @@ class TieuChiController extends Controller
         return view('pages.tieuchi.edit', compact('tieuChi', 'tieuChuans', 'boTieuChuans'));
     }
 
+    // xữ lý chỉnh sửa
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
@@ -174,6 +184,9 @@ class TieuChiController extends Controller
                 'tieuChuan_id' => $request->tieuChuan_id,
                 'ghiChu' => $request->ghiChu
             ]);
+
+
+
             $yeuCaus = $this->yeuCauModel->where('tieuChi_id', $id)->get();
             HandleUpdateHaveMany::handleUpdateYeuCau($yeuCaus, $id, $request, $this->yeuCauModel);
 
@@ -195,6 +208,7 @@ class TieuChiController extends Controller
         }
     }
 
+    //xóa vào thùng rác
     public function destroy(Request $request)
     {
         try {
@@ -211,12 +225,14 @@ class TieuChiController extends Controller
         }
     }
 
+    // danh sách trong thùng rác
     public function trash()
     {
         $tieuChis = $this->tieuChiModel->onlyTrashed()->paginate(10);
         return view('pages.tieuchi.trash', compact('tieuChis'));
     }
 
+    //khôi phục
     public function restore(Request $request)
     {
         try {
@@ -233,6 +249,7 @@ class TieuChiController extends Controller
         }
     }
 
+    // khôi phục tất cả
     public function restoreAll(Request $request)
     {
         try {
@@ -249,6 +266,7 @@ class TieuChiController extends Controller
         }
     }
 
+    //xoasa vĩnh viễn
     public function forceDestroy(Request $request)
     {
         try {
@@ -269,6 +287,7 @@ class TieuChiController extends Controller
         }
     }
 
+    // xóa tất cả vĩnh viễn
     public function forceDestroyAll(Request $request)
     {
         try {
@@ -290,6 +309,8 @@ class TieuChiController extends Controller
             ], 500);
         }
     }
+
+    //Danh sách tiêu chuẩn them bộ chức năng lọc tiêu chuẩn
     public  function handleSelectTieuChuan($id){
         $tieuChuans = $this->tieuChuanModel->where('boTieuChuan_Id', $id)->get();
         return response()->json([

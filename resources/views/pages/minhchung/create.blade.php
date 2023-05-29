@@ -1,13 +1,14 @@
 @extends('layouts.index', ['title' => 'Thêm mới minh chứng'])
 
 @php
-$controller = (object) [
-    'name' => 'Minh chứng',
-    'href' => '/minhchung',
-];
-$action = (object) [
-    'name' => 'Thêm mới',
-];
+   use Carbon\Carbon;
+   $controller = (object) [
+       'name' => 'Minh chứng',
+       'href' => '/minhchung',
+   ];
+   $action = (object) [
+       'name' => 'Thêm mới',
+   ];
 @endphp
 
 @section('styles')
