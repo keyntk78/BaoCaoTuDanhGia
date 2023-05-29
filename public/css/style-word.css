@@ -68,3 +68,21 @@
     60% {background-color: transparent; }
     100% { color: #000; }
 }
+
+.table-content {
+    width: 100%;
+    font-size: 18px;
+}
+
+.table-row{
+
+}
+
+.table-col {
+    padding: 8px;
+    vertical-align: top;
+}
+
+.table__text-center {
+    text-align: center;
+}

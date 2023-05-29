@@ -5,6 +5,7 @@ $controller = (object) [
     'name' => 'Đợt đánh giá',
     'href' => '/dotdanhgia',
 ];
+
 $action = (object) [
     'name' => 'Thêm mới',
 ];

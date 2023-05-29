@@ -70,7 +70,19 @@ return [
         'vaitrohethong-sua' => 'sua-vai-tro-he-thong',
         'vaitrohethong-xoa' => 'xoa-vai-tro-he-thong',
 
-        'tiendo-danhsach' => 'quan-ly-tien-do-bao-cao'
+        'tiendo-danhsach' => 'quan-ly-tien-do-bao-cao',
 
+        'baocaogiuaky-danhsach' => 'xem-danh-sach-bao-cao-giua-ky',
+        'baocaogiuaky-them' =>'them-bao-cao-giua-ky',
+        'baocaogiuaky-sua' =>'sua-bao-cao-giua-ky',
+        'baocaogiuaky-xoa'=>'xoa-bao-cao-giua-ky',
+        'baocaogiuaky-trangthai'=>'cap-nhat-trang-thai-bao-cao-giua-ky',
+
+        'dotdanhgiagiuaky-xemthem' => 'them-va-xem-dot-danh-gia-giua-ky',
+        'dotdanhgiagiuaky-sua' =>'sua-dot-danh-gia-giua-ky',
+//        'baocaogiuaky-them' =>'them-bao-cao-giua-ky',
+//        'baocaogiuaky-sua' =>'sua-bao-cao-giua-ky',
+//        'baocaogiuaky-xoa'=>'xoa-bao-cao-giua-ky',
+//        'baocaogiuaky-trangthai'=>'cap-nhat-trang-thai-bao-cao-giua-ky',
     ],
 ];

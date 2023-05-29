@@ -30,6 +30,18 @@ $action = (object) [
 
 @section('content')
     <div class="card shadow mb-4">
+        @if ($minhChung->isMCGop)
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                @can('minhchung-them')
+                    <a href="{{ route('minhchung.add-detail', ['id' => $minhChung->id] ) }}" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                        <span class="text">Quản lý MCTP</span>
+                    </a>
+                @endcan
+            </div>
+        @endif
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
@@ -53,10 +65,6 @@ $action = (object) [
                         <tr>
                             <th>Đơn vị:</th>
                             <td>{{ $minhChung->donVi->ten }}</td>
-                        </tr>
-                        <tr>
-                            <th>Loại minh chứng:</th>
-                            <td>{{ $minhChung->loaiMinhChung->ten }}</td>
                         </tr>
                         @if ($minhChung->isMCGop)
                         <tr>
@@ -83,7 +91,7 @@ $action = (object) [
                                     class="btn btn-secondary">Sửa</a>
                                 @endcan
                                 @can('minhchung-xoa')
-                                <a href="#" class="btn btn-danger btn-delete" data-url="{{ route('tieuchi.destroy') }}"
+                                <a href="#" class="btn btn-danger btn-delete" data-url="{{ route('minhchung.destroy') }}"
                                     data-id="{{ $minhChung->id }}" data-redirect="{{ route('minhchung.index') }}">Xóa</a>
                                 @endcan
                             </td>

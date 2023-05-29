@@ -147,6 +147,14 @@
     ])
     @endcan
 
+
+        @include('partials.sidebar-menu-item', [
+            'route' => 'baocaogiuaky.index',
+            'icon' => 'fas fa-pencil-alt',
+            'title' => 'Báo cáo giữa kỳ'
+        ])
+
+
     @can('nhanxetbaocao-danhsach')
     @include('partials.sidebar-menu-item', [
         'route' => 'nhanxetbaocao.index',

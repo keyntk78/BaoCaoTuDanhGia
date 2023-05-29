@@ -95,6 +95,10 @@ $action = (object) [
                                             <a href="#" class="btn btn-info btn-reopen"
                                             data-url="{{ route('dotdanhgia.reopen') }}" data-id="{{ $item->id }}">Mở lại đợt đánh giá</a>
                                             @endcan
+                                                @can('dotdanhgiagk-xemvathem')
+                                                    <a href="{{ route('dotdanhgiagiuaky.create', ['id' => $item->id]) }}"
+                                                       class="btn btn-secondary">Đánh giá giữa kỳ</a>
+                                                @endcan
                                         @endif
                                     </td>
                                 </tr>

@@ -10,7 +10,6 @@ header('Cache-Control: private, max-age=0, must-revalidate');
 <head>
     <title>Export HTML to WORD</title>
     <style>
-
         body {
             text-align: justify;
             line-height: 150%;
@@ -63,6 +62,7 @@ header('Cache-Control: private, max-age=0, must-revalidate');
             font-weight: bold;
             text-decoration: none;
         }
+
     </style>
 </head>
 

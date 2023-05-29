@@ -227,6 +227,7 @@ class DotDanhGiaController extends Controller
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
+
         try {
             DB::beginTransaction();
             $dotDanhGia = $this->dotDanhGiaModel->find($id);

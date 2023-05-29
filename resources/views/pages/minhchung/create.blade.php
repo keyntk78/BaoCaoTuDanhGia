@@ -16,6 +16,15 @@ $action = (object) [
         .btn-remove {
             padding: 0.6rem .75rem;
         }
+
+        .none {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
     </style>
 @endsection
 
@@ -25,6 +34,12 @@ $action = (object) [
 
 @section('page-heading')
     @include('partials.page-heading', compact('controller', 'action'))
+@endsection
+
+@section('message')
+    @include('partials.message', [
+        'message' => Session::has('message') ? Session::get('message') : null,
+    ])
 @endsection
 
 @section('content')
@@ -42,10 +57,11 @@ $action = (object) [
                         </div>
                     @endif
                 </div>
+
                 <div class="form-group">
                     <label for="ngayKhaoSat">Ngày khảo sát</label>
                     <input type="date" class="form-control {{ $errors->has('ngayKhaoSat') ? 'is-invalid' : '' }}" id="ngayKhaoSat"
-                        name="ngayKhaoSat" value="{{ old('ngayKhaoSat', '') }}">
+                        name="ngayKhaoSat" value="{{ old('ngayKhaoSat', now()->format('Y-m-d')) }}">
                     @if ($errors->has('ngayKhaoSat'))
                         <div class="invalid-feedback">
                             {{ $errors->first('ngayKhaoSat') }}
@@ -55,7 +71,7 @@ $action = (object) [
                 <div class="form-group">
                     <label for="ngayBanHanh">Ngày ban hành</label>
                     <input type="date" class="form-control {{ $errors->has('ngayBanHanh') ? 'is-invalid' : '' }}" id="ngayBanHanh"
-                        name="ngayBanHanh" value="{{ old('ngayBanHanh', '') }}">
+                        name="ngayBanHanh" value="{{ old('ngayBanHanh', now()->format('Y-m-d')) }}">
                     @if ($errors->has('ngayBanHanh'))
                         <div class="invalid-feedback">
                             {{ $errors->first('ngayBanHanh') }}
@@ -87,26 +103,23 @@ $action = (object) [
                         </div>
                     @endif
                 </div>
-                <div class="form-group">
-                    <label for="donVi_id">Loại minh chứng</label>
-                    <select class="form-select form-control {{ $errors->has('loaiMinhChung_id') ? 'is-invalid' : '' }}"
-                            id="loaiMinhChung_id" name="loaiMinhChung_id" aria-label="Chọn đơn vị">
-                        <option {{ old('loaiMinhChung_id', '') == '' ? 'selected' : '' }} value="">Chọn loại minh chứng</option>
-                        @foreach ($loaiMinhChungs as $item)
-                            <option value="{{ $item->id }}" {{ old('loaiMinhChung_id', '') == $item->id ? 'selected' : '' }}>{{ $item->ten }}</option>
-                        @endforeach
-                    </select>
-                    @if ($errors->has('loaiMinhChung_id'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('loaiMinhChung_id') }}
-                        </div>
-                    @endif
-                </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="isMCGop" name="isMCGop" {{ old('isMCGop', '') == 'on' ? 'checked' : '' }}>
                     <label class="form-check-label" for="isMCGop">Là minh chứng gộp</label>
                 </div>
-                <div class="form-group single-minhchung {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}">
+
+                <div class="form-group single-minhchung {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}" >
+                    <label for="noiBanHanh">Link url</label>
+                    <input type="text" class="form-control {{ $errors->has('link') ? 'is-invalid' : '' }}" id="link"
+                           name="link" value="{{ old('link', '') }}">
+                    @if ($errors->has('link'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('link') }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="form-group single-minhchung isUrl {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}">
                     <label for="fileMinhChung">Tệp minh chứng</label>
                     <input type="file" class="form-control {{ $errors->has('fileMinhChung') ? 'is-invalid' : '' }}" id="fileMinhChung"
                         name="fileMinhChung" value="{{ old('fileMinhChung', '') }}">
@@ -118,7 +131,7 @@ $action = (object) [
                 </div>
 
                 <div class="multi-minhchung {{ old('isMCGop', '') != 'on' ? 'd-none' : '' }}">
-                    <p class="font-italic">Minh chứng thành phần sẽ được thêm ở mục "Quản lý MCTP" sau khi tạo thành công minh chứng.</p>
+                    <p class="font-italic">Minh chứng thành phần sẽ được thêm ở mục "Xem chi tiết" sau khi tạo thành công minh chứng.</p>
                 </div>
                 <button type="submit" class="btn btn-primary">Xác nhận</button>
             </form>

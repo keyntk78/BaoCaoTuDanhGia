@@ -20,6 +20,7 @@ class Nganh extends Model
     {
         return $this
             ->belongsToMany(DotDanhGia::class, 'nganh_dot_danh_gias', 'nganh_id', 'dotDanhGia_id')
+            ->withPivot('ten', 'namHoc', 'trangThai')
             ->withTimestamps();
     }
 }

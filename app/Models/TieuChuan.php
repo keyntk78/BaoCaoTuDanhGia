@@ -24,4 +24,9 @@ class TieuChuan extends Model
     {
         return $this->hasMany(BaoCao::class, 'tieuChuan_id');
     }
+
+    public function baoCaoGk()
+    {
+        return $this->hasMany(BaoCaoGk::class, 'tieuChuan_id');
+    }
 }

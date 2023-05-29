@@ -26,29 +26,21 @@ class MinhChungController extends Controller
             $request->validate([
                 'ten' => 'required|unique:minh_chungs' . ',ten,' . $id,
                 'donVi_id' => 'numeric|min:1',
-                'loaiMinhChung_id' => 'numeric|min:1',
             ], [
                 'ten.required' => 'Bạn chưa nhập tên minh chứng',
                 'ten.unique' => 'Tên minh chứng đã tồn tại',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
-                'loaiMinhChung_id.min' => 'Bạn chưa chọn loại minh chứng',
-                'loaiMinhChung_id.numeric' => 'Bạn chưa chọn loại minh chứng',
             ]);
         } else {
             $request->validate([
                 'ten' => 'required|unique:minh_chungs',
-                'fileMinhChung' => 'required',
                 'donVi_id' => 'numeric|min:1',
-                'loaiMinhChung_id' => 'numeric|min:1',
             ], [
                 'ten.required' => 'Bạn chưa nhập tên minh chứng',
                 'ten.unique' => 'Tên minh chứng đã tồn tại',
-                'fileMinhChung.required' => 'Bạn chưa chèn tệp minh chứng',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
-                'loaiMinhChung_id.min' => 'Bạn chưa chọn loại minh chứng',
-                'loaiMinhChung_id.numeric' => 'Bạn chưa chọn loại minh chứng',
             ]);
         }
     }
@@ -88,20 +80,36 @@ class MinhChungController extends Controller
     public function create()
     {
         $donVis = $this->donViModel->all();
-        $loaiMinhChungs = $this->loaiMinhChungModel->all();
-        return view('pages.minhchung.create', compact('donVis', 'loaiMinhChungs'));
+        return view('pages.minhchung.create', compact('donVis'));
     }
 
     public function store(Request $request)
     {
+        $donVis = $this->donViModel->all();
+
+
         $this->callValidate($request);
-        $fileUploaded = HandleUploadImage::upload($request, 'fileMinhChung', 'minhchungs');
+        if (is_null($request->fileMinhChung) && is_null($request->link)) {
+            return redirect()->route('minhchung.create')->with('message', 'Lỗi: Bạn chưa thêm tệp hoặc link url minh chứng!', compact('donVis'));
+        }
+        $link = '';
+        $isUrl = false;
+
+        if(is_null($request->link)) {
+            $link = HandleUploadImage::upload($request, 'fileMinhChung', 'minhchungs');
+        }
+        else {
+            $link = $request->link;
+            $isUrl = true;
+        }
+
         $this->minhChungModel->create([
             'ten' => $request->ten,
             'ngayKhaoSat' => $request->ngayKhaoSat,
             'ngayBanHanh' => $request->ngayBanHanh,
             'noiBanHanh' => $request->noiBanHanh,
-            'link' => $fileUploaded,
+            'link' => $link,
+            'isUrl' =>$isUrl,
             'donVi_id' => $request->donVi_id,
             'isMCGop' => $request->isMCGop == 'on' ? 1 : 0,
             'nguoiDung_id' => auth()->user()->id

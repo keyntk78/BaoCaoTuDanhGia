@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Policies\BaoCaoGkPolicy;
 use App\Policies\BaoCaoPolicy;
+use App\Policies\DotDanhGiaGkPolicy;
 use App\Policies\LoaiMinhChungPolicy;
 use Illuminate\Support\Facades\Gate;
 use App\Policies\CapDanhGiaPolicy;
@@ -109,6 +111,17 @@ class PermissionGateAndPolicyAccess {
         Gate::define('baocao-xoa', [BaoCaoPolicy::class, 'deletePersonal']);
         Gate::define('baocao-dieukhien', [BaoCaoPolicy::class, 'controlPersonal']);
         Gate::define('baocao-thungrac', [BaoCaoPolicy::class, 'trash']);
+
+        Gate::define('baocaogk-danhsach', [BaoCaoGkPolicy::class, 'viewAny']);
+        Gate::define('baocaogk-them', [BaoCaoGkPolicy::class, 'create']);
+        Gate::define('baocaogk-sua', [BaoCaoGkPolicy::class, 'update']);
+        Gate::define('baocaogk-xoa', [BaoCaoGkPolicy::class, 'delete']);
+        Gate::define('baocaogk-trangthai', [BaoCaoGkPolicy::class, 'handleStatus']);
+
+        Gate::define('dotdanhgiagk-xemvathem', [DotDanhGiaGkPolicy::class, 'createAndShow']);
+        Gate::define('dotdanhgiagk-sua', [DotDanhGiaGkPolicy::class, 'update']);
+
+
 
         Gate::define('quanlynhom', [QuanLyNhomPolicy::class, 'control']);
 

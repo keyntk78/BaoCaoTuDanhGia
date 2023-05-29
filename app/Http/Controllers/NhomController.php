@@ -10,6 +10,7 @@ use App\Models\NhomQuyen;
 use App\Models\QuyenNhom;
 use App\Models\TieuChuan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -69,7 +70,16 @@ class NhomController extends Controller
     public function create()
     {
         $quyenNhoms = $this->quyenNhomModel->all();
-        $nganhs = $this->nganhModel->all();
+
+        $yearNow = Carbon::now()->format('Y');
+        $nganhs = $this->nganhModel
+
+            ->Join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id')
+            ->Join('dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+            ->where('dot_danh_gias.namHoc', $yearNow)
+            ->select('nganhs.id', 'nganhs.ten')
+            ->get();
+
         $tieuChuans = $this->tieuChuanModel->all();
         $thanhViens = $this->userModel->all();
         return view('pages.nhom.create', compact('quyenNhoms', 'nganhs', 'tieuChuans', 'thanhViens'));
