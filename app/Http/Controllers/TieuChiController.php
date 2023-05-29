@@ -30,7 +30,6 @@ class TieuChiController extends Controller
         $this->mocChuanModel = $mocChuanModel;
         $this->tuKhoaModel = $tuKhoaModel;
         $this->boTieuChuanModel = $boTieuChuanModel;
-
     }
 
     // validate

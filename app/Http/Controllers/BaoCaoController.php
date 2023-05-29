@@ -268,6 +268,7 @@ class BaoCaoController extends Controller
     public function restore(Request $request, $id)
     {
         try {
+
             $this->baoCaoModel->onlyTrashed()->find($id)->restore();
             return response()->json([
                 'code' => 200,

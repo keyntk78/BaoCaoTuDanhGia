@@ -10,6 +10,7 @@ use App\Models\NhomQuyen;
 use App\Models\QuyenNhom;
 use App\Models\TieuChuan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -72,6 +73,7 @@ class NhomController extends Controller
 
 
         $quyenNhoms = $this->quyenNhomModel->all();
+
         $nganhs = $this->nganhModel
             ->join('nganh_dot_danh_gias','nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id' )
             ->join('dot_danh_gias','dot_danh_gias.id', '=', 'nganh_dot_danh_gias.dotDanhGia_id' )

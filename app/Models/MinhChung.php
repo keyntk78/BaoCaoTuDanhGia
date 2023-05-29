@@ -10,7 +10,7 @@ use Kyslik\ColumnSortable\Sortable;
 class MinhChung extends Model
 {
     use HasFactory, SoftDeletes, Sortable;
-    protected $fillable = ['ten', 'ngayKhaoSat', 'ngayBanHanh', 'noiBanHanh', 'link', 'donVi_id', 'isMCGop', 'nguoiDung_id'];
+    protected $fillable = ['ten', 'ngayKhaoSat', 'ngayBanHanh', 'noiBanHanh', 'link', 'donVi_id', 'isMCGop','isUrl' ,'nguoiDung_id'];
     public $sortable = ['ten', 'ngayKhaoSat', 'ngayBanHanh', 'noiBanHanh', 'donVi_id', 'isMCGop'];
 
     public function donVi()

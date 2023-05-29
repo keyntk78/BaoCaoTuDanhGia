@@ -70,16 +70,6 @@ $action = (object) [
                         @endforeach
                     </select>
                 </div>
-{{--                <div class="form-group">--}}
-{{--                    <label for="loaiMinhChung_id">Loại minh chứng</label>--}}
-{{--                    <select class="form-select form-control"--}}
-{{--                            id="loaiMinhChung_id" name="loaiMinhChung_id" aria-label="Chọn đơn vị">--}}
-{{--                        <option {{ $filterLoaiMinhChungId == '' ? 'selected' : '' }} value="">Chọn loại minh chứng</option>--}}
-{{--                        @foreach ($loaiMinhChungs as $item)--}}
-{{--                            <option value="{{ $item->id }}" {{ $filterLoaiMinhChungId == $item->id ? 'selected' : '' }}>{{ $item->ten }}</option>--}}
-{{--                        @endforeach--}}
-{{--                    </select>--}}
-{{--                </div>--}}
                 <div class="form-group d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mx-2">Tìm kiếm</button>
                     <a href="{{ route('minhchung.index') }}" class="btn btn-secondary mx-2">Làm mới</a>

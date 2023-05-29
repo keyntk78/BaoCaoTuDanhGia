@@ -50,7 +50,8 @@ $action = (object) [
                         @foreach ($namHocs as $item)
                             <option value="{{ $item }}"
                                 {{ (old('namHoc', $dotDanhGia->namHoc) == '' && $item == date('Y')) || old('namHoc', $dotDanhGia->namHoc) == $item ? 'selected' : '' }}>
-                                {{ $item }}</option>
+                                {{ $item }}
+                            </option>
                         @endforeach
                     </select>
                     @if ($errors->has('namHoc'))
