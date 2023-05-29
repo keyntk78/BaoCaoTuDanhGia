@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BaoCao;
 use App\Models\BaoCaoSaoLuu;
+use App\Models\BoTieuChuan;
 use App\Models\DotDanhGia;
 use App\Models\Nganh;
 use App\Models\NguoiDungQuyen;
@@ -27,10 +28,11 @@ class TienDoBaoCaoController extends Controller
     private $nhomNguoiDungModel;
     private $nguoiDungQuyenModel;
     private $nhomQuyenModel;
+    private $boTieuChuanModel;
     private $nhomModel;
     private $userModel;
     private $minhChungModel;
-    public function __construct(User $userModel, BaoCao $baoCaoModel, Nganh $nganhModel, TieuChuan $tieuChuanModel, TieuChi $tieuChiModel, BaoCaoSaoLuu $baoCaoSLModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel, NhomQuyen $nhomQuyenModel, Nhom $nhomModel, MinhChung $minhChungModel)
+    public function __construct(User $userModel, BaoCao $baoCaoModel, Nganh $nganhModel, TieuChuan $tieuChuanModel, TieuChi $tieuChiModel, BaoCaoSaoLuu $baoCaoSLModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel,BoTieuChuan $boTieuChuanModel, NhomQuyen $nhomQuyenModel, Nhom $nhomModel, MinhChung $minhChungModel)
     {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $this->baoCaoModel = $baoCaoModel;
@@ -44,32 +46,45 @@ class TienDoBaoCaoController extends Controller
         $this->nhomModel = $nhomModel;
         $this->userModel = $userModel;
         $this->minhChungModel = $minhChungModel;
+        $this->boTieuChuanModel = $boTieuChuanModel;
     }
 
     public function index()
     {
         $vaiTroHTs = auth()->user()->vaiTroHT;
-
-        $nganhIds = [];
+        $check = false;
         foreach ($vaiTroHTs as $vaiTroHT) {
-            foreach ($vaiTroHT->quyenHT as $quyenHT) {
-                if (!empty($quyenHT->pivot->nganh_id)) {
-                    $nganhIds[] = $quyenHT->pivot->nganh_id;
-                }
+            if($vaiTroHT->slug === 'quan-tri-he-thong'){
+                $check= true;
             }
         }
-        $nganhs = [];
-        foreach ($nganhIds as $nganhId) {
-            $nganh = DotDanhGia::orderBy('namHoc')
-                        ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
-                        ->join('nganhs', 'nganhs.id', '=', 'nganh_dot_danh_gias.nganh_id')
-                        ->where('nganh_dot_danh_gias.nganh_id', $nganhId)->first();
-            $nganhs[] = $nganh;
-        }
 
+        if($check) {
+            $nganhs = DotDanhGia::orderBy('namHoc')
+                ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+                ->join('nganhs', 'nganhs.id', '=', 'nganh_dot_danh_gias.nganh_id')->get();
+        } else {
+            $nganhIds = [];
+            foreach ($vaiTroHTs as $vaiTroHT) {
+                foreach ($vaiTroHT->quyenHT as $quyenHT) {
+                    if (!empty($quyenHT->pivot->nganh_id)) {
+                        $nganhIds[] = $quyenHT->pivot->nganh_id;
+                    }
+                }
+            }
+            $nganhs = [];
+            foreach ($nganhIds as $nganhId) {
+                $nganh = DotDanhGia::orderBy('namHoc')
+                    ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+                    ->join('nganhs', 'nganhs.id', '=', 'nganh_dot_danh_gias.nganh_id')
+                    ->where('nganh_dot_danh_gias.nganh_id', $nganhId)->first();
+                $nganhs[] = $nganh;
+            }
+        }
+        $botieuchuans = $this->boTieuChuanModel->all();
         $tieuChuans = $this->tieuChuanModel->all();
 
-        return view('pages.tiendobaocao.index', compact('nganhs', 'tieuChuans'));
+        return view('pages.tiendobaocao.index', compact('nganhs', 'tieuChuans', 'botieuchuans'));
     }
 
     public function wordAll($id) {
@@ -212,6 +227,23 @@ class TienDoBaoCaoController extends Controller
         return view('pages.tiendobaocao.word-dsmc', compact('nganh', 'tieuChuans', 'hopMCs'));
     }
 
+    public  function wordShort($nganh_id, $dotDanhGia_id) {
+
+        $botieuChuan = $this->baoCaoModel
+            ->Join('tieu_chuans', 'bao_caos.tieuChuan_id', '=', 'tieu_chuans.id')
+            ->where('nganh_id', $nganh_id)
+            ->where('dotDanhGia_id', $dotDanhGia_id)
+            ->Select('tieu_chuans.boTieuChuan_id')
+            ->groupBy('tieu_chuans.boTieuChuan_id')->first();
+
+        $tieuChuans = $this->tieuChuanModel->where('boTieuChuan_id', $botieuChuan->boTieuChuan_id)->get();
+
+        $baocaos = $this->baoCaoModel
+            ->where('dotDanhGia_id', $dotDanhGia_id)
+            ->where('nganh_id', $nganh_id)->get();
+
+        return view('pages.tiendobaocao.word-short', compact('baocaos', 'tieuChuans'));
+    }
     public function publish($id) {
         $nganh = DotDanhGia::orderBy('namHoc')
                         ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')

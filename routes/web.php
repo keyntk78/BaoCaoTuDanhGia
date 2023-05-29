@@ -256,6 +256,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('tiendobaocao')->group(function () {
         Route::get('/', [TienDoBaoCaoController::class, 'index'])->name('tiendobaocao.index')->middleware('can:tiendo-danhsach');
         Route::get('/word-all/{id}', [TienDoBaoCaoController::class, 'wordAll'])->name('tiendobaocao.word-all')->middleware('can:tiendo-danhsach');
+        Route::get('/word-short/{nganh_id}/{dotDanhGia_id}', [TienDoBaoCaoController::class, 'wordShort'])->name('tiendobaocao.word-short')->middleware('can:tiendo-danhsach');
         Route::get('/word-dsmc/{id}', [TienDoBaoCaoController::class, 'wordDSMC'])->name('tiendobaocao.word-dsmc')->middleware('can:tiendo-danhsach');
         Route::get('/publish/{id}', [TienDoBaoCaoController::class, 'publish'])->name('tiendobaocao.publish')->middleware('can:tiendo-danhsach');
         Route::get('/unpublish/{id}', [TienDoBaoCaoController::class, 'unpublish'])->name('tiendobaocao.unpublish')->middleware('can:tiendo-danhsach');
