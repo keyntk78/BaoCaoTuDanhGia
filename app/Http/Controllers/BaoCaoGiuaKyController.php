@@ -396,8 +396,10 @@ class BaoCaoGiuaKyController extends Controller
     }
 
     public  function wordGk($nganh_id, $dotDanhGiaGK_id) {
-        $botieuChuan = $this->baoCaoGkModel->Join('dot_danh_gia_gks', 'bao_cao_gks.dotDanhGiaGK_id', '=', 'dot_danh_gia_gks.id')
-            ->Join('nganhs', 'bao_cao_gks.nganh_id', '=', 'nganhs.id')->Join('tieu_chuans', 'bao_cao_gks.tieuChuan_id', '=', 'tieu_chuans.id')
+        $botieuChuan = $this->baoCaoGkModel
+            ->Join('dot_danh_gia_gks', 'bao_cao_gks.dotDanhGiaGK_id', '=', 'dot_danh_gia_gks.id')
+            ->Join('nganhs', 'bao_cao_gks.nganh_id', '=', 'nganhs.id')
+            ->Join('tieu_chuans', 'bao_cao_gks.tieuChuan_id', '=', 'tieu_chuans.id')
             ->where('nganh_id', $nganh_id)
             ->where('dotDanhGiaGK_id', $dotDanhGiaGK_id)
             ->Select('tieu_chuans.boTieuChuan_id')
