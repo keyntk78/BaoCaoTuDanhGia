@@ -7,8 +7,8 @@ $('#select-1').on('change', (e) => {
         url: 'nhomnguoidung/handle-select-quyen',
         data: { quyen_id , nhomNguoiDung_id, _token},
         success: (datas) => {
+            console.log(datas.baoCaos)
             $('#select-2').html('');
-            console.log($('#select-2'));
             for (data of datas.baoCaos) {
                 $('#select-2').append(`<option value="${data.id}">Báo cáo số ${data.tieu_chuan.stt}.${data.tieu_chi.stt}</option>`);
             }

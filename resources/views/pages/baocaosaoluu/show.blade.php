@@ -56,18 +56,28 @@ $action = (object) [
                 <h5 class="m-0">SAO LƯU NGÀY: {{ date("d-m-Y H:i", strtotime($baoCaoSL->created_at)) }}</h5>
             </div>
             <div class="card-body p-5">
-                <h6 class="text-uppercase font-weight-bold text-dark text-center text-bold">Tiêu chí số 1.1. Kết quả đầu ra
+                <h6 class="text-uppercase font-weight-bold text-dark text-center text-bold">
+                    Tiêu chí số {{$baoCaoSL->tieuChuan->stt}}.{{$baoCaoSL->tieuChi->stt}}. {{$baoCaoSL->tieuChi->ten}}
                 </h6>
-                <p class="font-weight-bold text-dark">Mô tả</p>
-                {!! $baoCaoSL->moTa !!}
-                <p class="font-weight-bold text-dark">Điểm mạnh</p>
-                {!! $baoCaoSL->diemManh !!}
-                <p class="font-weight-bold text-dark">Điểm tồn tại</p>
-                {!! $baoCaoSL->diemTonTai !!}
-                <p class="font-weight-bold text-dark">Kế hoạch hành động</p>
-                {!! $baoCaoSL->keHoachHanhDong !!}
-                <p class="font-weight-bold text-dark">Điểm tự đánh giá</p>
-                {!! $baoCaoSL->diemTDG !!}/7
+                @if($baoCaoSL->tieuChi->stt !== 0)
+                    <p class="font-weight-bold text-dark">Mô tả</p>
+                    {!! $baoCaoSL->moTa !!}
+                    <p class="font-weight-bold text-dark">Điểm mạnh</p>
+                    {!! $baoCaoSL->diemManh !!}
+                    <p class="font-weight-bold text-dark">Điểm tồn tại</p>
+                    {!! $baoCaoSL->diemTonTai !!}
+                    <p class="font-weight-bold text-dark">Kế hoạch hành động</p>
+                    {!! $baoCaoSL->keHoachHanhDong !!}
+                    <p class="font-weight-bold text-dark">Điểm tự đánh giá</p>
+                    {!! $baoCaoSL->diemTDG !!}
+                @else
+                    <p class="font-weight-bold text-dark">Mở đầu</p>
+                    {!! $baoCaoSL->moDau !!}
+                    <p class="font-weight-bold text-dark">Kết luận</p>
+                    {!! $baoCaoSL->ketLuan !!}
+                @endif
+
+
             </div>
             <div class="card-footer p-3">
                 <div class="text-right">

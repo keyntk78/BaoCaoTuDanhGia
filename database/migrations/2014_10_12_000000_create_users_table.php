@@ -17,8 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('hoTen');
             $table->boolean('gioiTinh');
-            $table->date('ngaySinh');
-            $table->string('sdt')->unique();
+            $table->date('ngaySinh')->nullable();
+            $table->string('sdt')->unique()->nullable();
             $table->string('chucVu');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

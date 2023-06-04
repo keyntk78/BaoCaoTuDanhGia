@@ -79,11 +79,11 @@ $action = (object) [
                 @else
                 <div class="form-group">
                     <label for="moDau">Mở đầu</label>
-                    <textarea class="form-control tiny-editor" id="moDau" name="moDau" rows="8">{{ old('moDau', '') }}</textarea>
+                    <textarea class="form-control tiny-editor"  id="moDau" name="moDau" rows="8">{{ old('moDau', $baoCao->moDau) }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="ketLuan">Kết luận</label>
-                    <textarea class="form-control tiny-editor" id="ketLuan" name="ketLuan" rows="8">{{ old('ketLuan', '') }}</textarea>
+                    <textarea class="form-control tiny-editor" id="ketLuan" name="ketLuan" rows="8">{{ old('ketLuan', $baoCao->ketLuan) }}</textarea>
                 </div>
                 @endif
                 <button type="submit" class="btn btn-primary">Xác nhận</button>

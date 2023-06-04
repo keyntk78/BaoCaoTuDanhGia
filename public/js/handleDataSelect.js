@@ -32,6 +32,7 @@ $('#select-1').on('change', (e) => {
                 url: 'nhom/handle-select',
                 data: { nhomId, quyenId, nganhId , _token},
                 success: (datas) => {
+                    console.log(datas.nhoms)
                     $('#select-2').html('').append('<option value="" selected>Chọn tiêu chuẩn</option>');
                     for (data of datas.tieuChuans) {
                         if (!datas.tieuChuanIds.includes(data.id)) {
@@ -91,6 +92,7 @@ $('#select-2').on('change', (e) => {
                         $('#select-1').append(`<option value="${data.id}">${data.ten}</option>`);
                     }
                     $('#select-2').html('').append('<option value="" selected>Chọn tiêu chuẩn</option>');
+                    console.log(datas.tieuChuans)
                     for (data of datas.tieuChuans) {
                         $('#select-2').append(`<option value="${data.id}">Tiêu chuẩn số ${data.stt}</option>`);
                     }

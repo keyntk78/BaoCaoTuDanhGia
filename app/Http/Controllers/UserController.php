@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChucVu;
 use App\Models\DonVi;
 use App\Models\User;
 use App\Models\VaiTroHT;
@@ -16,11 +17,13 @@ class UserController extends Controller
     private $userModel;
     private $donViModel;
     private $vaiTroHTModel;
-    public function __construct(User $userModel, DonVi $donViModel, VaiTroHT $vaiTroHTModel)
+    private  $chucVuModel;
+    public function __construct(User $userModel, DonVi $donViModel, VaiTroHT $vaiTroHTModel, ChucVu $chucVuModel)
     {
         $this->userModel = $userModel;
         $this->donViModel = $donViModel;
         $this->vaiTroHTModel = $vaiTroHTModel;
+        $this->chucVuModel = $chucVuModel;
     }
 
     protected function callValidate(Request $request, $id = null)
@@ -28,56 +31,30 @@ class UserController extends Controller
         if ($id) {
             $request->validate([
                 'hoTen' => 'required',
-                'ngaySinh' => 'required',
                 'chucVu' => 'required',
                 'email' => 'required|email|unique:users' . ',email,' . $id,
-                'sdt' => 'required|min:10|numeric|unique:users' . ',sdt,' . $id,
-                'password' => 'required|min:6',
-                'password_confirmation' => 'required|same:password',
                 'donVi_id' => 'numeric|min:1',
             ], [
                 'hoTen.required' => 'Bạn chưa nhập họ tên',
-                'ngaySinh.required' => 'Bạn chưa nhập ngày sinh',
                 'chucVu.required' => 'Bạn chưa nhập chức vụ',
                 'email.required' => 'Bạn chưa nhập email',
                 'email.email' => 'Bạn chưa nhập đúng định dạng email',
                 'email.unique' => 'Email đã tồn tại',
-                'sdt.required' => 'Bạn chưa nhập số điện thoại',
-                'sdt.min' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-                'sdt.numeric' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-                'sdt.unique' => 'Số điện thoại đã tồn tại',
-                'password.required' => 'Bạn chưa nhập mật khẩu',
-                'password.min' => 'Mật khẩu phải có ít nhất 6 kí tự',
-                'password_confirmation.required' => 'Bạn chưa nhập lại mật khẩu',
-                'password_confirmation.same' => 'Mật khẩu nhập lại không khớp',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
             ]);
         } else {
             $request->validate([
                 'hoTen' => 'required',
-                'ngaySinh' => 'required',
                 'chucVu' => 'required',
                 'email' => 'required|email|unique:users',
-                'sdt' => 'required|min:10|numeric|unique:users',
-                'password' => 'required|min:6',
-                'password_confirmation' => 'required|same:password',
                 'donVi_id' => 'numeric|min:1',
             ], [
                 'hoTen.required' => 'Bạn chưa nhập họ tên',
-                'ngaySinh.required' => 'Bạn chưa nhập ngày sinh',
                 'chucVu.required' => 'Bạn chưa nhập chức vụ',
                 'email.required' => 'Bạn chưa nhập email',
                 'email.email' => 'Bạn chưa nhập đúng định dạng email',
                 'email.unique' => 'Email đã tồn tại',
-                'sdt.required' => 'Bạn chưa nhập số điện thoại',
-                'sdt.min' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-                'sdt.numeric' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-                'sdt.unique' => 'Số điện thoại đã tồn tại',
-                'password.required' => 'Bạn chưa nhập mật khẩu',
-                'password.min' => 'Mật khẩu phải có ít nhất 6 kí tự',
-                'password_confirmation.required' => 'Bạn chưa nhập lại mật khẩu',
-                'password_confirmation.same' => 'Mật khẩu nhập lại không khớp',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
             ]);
@@ -129,7 +106,8 @@ class UserController extends Controller
     {
         $donVis = $this->donViModel->all();
         $vaiTroHTs = $this->vaiTroHTModel->all();
-        return view('pages.user.create', compact('donVis', 'vaiTroHTs'));
+        $chucVus = $this->chucVuModel->all();
+        return view('pages.user.create', compact('donVis', 'vaiTroHTs', 'chucVus'));
     }
 
     public function store(Request $request)
@@ -152,8 +130,9 @@ class UserController extends Controller
                 'chucVu' => $request->chucVu,
                 'email' => $request->email,
                 'sdt' => $request->sdt,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make('123456'),
                 'donVi_id' => $request->donVi_id,
+                'chucVu_id' => $request->chucVu_id,
                 'hinhAnh'  => $fileUploaded
             ]);
             $user->vaiTroHT()->attach($request->vaiTroHT);
