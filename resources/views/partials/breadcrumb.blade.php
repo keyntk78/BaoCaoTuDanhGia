@@ -13,5 +13,5 @@
         <li class="breadcrumb-item"><a href="{{ $action->href }}">{{ $action->name }}</a></li>
         <li class="breadcrumb-item active" aria-current="page">{{ $childAction->name }}</li>
         @endif
-    </ol>
+    </ol>`
 </nav>

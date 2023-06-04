@@ -16,6 +16,8 @@ use App\Models\User;
 use App\Models\VaiTro;
 use Illuminate\Http\Request;
 use App\Services\HandleUpdateThreeMany;
+use Carbon\Carbon;
+
 
 class QuanLyNhomController extends Controller
 {
@@ -67,6 +69,7 @@ class QuanLyNhomController extends Controller
 
     public function edit($id)
     {
+        $dateNow = Carbon::now();
         $nhomNguoiDung = $this->nhomNguoiDungModel->find($id);
         $vaiTros = $this->vaiTroModel->all();
         $quyenNguoiDungs = $this->quyenNguoiDungModel->all();
@@ -82,7 +85,12 @@ class QuanLyNhomController extends Controller
         foreach ($tieuChis as $tieuChi) {
             array_push($tieuChiIds, $tieuChi->id);
         }
-        $baoCaos = $this->baoCaoModel->where('nganh_id', $nhomNguoiDung->nganh_id)->whereIn('tieuChi_id', $tieuChiIds)->get();
+        $baoCaos = $this->baoCaoModel
+            ->where('nganh_id', $nhomNguoiDung->nganh_id)
+            ->whereIn('tieuChi_id', $tieuChiIds)
+            ->whereYear('created_at', '=', $dateNow->year)
+
+            ->get();
         $baoCaoAlls = $this->baoCaoModel->all();
         $current_quyenNguoiDungs = [];
         $current_baoCaos = [];
@@ -120,6 +128,7 @@ class QuanLyNhomController extends Controller
 
     public function handleSelectQuyen(Request $request)
     {
+        $dateNow = Carbon::now();
         $nhomNguoiDung = $this->nhomNguoiDungModel->find($request->nhomNguoiDung_id);
         $nhomQuyens = $this->nhomQuyenModel->where('nhom_id', $nhomNguoiDung->nhom_id)->get();
         $tieuChuanIds = [];
@@ -133,7 +142,14 @@ class QuanLyNhomController extends Controller
         foreach ($tieuChis as $tieuChi) {
             array_push($tieuChiIds, $tieuChi->id);
         }
-        $baoCaos = $this->baoCaoModel->with('tieuChi')->with('tieuChuan')->where('nganh_id', $nhomNguoiDung->nganh_id)->whereIn('tieuChi_id', $tieuChiIds)->get();
+        $baoCaos = $this->baoCaoModel
+            ->with('tieuChi')
+            ->with('tieuChuan')
+            ->where('nganh_id', $nhomNguoiDung->nganh_id)
+            ->whereIn('tieuChi_id', $tieuChiIds)
+            ->whereYear('created_at', '=', $dateNow->year)
+            ->get();
+
         return response()->json([
             'baoCaos' => $baoCaos
         ], 200);

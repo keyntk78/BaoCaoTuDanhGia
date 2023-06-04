@@ -21,6 +21,7 @@ class VaiTroHeThongPolicy
 
     public function update(User $user)
     {
+
         return $user->checkPermissionAccess(config('permissions.access.vaitrohethong-sua'));
     }
 

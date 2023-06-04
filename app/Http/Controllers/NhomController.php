@@ -297,8 +297,15 @@ class NhomController extends Controller
     }
 
     public function handleSelect(Request $request) {
+        $dateNow = Carbon::now();
         if (!empty($request->quyenId)) {
-            $nhoms = $this->nhomModel->where('nganh_id', $request->nganhId)->get();
+
+
+            $nhoms = $this->nhomModel
+                ->where('nganh_id', $request->nganhId)
+                ->whereYear('created_at', '=', $dateNow->year)
+                ->get();
+
             $quyenId = $request->quyenId;
             $tieuChuanIds = [];
             $curentNhomId = $request->nhomId;
@@ -310,13 +317,19 @@ class NhomController extends Controller
                     }
                 }
             }
+
+
             $tieuChuans = $this->tieuChuanModel->all();
             return response()->json([
                 'tieuChuanIds' => $tieuChuanIds,
-                'tieuChuans' => $tieuChuans
+                'tieuChuans' => $tieuChuans,
+                'nhoms'=>$nhoms,
             ], 200);
-        } elseif (!empty($request->tieuChuanId)) {
-            $nhoms = $this->nhomModel->where('nganh_id', $request->nganhId)->get();
+        } else if (!empty($request->tieuChuanId)) {
+            $nhoms = $this->nhomModel
+                ->where('nganh_id', $request->nganhId)
+                ->whereYear('created_at', '=', $dateNow->year)
+                ->get();
             $tieuChuanId = $request->tieuChuanId;
             $quyenIds = [];
             $curentNhomId = $request->nhomId;

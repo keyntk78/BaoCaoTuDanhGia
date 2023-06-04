@@ -70,6 +70,7 @@ class BaoCaoController extends Controller
 
     public function create()
     {
+        $dateNow = Carbon::now();
         $nhomIds = [];
         $nganhIds = [];
         $nhomNguoiDungs = $this->nhomNguoiDungModel->where('nguoiDung_id', auth()->user()->id)->get();
@@ -89,8 +90,22 @@ class BaoCaoController extends Controller
                 array_push($nganhIds, $nhom->nganh_id);
             }
         }
-        $nganhs = $this->nganhModel->whereIn('id', $nganhIds)->get();
-        $nhomNguoiDungs = $this->nhomNguoiDungModel->where('nguoiDung_id', auth()->user()->id)->where('nganh_id', $nganhs[0]->id)->whereIn('vaiTro_id', [2, 3])->get();
+
+
+        $nganhs = $this->nganhModel
+            ->Join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id')
+            ->Join('dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+            ->where('dot_danh_gias.namHoc', '=', $dateNow->year)
+            ->whereIn('nganhs.id', $nganhIds)
+            ->Select('nganhs.id', 'nganhs.ten')
+            ->get();
+
+
+        $nhomNguoiDungs = $this->nhomNguoiDungModel
+            ->where('nguoiDung_id', auth()->user()->id)
+            ->where('nganh_id', $nganhs[0]->id)
+            ->whereYear('created_at', '=', $dateNow->year)
+            ->whereIn('vaiTro_id', [2, 3])->get();
         $tieuChuanIds = [];
         if ($nhomNguoiDungs) {
             foreach ($nhomNguoiDungs as $nhomNguoiDung) {
@@ -112,8 +127,14 @@ class BaoCaoController extends Controller
 
     public function store(Request $request)
     {
-        $nganh = $this->nganhModel->find($request->nganh_id);
-        $dotDanhGia = $nganh->dotDanhGia->sortBy('namHoc')->where('trangThai', 0)->first();
+        $dateNow = Carbon::now();
+        $dotDanhGia = $this->nganhModel
+            ->Join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id')
+            ->Join('dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+            ->where('namHoc', $dateNow->year)
+            ->where('nganhs.id', $request->nganh_id)
+            ->select('dot_danh_gias.id')->first();
+
         $this->baoCaoModel->create([
             'moTa' => $request->moTa,
             'diemManh' => $request->diemManh,
@@ -404,7 +425,8 @@ class BaoCaoController extends Controller
     }
 
     public function handleSelectTieuChuan(Request $request) {
-        $tieuChis = $this->tieuChiModel->with('tieuChuan')->where('tieuChuan_id', $request->tieuChuanId)->get();
+        $tieuChis = $this->tieuChiModel->with('tieuChuan')
+                            ->where('tieuChuan_id', $request->tieuChuanId)->get();
         return response()->json([
             'tieuChis' => $tieuChis
         ], 200);

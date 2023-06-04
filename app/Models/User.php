@@ -30,7 +30,8 @@ class User extends Authenticatable
         'email',
         'password',
         'donVi_id',
-        'hinhAnh'
+        'hinhAnh',
+        'chucVu_id'
     ];
 
     /**
@@ -75,7 +76,9 @@ class User extends Authenticatable
     {
 
         $vaiTroHTs = auth()->user()->vaiTroHT;
+
         foreach ($vaiTroHTs as $vaiTroHT) {
+
             $quyenHTs = $vaiTroHT->quyenHT;
             if ($quyenHTs->contains('slug', $quyenCheck)) {
                 return true;

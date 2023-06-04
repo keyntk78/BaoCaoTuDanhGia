@@ -86,6 +86,22 @@ $action = (object) [
                     @endif
                 </div>
                 <div class="form-group">
+                    <label for="capdanhgia">Chức vụ</label>
+                    <select class="form-select form-control {{ $errors->has('chucVu_id') ? 'is-invalid' : '' }}"
+                            id="chucVu_id" name="chucVu_id" aria-label="Chọn chức vụ">
+                        <option value="">Chọn chức vụ</option>
+                        @foreach ($chucVus as $item)
+                            <option value="{{ $item->id }}">{{ $item->ten }}</option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('chucVu_id'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('chucVu_id') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email"
                         name="email" value="{{ old('email', '') }}">
@@ -105,28 +121,7 @@ $action = (object) [
                         </div>
                     @endif
                 </div>
-                <div class="form-group">
-                    <label for="password">Mật khẩu</label>
-                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                        id="password" name="password" value="{{ old('password', '') }}">
-                    @if ($errors->has('password'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('password') }}
-                        </div>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label for="password_confirmation">Nhập lại mật khẩu</label>
-                    <input type="password"
-                        class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}"
-                        id="password_confirmation" name="password_confirmation"
-                        value="{{ old('password_confirmation', '') }}">
-                    @if ($errors->has('password_confirmation'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('password_confirmation') }}
-                        </div>
-                    @endif
-                </div>
+
                 <div class="form-group">
                     <label for="donVi_id">Đơn vị</label>
                     <select class="form-select form-control {{ $errors->has('donVi_id') ? 'is-invalid' : '' }}"
