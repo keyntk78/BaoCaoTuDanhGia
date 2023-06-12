@@ -16,9 +16,7 @@ class VaiTroHTSeeder extends Seeder
     {
         DB::table('vai_tro_h_t_s')->insert([
             ['ten' => 'Quản trị hệ thống', 'slug' => 'quan-tri-he-thong'],
-            ['ten' => 'Chủ tịch', 'slug' => 'chu-tich'],
-            ['ten' => 'Phó chủ tịch', 'slug' => 'pho-chu-tich'],
-            ['ten' => 'Thư ký', 'slug' => 'thu-ky'],
+            ['ten' => 'Quản lý chương trình đào tạo', 'slug' => 'quan-ly-chuong-trinh-dao-tao'],
             ['ten' => 'Thành viên', 'slug' => 'thanh-vien'],
         ]);
     }

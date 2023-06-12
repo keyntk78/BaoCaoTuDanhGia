@@ -70,8 +70,17 @@ $action = (object) [
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->hoTen }}</td>
                                     <td>{{ $item->gioiTinh == 1 ? 'Nam' : 'Nữ' }}</td>
-                                    <td>{{ date("d-m-Y", strtotime($item->ngaySinh)) }}</td>
-                                    <td>{{ $item->chucVu }}</td>
+                                    @if($item->ngaySinh !== null)
+                                        <td>{{ date("d-m-Y", strtotime($item->ngaySinh)) }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+
+                                    @if($item->chucVu_id !== null)
+                                        <td>{{ $item->chucVu->ten }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
                                     <td>
                                         <a href="#" class="btn btn-primary btn-restore"
                                             data-url="{{ route('nguoidung.restore') }}" data-id="{{ $item->id }}">Phục

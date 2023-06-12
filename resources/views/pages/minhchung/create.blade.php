@@ -105,11 +105,26 @@
                     @endif
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="isMCGop" name="isMCGop" {{ old('isMCGop', '') == 'on' ? 'checked' : '' }}>
+                    <input class="form-check-input" type="checkbox" id="isMCGop" name="isMCGop"  {{ old('isMCGop', '') == 'on' ? 'checked' : '' }}>
                     <label class="form-check-label" for="isMCGop">Là minh chứng gộp</label>
                 </div>
 
-                <div class="form-group single-minhchung {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}" >
+                <div class="form-group single-minhchung {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}">
+                    <label for="isFileOrUrl">Nguồi minh chứng</label>
+                    <select class="form-select form-control {{ $errors->has('isFileOrUrl') ? 'is-invalid' : '' }}"
+                            id="isFileOrUrl" name="isFileOrUrl" aria-label="Chọn nguồn minh chứng">
+                        <option  value="">Chọn nguồn minhh chứng</option>
+                        <option value="1">Đường dẫn minh chứng</option>
+                        <option value="2">Tệp minh chứng</option>
+                    </select>
+                    @if ($errors->has('isFileOrUrl'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('isFileOrUrl') }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="form-group link-url d-none" >
                     <label for="noiBanHanh">Link url</label>
                     <input type="text" class="form-control {{ $errors->has('link') ? 'is-invalid' : '' }}" id="link"
                            name="link" value="{{ old('link', '') }}">
@@ -120,10 +135,10 @@
                     @endif
                 </div>
 
-                <div class="form-group single-minhchung isUrl {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}">
+                <div class="form-group isUrl file-minhchung d-none ">
                     <label for="fileMinhChung">Tệp minh chứng</label>
                     <input type="file" class="form-control {{ $errors->has('fileMinhChung') ? 'is-invalid' : '' }}" id="fileMinhChung"
-                        name="fileMinhChung" value="{{ old('fileMinhChung', '') }}">
+                        name="fileMinhChung">
                     @if ($errors->has('fileMinhChung'))
                         <div class="invalid-feedback">
                             {{ $errors->first('fileMinhChung') }}
@@ -143,10 +158,30 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+            $('#isFileOrUrl').on('change', (e) => {
+                if ($(e.currentTarget).val() === '') {
+                    $('.link-url').addClass('d-none');
+                    $('.file-minhchung').addClass('d-none');
+
+                }
+                if($(e.currentTarget).val() === '1'){
+                    $('.link-url').removeClass('d-none');
+                    $('.file-minhchung').addClass('d-none');
+
+                }
+                if($(e.currentTarget).val() === '2') {
+                    $('.file-minhchung').removeClass('d-none');
+                    $('.link-url').addClass('d-none');
+                }
+            })
+
+
             $('input#isMCGop').on('click', (e) => {
                 if ($(e.currentTarget).prop('checked') === true) {
                     $('.single-minhchung').addClass('d-none');
                     $('.multi-minhchung').removeClass('d-none');
+                    $('.file-minhchung').addClass('d-none');
+                    $('.link-url').addClass('d-none');
                 } else {
                     $('.single-minhchung').removeClass('d-none');
                     $('.multi-minhchung').addClass('d-none');

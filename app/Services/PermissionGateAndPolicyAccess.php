@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Policies\BaoCaoGkPolicy;
 use App\Policies\BaoCaoPolicy;
+use App\Policies\ChucVuPolicy;
 use App\Policies\DotDanhGiaGkPolicy;
 use App\Policies\LoaiMinhChungPolicy;
 use Illuminate\Support\Facades\Gate;
@@ -70,6 +71,11 @@ class PermissionGateAndPolicyAccess {
         Gate::define('donvi-them', [DonViPolicy::class, 'create']);
         Gate::define('donvi-sua', [DonViPolicy::class, 'update']);
         Gate::define('donvi-xoa', [DonViPolicy::class, 'delete']);
+
+        Gate::define('chucvu-danhsach', [ChucVuPolicy::class, 'viewAny']);
+        Gate::define('chucvu-them', [ChucVuPolicy::class, 'create']);
+        Gate::define('chucvu-sua', [ChucVuPolicy::class, 'update']);
+        Gate::define('chucvu-xoa', [ChucVuPolicy::class, 'delete']);
 
         Gate::define('nganh-danhsach', [NganhPolicy::class, 'viewAny']);
         Gate::define('nganh-them', [NganhPolicy::class, 'create']);

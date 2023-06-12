@@ -79,14 +79,25 @@ $action = (object) [
     </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            @can('nguoidung-them')
-                <a href="{{ route('nguoidung.create') }}" class="btn btn-primary btn-icon-split">
+            <div>
+                @can('nguoidung-them')
+                    <a href="{{ route('nguoidung.create') }}" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Thêm mới</span>
-                </a>
-            @endcan
+                        <span class="text">Thêm mới</span>
+                    </a>
+                @endcan
+                    @can('nguoidung-them')
+                        <a href="{{ route('nguoidung.add-users') }}" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-file-excel"></i>
+                    </span>
+                            <span class="text">Import excel</span>
+                        </a>
+                    @endcan
+            </div>
+
             @can('nguoidung-xoa')
                 <a href="{{ route('nguoidung.trash') }}" class="btn btn-dark btn-icon-split">
                     <span class="icon text-white-50">
@@ -107,7 +118,7 @@ $action = (object) [
                             <th>@sortablelink('hoTen', 'Họ tên')</th>
                             <th>@sortablelink('gioiTinh', 'Giới tính')</th>
                             <th>@sortablelink('ngaySinh', 'Ngày sinh')</th>
-                            <th>@sortablelink('chucVu', 'Chức vụ')</th>
+                            <th>Chức vụ</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
@@ -118,8 +129,17 @@ $action = (object) [
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->hoTen }}</td>
                                     <td>{{ $item->gioiTinh == 1 ? 'Nam' : 'Nữ' }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($item->ngaySinh)) }}</td>
-                                    <td>{{ $item->chucVu }}</td>
+                                    @if($item->ngaySinh !== null)
+                                        <td>{{ date('d-m-Y', strtotime($item->ngaySinh)) }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                    @if(@$item->chucVu_id !== null)
+                                        <td>{{ $item->chucVu->ten}}</td>
+                                    @else
+
+                                    @endif
+
                                     <td>
                                         @can('nguoidung-chitiet')
                                             <a href="{{ route('nguoidung.show', ['id' => $item->id]) }}"
@@ -134,6 +154,11 @@ $action = (object) [
                                                 data-url="{{ route('nguoidung.destroy') }}"
                                                 data-id="{{ $item->id }}">Xóa</a>
                                         @endcan
+                                            @can('nguoidung-sua')
+                                                <a href="#" class="btn btn-info btn-reset"
+                                                   data-url="{{ route('nguoidung.reset-password') }}"
+                                                   data-id="{{ $item->id }}">Đặt lại mật khẩu</a>
+                                            @endcan
                                     </td>
                                 </tr>
                             @endforeach
@@ -158,4 +183,6 @@ $action = (object) [
 @section('scripts')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/handleDelete.js"></script>
+    <script src="js/handleResetPassword.js"></script>
+
 @endsection

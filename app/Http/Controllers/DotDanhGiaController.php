@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NganhDotDanhGia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -23,8 +24,9 @@ class DotDanhGiaController extends Controller
     private $hoatDongModel;
     private $baoCaoModel;
     private $tieuChuanModel;
+    private $nganhDotDanhGiaModel;
     private $tieuChiModel;
-    public function __construct(MinhChung $minhChungModel, TieuChi $tieuChiModel, TieuChuan $tieuChuanModel, BaoCao $baoCaoModel, DotDanhGia $dotDanhGiaModel, Nganh $nganhModel, GiaiDoan $giaiDoanModel, HoatDong $hoatDongModel)
+    public function __construct(MinhChung $minhChungModel,NganhDotDanhGia $nganhDotDanhGiaModel,TieuChi $tieuChiModel, TieuChuan $tieuChuanModel, BaoCao $baoCaoModel, DotDanhGia $dotDanhGiaModel, Nganh $nganhModel, GiaiDoan $giaiDoanModel, HoatDong $hoatDongModel)
     {
         $this->dotDanhGiaModel = $dotDanhGiaModel;
         $this->nganhModel = $nganhModel;
@@ -34,6 +36,7 @@ class DotDanhGiaController extends Controller
         $this->tieuChiModel = $tieuChiModel;
         $this->tieuChuanModel = $tieuChuanModel;
         $this->minhChungModel = $minhChungModel;
+        $this->nganhDotDanhGiaModel = $nganhDotDanhGiaModel;
     }
 
     protected function callValidate(Request $request, $id = null)
@@ -65,7 +68,7 @@ class DotDanhGiaController extends Controller
     public function create()
     {
         $nganhs = $this->nganhModel->all();
-        $hoatDongs = $this->hoatDongModel->all();
+        $hoatDongs = $this->hoatDongModel->where('slug', '!=', 'bao-cao-giua-ky')->get();
         $namHocs = [];
         for ($i = date('Y') - 20; $i < date('Y') + 20; $i++) {
             $namHocs[] = $i;
@@ -76,6 +79,16 @@ class DotDanhGiaController extends Controller
     public function store(Request $request)
     {
         $this->callValidate($request);
+        $dotDanhGias = $this->dotDanhGiaModel
+            ->Join('nganh_dot_danh_gias', 'dotDanhGia_id', '=', 'dot_danh_gias.id')
+            ->where('namHoc', $request->namHoc)->get();
+        foreach ($dotDanhGias as $dotDanhGia){
+            foreach ($request->nganh as $item){
+                if($item == $dotDanhGia->nganh_id){
+                    return redirect()->back()->with('message', 'Ngành trong đợt đánh giá này đã tồn tại tròng năm này!');
+                }
+            }
+        }
         try {
             DB::beginTransaction();
             $dotDanhGia = $this->dotDanhGiaModel->create([
@@ -227,13 +240,13 @@ class DotDanhGiaController extends Controller
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
-
         try {
             DB::beginTransaction();
             $dotDanhGia = $this->dotDanhGiaModel->find($id);
             $dotDanhGia->update([
                 'ten' => $request->ten,
                 'namHoc' => $request->namHoc,
+                'giaiDoan' => $request->giaiDoan,
             ]);
             $nganhIds = !empty($request->nganh) ? $request->nganh : [];
             $dotDanhGia->nganh()->sync($nganhIds);
@@ -341,8 +354,11 @@ class DotDanhGiaController extends Controller
     {
         try {
             $dotDanhGia = $this->dotDanhGiaModel->onlyTrashed()->find($request->id);
+            $giaiDoans = $this->giaiDoanModel->where('dotDanhGia_id', '=', $request->id);
+
             $dotDanhGia->nganh()->detach();
-            $dotDanhGia->hoatDong()->forceDelete();
+            $dotDanhGia->hoatDong()->detach();
+
             $dotDanhGia->forceDelete();
             return response()->json([
                 'code' => 200,
@@ -362,7 +378,7 @@ class DotDanhGiaController extends Controller
             $dotDanhGias = $this->dotDanhGiaModel->onlyTrashed()->get();
             foreach ($dotDanhGias as $dotDanhGia) {
                 $dotDanhGia->nganh()->detach();
-                $dotDanhGia->hoatDong()->forceDelete();
+                $dotDanhGia->hoatDong()->detach();
             }
             $this->dotDanhGiaModel->onlyTrashed()->forceDelete();
             return response()->json([

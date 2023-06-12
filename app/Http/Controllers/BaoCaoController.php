@@ -73,6 +73,7 @@ class BaoCaoController extends Controller
         $dateNow = Carbon::now();
         $nhomIds = [];
         $nganhIds = [];
+
         $nhomNguoiDungs = $this->nhomNguoiDungModel->where('nguoiDung_id', auth()->user()->id)->get();
         foreach ($nhomNguoiDungs as $nhomNguoiDung) {
             if ($nhomNguoiDung->vaiTro_id === 2 || $nhomNguoiDung->vaiTro_id === 3) {
@@ -106,6 +107,7 @@ class BaoCaoController extends Controller
             ->where('nganh_id', $nganhs[0]->id)
             ->whereYear('created_at', '=', $dateNow->year)
             ->whereIn('vaiTro_id', [2, 3])->get();
+
         $tieuChuanIds = [];
         if ($nhomNguoiDungs) {
             foreach ($nhomNguoiDungs as $nhomNguoiDung) {
@@ -119,9 +121,14 @@ class BaoCaoController extends Controller
         $tieuChuans = $this->tieuChuanModel->whereIn('id', $tieuChuanIds)->get();
         if (!empty($tieuChuans[0])) {
             $tieuChis = $this->tieuChiModel->where('tieuChuan_id', $tieuChuans[0]->id)->get()->sortBy('stt');
+
         } else {
             $tieuChis = [];
         }
+
+
+
+
         return view('pages.baocao.create', compact('nganhs', 'tieuChuans', 'tieuChis'));
     }
 
@@ -418,6 +425,7 @@ class BaoCaoController extends Controller
         }
         $tieuChuans = $this->tieuChuanModel->whereIn('id', $tieuChuanIds)->get();
         $tieuChis = $this->tieuChiModel->with('tieuChuan')->where('tieuChuan_id', $tieuChuans[0]->id)->get();
+        
         return response()->json([
             'tieuChuans' => $tieuChuans,
             'tieuChis' => $tieuChis

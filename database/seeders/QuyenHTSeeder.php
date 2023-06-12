@@ -16,7 +16,6 @@ class QuyenHTSeeder extends Seeder
     public function run()
     {
 
-
         DB::table('quyen_h_t_s')->truncate();
 
         DB::table('quyen_h_t_s')->insert([
@@ -95,11 +94,25 @@ class QuyenHTSeeder extends Seeder
             ['ten' => 'Điều khiển đợt đánh giá', 'slug' => 'dieu-khien-dot-danh-gia', 'parent_id' => 1],
             ['ten' => 'Quản lý tiến độ báo cáo', 'slug' => 'quan-ly-tien-do-bao-cao', 'parent_id' => 0],
 
-            ['ten' => 'Quản lý loại minh chứng', 'slug' => 'quan-ly-loai-minh-chung', 'parent_id' => 0],
-            ['ten' => 'Xem danh sách loại minh chứng', 'slug' => 'xem-danh-sach-loai-minh-chung', 'parent_id' => 64],
-            ['ten' => 'Thêm loại minh chứng', 'slug' => 'them-loai-minh-chung', 'parent_id' => 64],
-            ['ten' => 'Xóa loại minh chứng', 'slug' => 'xoa-loai-minh-chung', 'parent_id' => 64],
-            ['ten' => 'Sửa loại minh chứng', 'slug' => 'sua-loai-minh-chung', 'parent_id' => 64],
+            ['ten' => 'Quản lý báo cáo giữa kỳ', 'slug' => 'quan-ly-bao-cao-giua-ky', 'parent_id' => 0],
+            ['ten' => 'Xem danh sách báo cáo giữa kỳ', 'slug' => 'xem-danh-sach-bao-cao-giua-ky', 'parent_id' => 64],
+            ['ten' => 'Thêm báo cáo giữa kỳ', 'slug' => 'them-bao-cao-giua-ky', 'parent_id' => 64],
+            ['ten' => 'Sửa báo cáo giữa kỳ', 'slug' => 'sua-bao-cao-giua-ky', 'parent_id' => 64],
+            ['ten' => 'Xóa báo cáo giữa kỳ', 'slug' => 'xoa-bao-cao-giua-ky', 'parent_id' => 64],
+            ['ten' => 'Cập nhật trạng thái báo cáo giữa kỳ', 'slug' => 'cap-nhat-trang-thai-bao-cao-giua-ky', 'parent_id' => 64],
+
+            ['ten' => 'Quản lý đợt đánh giá giữa kỳ', 'slug' => 'quan-ly-dot-danh-gia-giua-ky', 'parent_id' =>0],
+            ['ten' => 'Quản lý đợt đánh giá giữa kỳ', 'slug' => 'quan-ly-dot-danh-gia-giua-ky', 'parent_id' => 70],
+            ['ten' => 'Thêm và xem đợt đánh giá giữa kỳ', 'slug' => 'them-va-xem-dot-danh-gia-giua-ky', 'parent_id' => 70],
+            ['ten' => 'Sữa đợt đánh giá giữa kỳ', 'slug' => 'sua-dot-danh-gia-giua-ky', 'parent_id' => 70],
+            ['ten' => 'Xóa đợt đánh giá giữa kỳ', 'slug' => 'xoa-dot-danh-gia-giua-ky', 'parent_id' => 70],
+            ['ten' => 'Cập nhật trạng thái đánh giá giữa kỳ', 'slug' => 'cap-nhat-trang-thai-dot-danh-gia-giua-ky', 'parent_id' => 70],
+
+            ['ten' => 'Quản lý chức vụ', 'slug' => 'quan-ly-chuc-vu', 'parent_id' => 0],
+            ['ten' => 'Xem danh sách chức vụ', 'slug' => 'xem-danh-sach-chuc-vu', 'parent_id' => 76],
+            ['ten' => 'Thêm chức vụ', 'slug' => 'them-chuc-vu', 'parent_id' => 76],
+            ['ten' => 'Xóa chức vụ', 'slug' => 'xoa-chuc-vu', 'parent_id' => 76],
+            ['ten' => 'Sửa chức vụ', 'slug' => 'sua-chuc-vu', 'parent_id' => 76],
         ]);
     }
 }

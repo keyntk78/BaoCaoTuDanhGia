@@ -60,6 +60,12 @@ class User extends Authenticatable
         return $this->belongsTo(DonVi::class, 'donVi_id');
     }
 
+    public function chucVu()
+    {
+        return $this->belongsTo(ChucVu::class, 'chucVu_id');
+    }
+
+
     public function nhomNguoiDung()
     {
         return $this->hasMany(NhomNguoiDung::class, 'nguoiDung_id');

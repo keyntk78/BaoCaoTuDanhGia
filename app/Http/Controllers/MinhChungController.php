@@ -6,7 +6,9 @@ use App\Models\LoaiMinhChung;
 use App\Models\MinhChung;
 use App\Models\DonVi;
 use Illuminate\Http\Request;
-use App\Services\HandleUploadImage;
+use App\Services\HandleUploadFile;
+use Illuminate\Support\Facades\Storage;
+
 
 class MinhChungController extends Controller
 {
@@ -83,21 +85,21 @@ class MinhChungController extends Controller
     public function store(Request $request)
     {
         $donVis = $this->donViModel->all();
-
-
         $this->callValidate($request);
-        if (is_null($request->fileMinhChung) && is_null($request->link)) {
-            return redirect()->route('minhchung.create')->with('message', 'Lỗi: Bạn chưa thêm tệp hoặc link url minh chứng!', compact('donVis'));
-        }
-        $link = '';
-        $isUrl = false;
+        if ($request->isMCGop !== 'on') {
+            if (is_null($request->fileMinhChung) && is_null($request->link)) {
+                return redirect()->route('minhchung.create')->with('message', 'Lỗi: Bạn chưa thêm tệp hoặc link url minh chứng!', compact('donVis'));
+            }
+            $link = '';
+            $isUrl = false;
 
-        if(is_null($request->link)) {
-            $link = HandleUploadImage::upload($request, 'fileMinhChung', 'minhchungs');
-        }
-        else {
-            $link = $request->link;
-            $isUrl = true;
+            if(is_null($request->link)) {
+                $link = HandleUploadFile::upload($request, 'fileMinhChung', 'minhchungs');
+            }
+            else {
+                $link = $request->link;
+                $isUrl = true;
+            }
         }
 
         $this->minhChungModel->create([
@@ -105,8 +107,8 @@ class MinhChungController extends Controller
             'ngayKhaoSat' => $request->ngayKhaoSat,
             'ngayBanHanh' => $request->ngayBanHanh,
             'noiBanHanh' => $request->noiBanHanh,
-            'link' => $link,
-            'isUrl' =>$isUrl,
+            'link' => $request->isMCGop == 'on' ? null : $link,
+            'isUrl' =>$request->isMCGop == 'on' ? null : $isUrl,
             'donVi_id' => $request->donVi_id,
             'isMCGop' => $request->isMCGop == 'on' ? 1 : 0,
             'nguoiDung_id' => auth()->user()->id
@@ -124,23 +126,34 @@ class MinhChungController extends Controller
     public function update(Request $request, $id)
     {
         $this->callValidate($request, $id);
+
         $minhChung = $this->minhChungModel->find($id);
-        $fileUploaded = HandleUploadImage::upload($request, 'fileMinhChung', 'minhchungs');
-        if ($fileUploaded) {
+        if (is_null($request->fileMinhChung) && is_null($request->link)) {
             $minhChung->update([
                 'ten' => $request->ten,
                 'ngayKhaoSat' => $request->ngayKhaoSat,
                 'ngayBanHanh' => $request->ngayBanHanh,
                 'noiBanHanh' => $request->noiBanHanh,
-                'link' => $fileUploaded,
                 'donVi_id' => $request->donVi_id,
             ]);
         } else {
+            $link = '';
+            $isUrl = false;
+
+            if(is_null($request->link)) {
+                $link = HandleUploadFile::upload($request, 'fileMinhChung', 'minhchungs');
+            }
+            else {
+                $link = $request->link;
+                $isUrl = true;
+            }
             $minhChung->update([
                 'ten' => $request->ten,
                 'ngayKhaoSat' => $request->ngayKhaoSat,
                 'ngayBanHanh' => $request->ngayBanHanh,
                 'noiBanHanh' => $request->noiBanHanh,
+                'link' => $link,
+                'isUrl' => $isUrl,
                 'donVi_id' => $request->donVi_id,
             ]);
         }
@@ -249,6 +262,16 @@ class MinhChungController extends Controller
             ], 500);
         }
     }
+
+    public  function download($file_name) {
+        if(Storage::disk('public')->exists("minhchungs/$file_name")) {
+            $path = Storage::disk('public')->path("minhchungs/$file_name");
+            $content = file_get_contents($path);
+            return  response($content)->withHeaders(['Content-Type' => mime_content_type($path)]);
+        }
+        return redirect('/404');
+    }
+
     public function getAll() {
         return response()->json($this->minhChungModel->all(), 200);
     }

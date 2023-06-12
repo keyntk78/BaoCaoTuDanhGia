@@ -18,6 +18,8 @@ class HoatDongSeeder extends Seeder
             ['ten' => 'Viết báo cáo', 'slug' => 'viet-bao-cao'],
             ['ten' => 'Nhận xét báo cáo', 'slug' => 'nhan-xet-bao-cao'],
             ['ten' => 'Phản biện báo cáo', 'slug' => 'phan-bien-bao-cao'],
+            ['ten' => 'Chỉnh sửa báo cáo', 'slug' => 'chinh-sua-bao-cao'],
+            ['ten' => 'Báo cáo giữa kỳ', 'slug' => 'bao-cao-giua-ky'],
         ]);
     }
 }

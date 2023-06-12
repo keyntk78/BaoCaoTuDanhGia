@@ -47,14 +47,17 @@ $user = optional(auth()->user());
                             <th>Giới tính:</th>
                             <td>{{ $user->gioiTinh == 1 ? 'Nam' : 'Nữ' }}</td>
                         </tr>
-                        <tr>
-                            <th>Ngày sinh:</th>
-                            <td>{{ date("d-m-Y", strtotime($user->ngaySinh)) }}</td>
-                        </tr>
-                        <tr>
-                            <th>Chức vụ:</th>
-                            <td>{{ $user->chucVu }}</td>
-                        </tr>
+                        @if($user->ngaySinh !== null)
+                            <tr>
+                                <th>Ngày sinh:</th>
+                                <td>{{ date("d-m-Y", strtotime($user->ngaySinh)) }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <th>Ngày sinh:</th>
+                                <td></td>
+                            </tr>
+                        @endif
                         <tr>
                             <th>Email:</th>
                             <td>{{ $user->email }}</td>
@@ -63,17 +66,35 @@ $user = optional(auth()->user());
                             <th>Số điện thoại:</th>
                             <td>{{ $user->sdt }}</td>
                         </tr>
-                        <tr>
-                            <th>Đơn vị:</th>
-                            <td>{{ $user->donVi->ten }}</td>
-                        </tr>
+                        @if($user->chucVu_id !== null)
+                            <tr>
+                                <th>Chức vụ:</th>
+                                <td>{{ $user->chucVu->ten }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <th>Chức vụ:</th>
+                                <td></td>
+                            </tr>
+                        @endif
+                        @if($user->donVi_id !== null)
+                            <tr>
+                                <th>Đơn vị:</th>
+                                <td>{{ $user->donVi->ten }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <th>Đơn vị:</th>
+                                <td></td>
+                            </tr>
+                        @endif
                         <tr>
                             <th>Chức năng:</th>
                             <td>
                                 <a href="{{ route('thongtincanhan.edit') }}"
                                     class="btn btn-secondary">Sửa</a>
                                 <a href="{{ route('thongtincanhan.changepassword') }}"
-                                    class="btn btn-primary">Đổi mật khảu</a>
+                                    class="btn btn-primary">Đổi mật khẩu</a>
                             </td>
                         </tr>
                     </tbody>

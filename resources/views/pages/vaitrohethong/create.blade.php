@@ -71,27 +71,14 @@ $action = (object) [
                                 </div>
                             </div>
                             @else
-                            <div class="card border-primary mb-3 col-md-12 p-0">
-                                <div class="card-header">
-                                    <label>
-                                        <input type="checkbox" name="quanLyTienDo" value="{{ $item->id }}" class="checkbox_wrapper">
-                                        {{ $item->ten }}
-                                    </label>
-                                </div>
-                                <div class="row px-3">
-                                    <div class="card-body text-primary py-2 px-3">
-                                        <p class="card-title mb-0">
-                                            <label for="nganh_id">Ngành</label>
-                                            <select class="form-control tags-select"
-                                                multiple="multiple" name="nganh_id[]">
-                                                @foreach($nganhs as $item )
-                                                    <option value="{{ $item->id }}">{{ $item->ten }}</option>
-                                                @endforeach
-                                            </select>
-                                        </p>
+                                <div class="card border-primary mb-3 col-md-12 p-0">
+                                    <div class="card-header">
+                                        <label>
+                                            <input type="checkbox" name="quyenHT[]" value="{{ $item->id }}" class="checkbox_wrapper">
+                                            {{ $item->ten }}
+                                        </label>
                                     </div>
                                 </div>
-                            </div>
                             @endif
                         @endforeach
                     </div>

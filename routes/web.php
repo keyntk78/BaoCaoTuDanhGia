@@ -27,6 +27,8 @@ use App\Http\Controllers\QuanLyNhomController;
 use App\Http\Controllers\TienDoBaoCaoController;
 use App\Http\Controllers\BaoCaoGiuaKyController;
 use App\Http\Controllers\DotDanhGiaGiuaKyController;
+use App\Http\Controllers\ChucVuController;
+
 
 use Illuminate\Http\Request;
 
@@ -129,19 +131,38 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/force-destroy-all', [DonViController::class, 'forceDestroyAll'])->name('donvi.force-destroy-all')->middleware('can:donvi-xoa');
     });
 
+    Route::prefix('chucvu')->group(function () {
+        Route::get('/', [ChucVuController::class, 'index'])->name('chucvu.index')->middleware('can:chucvu-danhsach');
+        Route::get('/create', [ChucVuController::class, 'create'])->name('chucvu.create')->middleware('can:chucvu-them');
+        Route::post('/store', [ChucVuController::class, 'store'])->name('chucvu.store')->middleware('can:chucvu-them');
+        Route::get('/edit/{id}', [ChucVuController::class, 'edit'])->name('chucvu.edit')->middleware('can:chucvu-sua');
+        Route::post('/update/{id}', [ChucVuController::class, 'update'])->name('chucvu.update')->middleware('can:chucvu-sua');
+        Route::post('/destroy', [ChucVuController::class, 'destroy'])->name('chucvu.destroy')->middleware('can:chucvu-xoa');
+        Route::get('/trash', [ChucVuController::class, 'trash'])->name('chucvu.trash')->middleware('can:chucvu-xoa');
+        Route::post('/restore', [ChucVuController::class, 'restore'])->name('chucvu.restore')->middleware('can:chucvu-xoa');
+        Route::post('/restore-all', [ChucVuController::class, 'restoreAll'])->name('chucvu.restore-all')->middleware('can:chucvu-xoa');
+        Route::post('/force-destroy', [ChucVuController::class, 'forceDestroy'])->name('chucvu.force-destroy')->middleware('can:chucvu-xoa');
+        Route::post('/force-destroy-all', [ChucVuController::class, 'forceDestroyAll'])->name('chucvu.force-destroy-all')->middleware('can:chucvu-xoa');
+    });
+
     Route::prefix('nguoidung')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('nguoidung.index')->middleware('can:nguoidung-danhsach');
         Route::get('/create', [UserController::class, 'create'])->name('nguoidung.create')->middleware('can:nguoidung-them');
+        Route::get('/add-users', [UserController::class, 'addUsers'])->name('nguoidung.add-users')->middleware('can:nguoidung-them');
         Route::post('/store', [UserController::class, 'store'])->name('nguoidung.store')->middleware('can:nguoidung-them');
         Route::get('/show/{id}', [UserController::class, 'show'])->name('nguoidung.show')->middleware('can:nguoidung-chitiet');
         Route::get('/edit/{id}', [UserController::class, 'edit'])->name('nguoidung.edit')->middleware('can:nguoidung-sua');
         Route::post('/update/{id}', [UserController::class, 'update'])->name('nguoidung.update')->middleware('can:nguoidung-sua');
         Route::post('/destroy', [UserController::class, 'destroy'])->name('nguoidung.destroy')->middleware('can:nguoidung-xoa');
+        Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('nguoidung.reset-password')->middleware('can:nguoidung-sua');
         Route::get('/trash', [UserController::class, 'trash'])->name('nguoidung.trash')->middleware('can:nguoidung-xoa');
         Route::post('/restore', [UserController::class, 'restore'])->name('nguoidung.restore')->middleware('can:nguoidung-xoa');
         Route::post('/restore-all', [UserController::class, 'restoreAll'])->name('nguoidung.restore-all')->middleware('can:nguoidung-xoa');
         Route::post('/force-destroy', [UserController::class, 'forceDestroy'])->name('nguoidung.force-destroy')->middleware('can:nguoidung-xoa');
         Route::post('/force-destroy-all', [UserController::class, 'forceDestroyAll'])->name('nguoidung.force-destroy-all')->middleware('can:nguoidung-xoa');
+        Route::get('/export-sheets', [UserController::class, 'exportSheets'])->name('nguoidung.export')->middleware('can:nguoidung-them');
+        Route::post('/import', [UserController::class, 'import'])->name('nguoidung.import')->middleware('can:nguoidung-them');
+
     });
 
     Route::prefix('thongtincanhan')->group(function () {
@@ -166,6 +187,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/force-destroy', [NhomController::class, 'forceDestroy'])->name('nhom.force-destroy')->middleware('can:nhom-xoa');
         Route::post('/force-destroy-all', [NhomController::class, 'forceDestroyAll'])->name('nhom.force-destroy-all')->middleware('can:nhom-xoa');
         Route::post('/handle-select', [NhomController::class, 'handleSelect'])->name('nhom.handle-select');
+        Route::get('/getAllBoTieuChuan', [NhomController::class, 'getAllBoTieuChuan']);
+        Route::get('/getAllQuuyenNhom', [NhomController::class, 'getAllQuuyenNhom']);
+        Route::post('/getTieuChuans', [NhomController::class, 'getTieuChuans']);
     });
 
     Route::prefix('dotdanhgia')->group(function () {
@@ -326,6 +350,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/getall', [MinhChungController::class, 'getAll'])->name('minhchung.get-all');
         Route::post('/gettp', [MinhChungController::class, 'getTp'])->name('minhchung.get-tp');
         Route::get('/add-detail/{id}', [MinhChungController::class, 'addDetail'])->name('minhchung.add-detail')->middleware('can:minhchung-them');
+        Route::get('/download/{file_name}', [MinhChungController::class, 'download'])->name('minhchung.download')->middleware('can:minhchung-danhsach');
+
     });
 
 

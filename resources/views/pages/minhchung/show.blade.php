@@ -80,7 +80,14 @@ $action = (object) [
                         @else
                         <tr>
                             <th>Link minh chứng:</th>
-                            <td><a href="{{ $minhChung->link }}">{{ $minhChung->ten }}</a></td>
+                            <td>
+                                @if($minhChung->isUrl == 0)
+                                    <a href="{{ route('minhchung.download', ['file_name'=> $minhChung->link]) }}">{{ $minhChung->ten }}</a>
+                                @else
+                                    <a href="{{  $minhChung->link }}">{{ $minhChung->ten }}</a>
+                                @endif
+
+                            </td>
                         </tr>
                         @endif
                         <tr>

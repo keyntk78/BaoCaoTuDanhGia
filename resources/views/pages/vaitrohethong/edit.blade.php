@@ -75,22 +75,9 @@ $action = (object) [
                             <div class="card border-primary mb-3 col-md-12 p-0">
                                 <div class="card-header">
                                     <label>
-                                        <input type="checkbox" name="quanLyTienDo" value="{{ $item->id }}" class="quan-ly-tien-do checkbox_wrapper" {{ in_array($item->id, $currentQuyens) ? 'checked' : '' }}>
+                                        <input type="checkbox" name="quyenHT[]" value="{{ $item->id }}" class="quan-ly-tien-do checkbox_wrapper" {{ in_array($item->id, $currentQuyens) ? 'checked' : '' }}>
                                         {{ $item->ten }}
                                     </label>
-                                </div>
-                                <div class="row px-3">
-                                    <div class="card-body text-primary py-2 px-3">
-                                        <p class="card-title mb-0">
-                                            <label for="nganh_id">Ngành</label>
-                                            <select class="form-control tags-select"
-                                                multiple="multiple" name="nganh_id[]">
-                                                @foreach($nganhs as $item )
-                                                    <option value="{{ $item->id }}" {{ in_array($item->id, $nganhIds) ? 'selected' : '' }}>{{ $item->ten }}</option>
-                                                @endforeach
-                                            </select>
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
                             @endif

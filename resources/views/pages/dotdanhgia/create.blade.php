@@ -30,6 +30,12 @@ $action = (object) [
     @include('partials.page-heading', compact('controller', 'action'))
 @endsection
 
+@section('message')
+    @include('partials.message', [
+        'message' => Session::has('message') ? Session::get('message') : null,
+    ])
+@endsection
+
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body">

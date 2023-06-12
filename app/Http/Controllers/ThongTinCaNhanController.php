@@ -21,15 +21,8 @@ class ThongTinCaNhanController extends Controller
     {
         $request->validate([
             'hoTen' => 'required',
-            'ngaySinh' => 'required',
-            'sdt' => 'required|min:10|numeric|unique:users' . ',sdt,' . $id,
         ], [
             'hoTen.required' => 'Bạn chưa nhập họ tên',
-            'ngaySinh.required' => 'Bạn chưa nhập ngày sinh',
-            'sdt.required' => 'Bạn chưa nhập số điện thoại',
-            'sdt.min' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-            'sdt.numeric' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-            'sdt.unique' => 'Số điện thoại đã tồn tại',
         ]);
     }
 

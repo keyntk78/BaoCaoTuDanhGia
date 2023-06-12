@@ -76,16 +76,6 @@ $action = (object) [
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="chucVu">Chức vụ</label>
-                    <input type="text" class="form-control {{ $errors->has('chucVu') ? 'is-invalid' : '' }}" id="chucVu"
-                        name="chucVu" value="{{ old('chucVu', '') }}">
-                    @if ($errors->has('chucVu'))
-                        <div class="invalid-feedback">
-                            {{ $errors->first('chucVu') }}
-                        </div>
-                    @endif
-                </div>
-                <div class="form-group">
                     <label for="capdanhgia">Chức vụ</label>
                     <select class="form-select form-control {{ $errors->has('chucVu_id') ? 'is-invalid' : '' }}"
                             id="chucVu_id" name="chucVu_id" aria-label="Chọn chức vụ">

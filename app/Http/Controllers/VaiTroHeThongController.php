@@ -68,18 +68,6 @@ class VaiTroHeThongController extends Controller
                 'slug' => Str::slug($request->ten, '-')
             ]);
             $vaiTroHT->quyenHT()->attach($request->quyenHT);
-            if (!empty($request->nganh_id) && count($request->nganh_id) > 0 && !empty($request->quanLyTienDo)) {
-                $datas = array();
-                foreach ( $request->nganh_id as $value ){
-                    $quyenHTs = array(
-                        'vaiTroHT_id'  => $vaiTroHT->id,
-                        'quyenHT_id'  => $request->quanLyTienDo,
-                        'nganh_id'    => $value
-                    );
-                    array_push($datas, $quyenHTs);
-                }
-                $vaiTroHT->quyenHT()->attach($datas);
-            }
             DB::commit();
             return redirect()->route('vaitrohethong.index')->with('message', 'Thêm thành công!');
         } catch (\Exception $e) {
@@ -117,18 +105,7 @@ class VaiTroHeThongController extends Controller
                 'slug' => Str::slug($request->ten, '-')
             ]);
             $request->quyenHT = !empty($request->quyenHT) ? $request->quyenHT : array();
-            $datas = array();
-            if (!empty($request->nganh_id) && count($request->nganh_id) > 0 && !empty($request->quanLyTienDo)) {
-                foreach ( $request->nganh_id as $value ){
-                    $quyenHTs = array(
-                        'vaiTroHT_id'  => $vaiTroHT->id,
-                        'quyenHT_id'  => $request->quanLyTienDo,
-                        'nganh_id'    => $value
-                    );
-                    array_push($datas, $quyenHTs);
-                }
-            }
-            $vaiTroHT->quyenHT()->sync(array_merge($request->quyenHT, $datas));
+            $vaiTroHT->quyenHT()->sync($request->quyenHT);
             DB::commit();
             return redirect()->route('vaitrohethong.index')->with('message', 'Sửa thành công!');
         } catch (\Exception $e) {

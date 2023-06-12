@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoTieuChuan;
 use App\Models\Nganh;
 use App\Models\NguoiDungQuyen;
 use App\Models\Nhom;
@@ -25,7 +26,8 @@ class NhomController extends Controller
     private $userModel;
     private $nhomNguoiDungModel;
     private $nguoiDungQuyenModel;
-    public function __construct(Nhom $nhomModel, Nganh $nganhModel, QuyenNhom $quyenNhomModel, TieuChuan $tieuChuanModel, NhomQuyen $nhomQuyenModel, User $userModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel)
+    private  $boTieuChuanModel;
+    public function __construct(Nhom $nhomModel,BoTieuChuan $boTieuChuanModel, Nganh $nganhModel, QuyenNhom $quyenNhomModel, TieuChuan $tieuChuanModel, NhomQuyen $nhomQuyenModel, User $userModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel)
     {
         $this->nhomModel = $nhomModel;
         $this->nganhModel = $nganhModel;
@@ -35,6 +37,7 @@ class NhomController extends Controller
         $this->userModel = $userModel;
         $this->nhomNguoiDungModel = $nhomNguoiDungModel;
         $this->nguoiDungQuyenModel = $nguoiDungQuyenModel;
+        $this->boTieuChuanModel = $boTieuChuanModel;
     }
 
     protected function callValidate(Request $request, $id = null)
@@ -73,6 +76,7 @@ class NhomController extends Controller
 
         $quyenNhoms = $this->quyenNhomModel->all();
 
+
         $nganhs = $this->nganhModel
             ->join('nganh_dot_danh_gias','nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id' )
             ->join('dot_danh_gias','dot_danh_gias.id', '=', 'nganh_dot_danh_gias.dotDanhGia_id' )
@@ -82,10 +86,49 @@ class NhomController extends Controller
             ->groupby('nganhs.id')
             ->get();
 
+
         $tieuChuans = $this->tieuChuanModel->all();
         $thanhViens = $this->userModel->all();
-        return view('pages.nhom.create', compact('quyenNhoms', 'nganhs', 'tieuChuans', 'thanhViens'));
+        return view('pages.nhom.create', compact('quyenNhoms', 'nganhs', 'tieuChuans', 'thanhViens',));
     }
+
+    public function getAllBoTieuChuan()
+    {
+        try {
+            $boTieuChuans =  $this->boTieuChuanModel->all();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success',
+                'data' => $boTieuChuans
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail',
+            ], 500);
+        }
+    }
+
+    public function getAllQuuyenNhom()
+    {
+        try {
+            $quyenNhoms = $this->quyenNhomModel->all();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success',
+                'data' => $quyenNhoms
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail',
+            ], 500);
+        }
+    }
+
+
+
+
 
     public function store(Request $request)
     {
@@ -300,7 +343,6 @@ class NhomController extends Controller
         $dateNow = Carbon::now();
         if (!empty($request->quyenId)) {
 
-
             $nhoms = $this->nhomModel
                 ->where('nganh_id', $request->nganhId)
                 ->whereYear('created_at', '=', $dateNow->year)
@@ -317,7 +359,6 @@ class NhomController extends Controller
                     }
                 }
             }
-
 
             $tieuChuans = $this->tieuChuanModel->all();
             return response()->json([
@@ -355,4 +396,47 @@ class NhomController extends Controller
             ], 200);
         }
     }
+
+    public function getTieuChuans(Request $request)
+    {
+        $dateNow = Carbon::now();
+        try {
+            $nhoms = $this->nhomModel
+                ->where('nganh_id', $request->nganhId)
+                ->whereYear('created_at', '=', $dateNow->year)
+                ->get();
+
+            $quyenId = $request->quyenId;
+            $tieuChuanIds = [];
+            $tieuChuanFinal = [];
+            $curentNhomId = $request->nhomId;
+            foreach ($nhoms as $nhom) {
+                if ($nhom->id != $curentNhomId) {
+                    $nhomQuyens = $this->nhomQuyenModel->where('nhom_id', $nhom->id)->where('quyenNhom_id', $quyenId)->get();
+                    foreach ($nhomQuyens as $nhomQuyen) {
+                        array_push($tieuChuanIds, $nhomQuyen->tieuChuan_id);
+                    }
+                }
+            }
+            $tieuChuans =  $this->tieuChuanModel->where('tieu_chuans.boTieuChuan_id', '=', $request->boTieuChuanId)->get();
+
+            foreach ($tieuChuans as $element) {
+                if (!in_array($element->id, $tieuChuanIds)) {
+                    $tieuChuanFinal[] = $element;
+                }
+            }
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'success',
+                'data' => $tieuChuanFinal,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail',
+            ], 500);
+        }
+    }
+
 }

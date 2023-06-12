@@ -6,11 +6,19 @@ use App\Models\ChucVu;
 use App\Models\DonVi;
 use App\Models\User;
 use App\Models\VaiTroHT;
+
+use App\Services\Sheet1Export;
+use App\Services\SheetChucVuExport;
+use App\Services\SheetUsersExport;
+use App\Services\UserExport;
+use App\Services\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Services\HandleUploadImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -31,30 +39,32 @@ class UserController extends Controller
         if ($id) {
             $request->validate([
                 'hoTen' => 'required',
-                'chucVu' => 'required',
                 'email' => 'required|email|unique:users' . ',email,' . $id,
+                'chucVu_id' => 'numeric|min:1',
                 'donVi_id' => 'numeric|min:1',
             ], [
                 'hoTen.required' => 'Bạn chưa nhập họ tên',
-                'chucVu.required' => 'Bạn chưa nhập chức vụ',
                 'email.required' => 'Bạn chưa nhập email',
                 'email.email' => 'Bạn chưa nhập đúng định dạng email',
                 'email.unique' => 'Email đã tồn tại',
+                'chucVu_id.numeric' => 'Bạn chưa chọn chức vụ',
+                'chucVu_id.min' => 'Bạn chưa chọn chức vụ',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
             ]);
         } else {
             $request->validate([
                 'hoTen' => 'required',
-                'chucVu' => 'required',
                 'email' => 'required|email|unique:users',
+                'chucVu_id' => 'numeric|min:1',
                 'donVi_id' => 'numeric|min:1',
             ], [
                 'hoTen.required' => 'Bạn chưa nhập họ tên',
-                'chucVu.required' => 'Bạn chưa nhập chức vụ',
                 'email.required' => 'Bạn chưa nhập email',
                 'email.email' => 'Bạn chưa nhập đúng định dạng email',
                 'email.unique' => 'Email đã tồn tại',
+                'chucVu_id.numeric' => 'Bạn chưa chọn chức vụ',
+                'chucVu_id.min' => 'Bạn chưa chọn chức vụ',
                 'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
                 'donVi_id.min' => 'Bạn chưa chọn đơn vị',
             ]);
@@ -65,20 +75,16 @@ class UserController extends Controller
     {
         $request->validate([
             'hoTen' => 'required',
-            'ngaySinh' => 'required',
-            'chucVu' => 'required',
-            'sdt' => 'required|min:10|numeric|unique:users' . ',sdt,' . $id,
             'donVi_id' => 'numeric|min:1',
+            'chucVu_id' => 'numeric|min:1',
+
         ], [
             'hoTen.required' => 'Bạn chưa nhập họ tên',
             'ngaySinh.required' => 'Bạn chưa nhập ngày sinh',
-            'chucVu.required' => 'Bạn chưa nhập chức vụ',
-            'sdt.required' => 'Bạn chưa nhập số điện thoại',
-            'sdt.min' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-            'sdt.numeric' => 'Bạn chưa nhập đúng định dạng số điện thoại',
-            'sdt.unique' => 'Số điện thoại đã tồn tại',
             'donVi_id.numeric' => 'Bạn chưa chọn đơn vị',
             'donVi_id.min' => 'Bạn chưa chọn đơn vị',
+            'chucVu_id.numeric' => 'Bạn chưa chọn chức vụ',
+            'chucVu_id.min' => 'Bạn chưa chọn chức vụ',
         ]);
     }
 
@@ -112,6 +118,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+
         $this->callValidate($request);
         try {
             DB::beginTransaction();
@@ -123,14 +130,14 @@ class UserController extends Controller
                     $fileUploaded = '/img/girl-1.png';
                 }
             }
+
             $user = $this->userModel->create([
                 'hoTen' => $request->hoTen,
                 'gioiTinh' => $request->gioiTinh,
                 'ngaySinh' => $request->ngaySinh,
-                'chucVu' => $request->chucVu,
                 'email' => $request->email,
                 'sdt' => $request->sdt,
-                'password' => Hash::make('123456'),
+                'password' => Hash::make('tdg123456'),
                 'donVi_id' => $request->donVi_id,
                 'chucVu_id' => $request->chucVu_id,
                 'hinhAnh'  => $fileUploaded
@@ -155,7 +162,8 @@ class UserController extends Controller
         $user = $this->userModel->find($id);
         $donVis = $this->donViModel->all();
         $vaiTroHTs = $this->vaiTroHTModel->all();
-        return view('pages.user.edit', compact('user', 'donVis', 'vaiTroHTs'));
+        $chucVus = $this->chucVuModel->all();
+        return view('pages.user.edit', compact('user', 'donVis', 'vaiTroHTs', 'chucVus'));
     }
 
     public function update(Request $request, $id)
@@ -168,9 +176,9 @@ class UserController extends Controller
                 'hoTen' => $request->hoTen,
                 'gioiTinh' => $request->gioiTinh,
                 'ngaySinh' => $request->ngaySinh,
-                'chucVu' => $request->chucVu,
                 'sdt' => $request->sdt,
                 'donVi_id' => $request->donVi_id,
+                'chucVu_id' => $request->chucVu_id,
             ]);
             $user->vaiTroHT()->sync($request->vaiTroHT);
             DB::commit();
@@ -185,6 +193,25 @@ class UserController extends Controller
     {
         try {
             $this->userModel->find($request->id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail',
+            ], 500);
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        try {
+            $user = $this->userModel->find($request->id);
+            $user->update([
+                'password' => Hash::make('tdg123456'),
+            ]);
             return response()->json([
                 'code' => 200,
                 'message' => 'success',
@@ -266,4 +293,100 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public  function  addUsers()
+    {
+        return view('pages.user.addUsers');
+    }
+
+    public function exportSheets()
+    {
+
+        return Excel::download(new UserExport(), 'Mau-them-nguoi-dung.xlsx');
+    }
+
+    public function import()
+    {
+
+        $file = request()->file('file');
+        if (is_null($file)) {
+            return  redirect()->route('nguoidung.add-users')->with('message', 'Bạn chưa tải file lên!');
+        }
+        $fileName = $file->getClientOriginalName();
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+        if ($extension !== 'xlsx') {
+            return  redirect()->route('nguoidung.add-users')->with('message', 'Sai định dạng file!');
+        }
+
+        $data = Excel::toArray(new UsersImport(), request()->file('file'));
+
+        $users = $this->userModel->all();
+        $chucVus = $this->chucVuModel->all();
+        $donVis = $this->donViModel->all();
+
+        $errors = 0;
+        $checkChuvu = 0;
+        $checkDonVi = 0;
+
+        foreach ($data[0] as $item){
+            foreach ($users as $user){
+                if ($user->email === $item['email']){
+                    $errors++;
+                    break;
+                }
+            }
+            foreach ($chucVus as $chucVu){
+                if ($chucVu->ten === $item['chuc_vu']){
+                    $checkChuvu++;
+                    break;
+                }
+            }
+            if($checkChuvu == 0){
+                $errors ++;
+            }
+            foreach ($donVis as $donVi){
+                if ($donVi->ten === $item['don_vi']){
+                    $checkDonVi++;
+                    break;
+                }
+            }
+            if($checkDonVi == 0){
+                $errors ++;
+            }
+
+            if($item['gioi_tinh'] === 'Nam')continue;
+            if($item['gioi_tinh'] === 'Nữ')continue;
+            else $errors++;
+        }
+
+        if ($errors > 0) {
+            return  redirect()->route('nguoidung.add-users')->with('message', 'Lỗi dữ liệu từ file!');
+        }
+
+
+        foreach ($data[0] as $key => $value) {
+            $gioiTinh = 1;
+            $fileUploaded = '/img/man-1.jpg';
+            if($value['gioi_tinh'] === 'Nữ'){
+                $gioiTinh = 0;
+                $fileUploaded = '/img/girl-1.png';
+            }
+            $chucVu = $this->chucVuModel->where('chuc_vus.ten', '=', $value['chuc_vu'])->first();
+            $donVi = $this->donViModel->where('don_vis.ten', '=', $value['don_vi'])->first();
+            $user = $this->userModel->create([
+                'hoTen' => $value['ho_ten'],
+                'gioiTinh' => $gioiTinh,
+                'email' => $value['email'],
+                'password' => Hash::make('tdg123456'),
+                'donVi_id' => $donVi->id,
+                'chucVu_id' => $chucVu->id,
+                'hinhAnh'  => $fileUploaded
+            ]);
+            $user->vaiTroHT()->attach([3]);
+        }
+
+        return redirect()->route('nguoidung.index')->with('message', 'Thêm thành công!');
+    }
+
 }

@@ -48,7 +48,7 @@ $action = (object) [
 {{--                </div>--}}
 
                 <div class="form-group">
-                    <label for="donVi_id">Đơn vị</label>
+                    <label for="donVi_id">Bộ tiêu chuẩn</label>
                     <select class="form-select form-control"
                             id="boTieuChuan_id" name="boTieuChuan_id" aria-label="Chọn bộ tiêu chuẩn">
                         <option {{ $filterBoTieuChuanId == '' ? 'selected' : '' }} value="">Chọn bộ tiêu chuẩn</option>

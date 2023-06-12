@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChiTietMinhChung;
 use App\Models\DonVi;
 use Illuminate\Http\Request;
-use App\Services\HandleUploadImage;
-
+use App\Services\HandleUploadFile;
 class MinhChungThanhPhanController extends Controller
 {
     private $minhChungTPModel;
@@ -19,21 +18,32 @@ class MinhChungThanhPhanController extends Controller
     {
         $request->validate([
             'ten' => 'required|unique:minh_chungs',
-            'fileMinhChung' => 'required',
         ], [
             'ten.required' => 'Bạn chưa nhập tên minh chứng thành phần',
             'ten.unique' => 'Tên minh chứng thành phần đã tồn tại',
-            'fileMinhChung.required' => 'Bạn chưa chèn tệp minh chứng thành phần',
         ]);
     }
 
     public function store(Request $request)
     {
         $this->callValidate($request);
-        $fileUploaded = HandleUploadImage::upload($request, 'fileMinhChung', 'minhchungs');
+        if (is_null($request->fileMinhChung) && is_null($request->link)) {
+            return redirect()->route('minhchung.add-detail', ['id' => $request->minhChung_id])->with('message', 'Lỗi: Bạn chưa thêm tệp hoặc link url minh chứng!');
+        }
+        $link = '';
+        $isUrl = false;
+
+        if(is_null($request->link)) {
+            $link = HandleUploadFile::upload($request, 'fileMinhChung', 'minhchungs');
+        }
+        else {
+            $link = $request->link;
+            $isUrl = true;
+        }
         $this->minhChungTPModel->create([
             'ten' => $request->ten,
-            'link' => $fileUploaded,
+            'link' => $link,
+            'isUrl' => $isUrl,
             'minhChung_id' => $request->minhChung_id,
         ]);
         return redirect()->route('minhchung.add-detail', ['id' => $request->minhChung_id])->with('message', 'Thêm thành công!');

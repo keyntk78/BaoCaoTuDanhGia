@@ -44,16 +44,43 @@ $action = (object) [
                         </div>
                     @endif
                 </div>
-                <div class="form-group">
-                    <label for="fileMinhChung">Tệp minh chứng thành phần</label>
-                    <input type="file" class="form-control {{ $errors->has('fileMinhChung') ? 'is-invalid' : '' }}"
-                        id="fileMinhChung" name="fileMinhChung" value="{{ old('fileMinhChung', '') }}">
+                <div class="form-group single-minhchung {{ old('isMCGop', '') == 'on' ? 'd-none' : '' }}">
+                    <label for="isFileOrUrl">Nguồi minh chứng</label>
+                    <select class="form-select form-control {{ $errors->has('isFileOrUrl') ? 'is-invalid' : '' }}"
+                            id="isFileOrUrl" name="isFileOrUrl" aria-label="Chọn nguồn minh chứng">
+                        <option  value="">Chọn nguồn minhh chứng</option>
+                        <option value="1">Đường dẫn minh chứng</option>
+                        <option value="2">Tệp minh chứng</option>
+                    </select>
+                    @if ($errors->has('isFileOrUrl'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('isFileOrUrl') }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="form-group link-url d-none" >
+                    <label for="noiBanHanh">Link url</label>
+                    <input type="text" class="form-control {{ $errors->has('link') ? 'is-invalid' : '' }}" id="link"
+                           name="link" value="">
+                    @if ($errors->has('link'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('link') }}
+                        </div>
+                    @endif
+                </div>
+
+                <div class="form-group isUrl file-minhchung d-none ">
+                    <label for="fileMinhChung">Tệp minh chứng</label>
+                    <input type="file" class="form-control {{ $errors->has('fileMinhChung') ? 'is-invalid' : '' }}" id="fileMinhChung"
+                           name="fileMinhChung">
                     @if ($errors->has('fileMinhChung'))
                         <div class="invalid-feedback">
                             {{ $errors->first('fileMinhChung') }}
                         </div>
                     @endif
                 </div>
+
                 <button type="submit" class="btn btn-primary">Thêm</button>
             </form>
         </div>
@@ -78,7 +105,14 @@ $action = (object) [
                             @foreach ($minhChung->cTMinhChung as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><a href="{{ $item->link }}">{{ $item->ten }}</a></td>
+                                    <td>
+                                        @if($item->isUrl == 0)
+                                            <a href="{{ route('minhchung.download', ['file_name'=> $item->link]) }}">{{ $item->ten }}</a>
+                                        @else
+                                            <a href="{{  $item->link }}">{{ $item->ten }}</a>
+                                        @endif
+
+                                    </td>
                                     <td>{{ $item->link }}</td>
                                     <td>
                                         <a href="#" class="btn btn-danger btn-delete"
@@ -100,6 +134,27 @@ $action = (object) [
 @endsection
 
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#isFileOrUrl').on('change', (e) => {
+                if ($(e.currentTarget).val() === '') {
+                    $('.link-url').addClass('d-none');
+                    $('.file-minhchung').addClass('d-none');
+
+                }
+                if($(e.currentTarget).val() === '1'){
+                    $('.link-url').removeClass('d-none');
+                    $('.file-minhchung').addClass('d-none');
+
+                }
+                if($(e.currentTarget).val() === '2') {
+                    $('.file-minhchung').removeClass('d-none');
+                    $('.link-url').addClass('d-none');
+                }
+            })
+
+        })
+    </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/handleDelete.js"></script>
 @endsection

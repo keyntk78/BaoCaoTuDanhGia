@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Services\HandleUpdateHaveMany;
+use Illuminate\Validation\Rule;
 
 class TieuChiController extends Controller
 {
@@ -38,11 +39,15 @@ class TieuChiController extends Controller
 
         if ($id) {
             $request->validate([
-                'stt' => 'required',
+                'stt' => ['required',Rule::unique('tieu_chis')->where(function ($query) use ($request, $id){
+                    return $query->where('tieuChuan_id', $request->input('tieuChuan_id'))
+                        ->where('id', '!=',$id);
+                })],
                 'ten' => 'required|unique:tieu_chis' . ',ten,' . $id,
                 'tieuChuan_id' => 'required|numeric|min:1'
             ], [
                 'stt.required' => 'Bạn chưa nhập số thứ tự tiêu chí',
+                'stt.unique' =>'Số thứ tự tiêu chuẩn đã tồn tại',
                 'ten.required' => 'Bạn chưa nhập tên tiêu chí',
                 'ten.unique' => 'Tên tiêu chí đã tồn tại',
                 'tieuChuan_id.min' => 'Bạn chưa chọn tiêu chuẩn',
@@ -51,11 +56,15 @@ class TieuChiController extends Controller
             ]);
         } else {
             $request->validate([
-                'stt' => 'required',
+                'stt' => ['required',Rule::unique('tieu_chis')->where(function ($query) use ($request, $id){
+                    return $query->where('tieuChuan_id', $request->input('tieuChuan_id'))
+                        ->where('id', '!=',$id);
+                })],
                 'ten' => 'required|unique:tieu_chis',
                 'tieuChuan_id' => 'required|numeric|min:1'
             ], [
                 'stt.required' => 'Bạn chưa nhập số thứ tự tiêu chí',
+                'stt.unique' =>'Số thứ tự tiêu chuẩn đã tồn tại',
                 'ten.required' => 'Bạn chưa nhập tên tiêu chí',
                 'ten.unique' => 'Tên tiêu chí đã tồn tại',
                 'tieuChuan_id.required' => 'Bạn chưa chọn tiêu chuẩn',
@@ -111,6 +120,20 @@ class TieuChiController extends Controller
         $this->callValidate($request);
         try {
             DB::beginTransaction();
+            $isTongKetTieuChuan = $this->tieuChiModel
+                        ->Join('tieu_chuans', 'tieu_chis.tieuChuan_id', '=', 'tieu_chuans.id')
+                        ->Where('tieu_chuans.id', '=', $request->tieuChuan_id)
+                        ->Where('tieu_chuans.boTieuChuan_id', '=', $request->boTieuChuan_id)
+                        ->Where('tieu_chis.stt', '=', 0)->count();
+            $tieuChuan = $this->tieuChuanModel->where('id', '=', $request->tieuChuan_id)->first();
+            if ($isTongKetTieuChuan === 0) {
+                $tieuChi = $this->tieuChiModel->create([
+                    'stt' => 0,
+                    'ten' => 'Tổng kết tiêu chuẩn' . ' ' . $tieuChuan->stt,
+                    'tieuChuan_id' => $request->tieuChuan_id,
+                ]);
+            }
+
             $tieuChi = $this->tieuChiModel->create([
                 'stt' => $request->stt,
                 'ten' => $request->ten,

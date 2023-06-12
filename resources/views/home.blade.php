@@ -56,6 +56,15 @@
             ])
         @endcan
 
+            @can('chucvu-danhsach')
+                @include('partials.home-menu-item', [
+                    'color' => 4,
+                    'route' => 'chucvu.index',
+                    'icon' => 'fas fa fa-user',
+                    'title' => 'Chức vụ'
+                ])
+            @endcan
+
         @can('donvi-danhsach')
             @include('partials.home-menu-item', [
                 'color' => 5,
@@ -110,6 +119,14 @@
                 'title' => 'Vai trò hệ thống'
             ])
         @endcan
+            @can('baocaogk-danhsach')
+                @include('partials.home-menu-item', [
+                    'color' => 4,
+                    'route' => 'baocaogiuaky.index',
+                    'icon' => 'fas fa fa-user',
+                    'title' => 'Báo cáo giữa kỳ'
+                ])
+            @endcan
     </div>
     <h3 class="font-weight-bold text-primary mb-2 text-uppercase">Tự đánh giá</h3>
     <div class="row">

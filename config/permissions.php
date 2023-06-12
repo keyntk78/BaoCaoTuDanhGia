@@ -33,6 +33,11 @@ return [
         'donvi-sua' => 'sua-don-vi',
         'donvi-xoa' => 'xoa-don-vi',
 
+        'chucvu-danhsach' => 'xem-danh-sach-chuc-vu',
+        'chucvu-them' => 'them-chuc-vu',
+        'chucvu-sua' => 'sua-chuc-vu',
+        'chucvu-xoa' => 'xoa-chuc-vu',
+
         'nguoidung-danhsach' => 'xem-danh-sach-nguoi-dung',
         'nguoidung-chitiet' => 'xem-chi-tiet-nguoi-dung',
         'nguoidung-them' => 'them-nguoi-dung',

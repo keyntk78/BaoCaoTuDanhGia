@@ -73,6 +73,14 @@
     ])
     @endcan
 
+    @can('chucvu-danhsach')
+        @include('partials.sidebar-menu-item', [
+            'route' => 'chucvu.index',
+            'icon' => 'fas fa-users-cog',
+            'title' => 'Chức vụ'
+        ])
+    @endcan
+
     @can('donvi-danhsach')
     @include('partials.sidebar-menu-item', [
         'route' => 'donvi.index',
@@ -105,13 +113,6 @@
     ])
     @endcan
 
-    @can('loaiminhchung-danhsach')
-    @include('partials.sidebar-menu-item', [
-        'route' => 'loaiminhchung.index',
-        'icon' => 'fa fa-recycle',
-        'title' => 'Loại minh chứng'
-    ])
-    @endcan
 
     @can('vaitrohethong-danhsach')
     @include('partials.sidebar-menu-item', [
@@ -153,8 +154,6 @@
         'title' => 'Viết báo cáo'
     ])
     @endcan
-
-
 
 
 

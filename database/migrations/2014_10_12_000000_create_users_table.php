@@ -19,14 +19,13 @@ class CreateUsersTable extends Migration
             $table->boolean('gioiTinh');
             $table->date('ngaySinh')->nullable();
             $table->string('sdt')->unique()->nullable();
-            $table->string('chucVu');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('donVi_id');
+            $table->integer('donVi_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->string('hinhAnh');
+            $table->string('hinhAnh')->nullable();
             $table->softDeletes();
         });
     }

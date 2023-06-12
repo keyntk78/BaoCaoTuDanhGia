@@ -1,0 +1,573 @@
+CREATE TABLE "user"
+(
+	id_user SERIAL PRIMARY KEY,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR (100) NOT NULL,
+	username VARCHAR(100) UNIQUE NOT NULL,
+	email VARCHAR (100) UNIQUE NOT NULL,
+	password VARCHAR (255) NOT NULL,
+	phone VARCHAR (15),
+	is_active BOOLEAN DEFAULT true,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP
+);
+
+CREATE TABLE "role"
+(
+	id_role SERIAL PRIMARY KEY,
+   	name VARCHAR (100) UNIQUE NOT NULL,
+	slug VARCHAR (100) UNIQUE NOT NULL,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP
+);
+
+
+CREATE TABLE "permission"
+(
+	id_permission SERIAL PRIMARY KEY,
+   	name VARCHAR (100) UNIQUE NOT NULL,
+	slug VARCHAR (100) UNIQUE NOT NULL,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP
+);
+
+CREATE TABLE "function"
+(
+	id_function SERIAL PRIMARY KEY,
+   	name VARCHAR (100) UNIQUE NOT NULL,
+	slug VARCHAR (100) UNIQUE NOT NULL,
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP,
+	deleted_at TIMESTAMP
+);
+
+
+CREATE TABLE user_role
+(
+	id_user_role SERIAL PRIMARY KEY,
+	user_id INT NOT NULL,
+  	role_id INT NOT NULL,
+  	FOREIGN KEY (role_id)
+      REFERENCES role (id_role) ON DELETE CASCADE ON UPDATE CASCADE,
+ 	FOREIGN KEY (user_id)
+      REFERENCES "user" (id_user) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE role_permission_function
+(
+	id_role_permission_function SERIAL PRIMARY KEY,
+	permission_id INT NOT NULL,
+  	role_id INT NOT NULL,
+	function_id INT NOT NULL,
+  	FOREIGN KEY (role_id)
+      REFERENCES role (id_role) ON DELETE CASCADE ON UPDATE CASCADE,
+ 	FOREIGN KEY (permission_id)
+      REFERENCES "permission" (id_permission) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (function_id)
+      REFERENCES "function" (id_function) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE EXTENSION pgcrypto;
+
+-- Đăng ký
+CREATE OR REPLACE PROCEDURE register_user
+(
+	u_firstName  varchar(100),
+	u_lastName varchar(100),
+	u_username varchar(100),
+	u_email varchar(100),
+	u_password varchar(50),
+	slug_role varchar(100)
+) AS
+$body$
+DECLARE
+ 	user_record "user"%ROWTYPE; 
+	role_record "role"%ROWTYPE;
+BEGIN
+	IF EXISTS(SELECT id_user FROM "user" WHERE email = u_email OR username = u_username)
+		THEN
+		RAISE NOTICE 'User already exists';
+	ELSE 
+		IF EXISTS(SELECT id_role FROM "role" WHERE slug = slug_role)
+		THEN
+			INSERT INTO "user"(first_name, last_name, username, email, password)
+			VALUES(u_firstName, u_lastName, u_username, u_email, CRYPT(u_password, GEN_SALT('bf', 8)));
+
+			SELECT id_user INTO user_record
+				FROM "user"   WHERE username = u_username;
+
+			SELECT id_role INTO role_record  FROM "role"
+			  WHERE slug = slug_role;
+
+			INSERT INTO user_role(user_id,role_id)
+			VALUES (user_record.id_user,role_record.id_role); 
+
+			RAISE NOTICE 'User Registered';
+		ELSE
+			RAISE NOTICE 'Role not exists!';
+		END IF;
+	END IF;
+END;
+$body$
+LANGUAGE plpgsql
+
+
+CALL register_user('Nguyễn Tuấn', 'Kiệt', 'tuankiet78', 'tuankiet.78vn@gmail.com', '123456', 'admin');
+CALL register_user('Cao Hào', 'Kiệt', 'haokiet', 'haokiet@gmail.com', '123456', 'customer');
+CALL register_user('Nguyễn Huỳnh Thanh', 'Hải', 'hai', 'hai@gmail.com', '123456', 'customer');
+CALL register_user('Trần Công', 'Quyền', 'quyen', 'quyen@gmail.com', '123456', 'saler');
+
+
+
+-- Đăng nhập
+
+CREATE OR REPLACE PROCEDURE user_login
+(	p_username varchar(100),
+	p_password varchar(50),
+ 	status OUT int,
+ 	message OUT varchar(100)
+) AS
+$body$
+BEGIN
+	IF EXISTS(SELECT id_user FROM "user" WHERE username = p_username AND password = CRYPT(p_password, password))
+		THEN
+		status := 1;
+		message := 'Login success!';
+	ELSE 
+		status := 0;
+		message := 'Username or password not exists!';
+	END IF;
+END;
+$body$
+LANGUAGE plpgsql
+
+DROP PROCEDURE user_login
+
+SELECT * FROM "user"
+
+CALL user_login('key78vn', '123456', NULL, NULL)
+
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Cập nhật người dùng.
+-- Action: Khởi tạo
+-- ===================================
+
+CREATE OR REPLACE PROCEDURE user_update
+(	
+	u_id_user int,
+	u_first_name varchar(100),
+	u_last_name varchar(100),
+	u_phone varchar(15)
+) AS
+$body$
+BEGIN
+	UPDATE "user" SET
+	first_name = u_first_name,
+	last_name = u_last_name,
+	phone = u_phone,
+	updated_at = CURRENT_TIMESTAMP
+	WHERE id_user = u_id_user;
+END;
+$body$
+LANGUAGE plpgsql
+
+
+CALL user_update(9, 'Cao Hào', 'Kiệt', '0355882728');
+
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Xóa người dùng.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE delete_user
+(	
+	u_id_user int
+) AS
+$body$
+BEGIN
+	DELETE FROM "user" WHERE id_user = u_id_user;
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL delete_user(7);
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Hàm chuyển chuỗi tiếng việt có dấu sang không dấu.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE FUNCTION unaccent_string(VARCHAR) RETURNS VARCHAR AS $$
+DECLARE
+    input_string VARCHAR := $1;
+BEGIN
+
+ 	input_string := translate(input_string, 'ăâđêôơưàảãạáằẳẵặắầẩẫậấèẻẽẹéềểễệếìỉĩịíòỏõọóồổỗộốờởỡợớùủũụúừửữựứỳỷỹỵýĂÂĐÊÔƠƯÀẢÃẠÁẰẲẴẶẮẦẨẪẬẤÈẺẼẸÉỀỂỄỆẾÌỈĨỊÍÒỎÕỌÓỒỔỖỘỐỜỞỠỢỚÙỦŨỤÚỪỬỮỰỨỲỶỸỴÝ', 
+							  'aadeoouaaaaaaaaaaaaaaaeeeeeeeeeeiiiiiooooooooooooooouuuuuuuuuuyyyyyAADEOOUAAAAAAAAAAAAAAAEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOUUUUUUUUUUYYYYYDD');
+	return input_string;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT unaccent_string(replace(lower(first_name),' ','-')) FROM "user"
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Thêm mới role.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE create_role
+(	
+	r_name VARCHAR(100)
+) AS
+$body$
+BEGIN
+	IF EXISTS(SELECT id_role FROM "role" WHERE name = r_name)
+		THEN
+		RAISE NOTICE 'Role already exists';
+	ELSE 
+		INSERT INTO "role"(name, slug, created_at)
+		VALUES(r_name, unaccent_string(replace(lower(r_name),' ','-')), CURRENT_TIMESTAMP );
+		RAISE NOTICE 'Created role success!';
+	END IF;
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL create_role('Admin');
+CALL create_role('Saler');
+CALL create_role('Customer');
+
+
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Chỉnh sửa role.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE update_role
+(	
+	r_id_role INT,
+	r_name VARCHAR(100)
+) AS
+$body$
+BEGIN
+	UPDATE "role" SET
+	name = r_name,
+	slug = unaccent_string(replace(lower(r_name),' ','-')),
+	updated_at = CURRENT_TIMESTAMP
+	WHERE id_role = r_id_role;
+	RAISE NOTICE 'Updated role success!';
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL update_role(3,'Customer');
+
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Xóa role.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE delete_role
+(	
+	r_id_role INT
+) AS
+$body$
+BEGIN
+	DELETE FROM "role" WHERE id_role = r_id_role;
+	RAISE NOTICE 'Deleted role success!';
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL delete_role(4);
+
+
+
+--==========================================
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Thêm mới function.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE create_function
+(	
+	f_name VARCHAR(100)
+) AS
+$body$
+BEGIN
+	IF EXISTS(SELECT id_function FROM "function" WHERE name = f_name)
+		THEN
+		RAISE NOTICE 'Function already exists';
+	ELSE 
+		INSERT INTO "function"(name, slug, created_at)
+		VALUES(f_name, unaccent_string(replace(lower(f_name),' ','-')), CURRENT_TIMESTAMP );
+		RAISE NOTICE 'Created role success!';
+	END IF;
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL create_function('Quản lý sản phẩm');
+CALL create_function('Quản lý danh mục');
+CALL create_function('Quản lý người dùng');
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Chỉnh sửa function.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE update_function
+(	
+	f_id_function INT,
+	f_name VARCHAR(100)
+) AS
+$body$
+BEGIN
+	UPDATE "function" SET
+	name = f_name,
+	slug = unaccent_string(replace(lower(f_name),' ','-')),
+	updated_at = CURRENT_TIMESTAMP
+	WHERE id_function = f_id_function;
+	RAISE NOTICE 'Updated function success!';
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL update_function(3,'Quản lý người dùng');
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Xóa function.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE delete_function
+(	
+	r_id_function INT
+) AS
+$body$
+BEGIN
+	DELETE FROM "function" WHERE id_function = r_id_function;
+	RAISE NOTICE 'Deleted function success!';
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL delete_function(4);
+
+
+--============================================
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Thêm mới permission.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE create_permission
+(	
+	p_name VARCHAR(100)
+) AS
+$body$
+BEGIN
+	IF EXISTS(SELECT id_permission FROM "permission" WHERE name = p_name)
+		THEN
+		RAISE NOTICE 'Permission already exists';
+	ELSE 
+		INSERT INTO "permission"(name, slug, created_at)
+		VALUES(p_name, unaccent_string(replace(lower(p_name),' ','-')), CURRENT_TIMESTAMP );
+		RAISE NOTICE 'Created permission success!';
+	END IF;
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL create_permission('Thêm');
+CALL create_permission('Xóa');
+CALL create_permission('Chỉnh Sửa');
+CALL create_permission('Xem danh sách');
+CALL create_permission('Xem chi tiết');
+
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Chỉnh sửa permission.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE update_permission
+(	
+	p_id_permission INT,
+	p_name VARCHAR(100)
+) AS
+$body$
+BEGIN
+	UPDATE "permission" SET
+	name = p_name,
+	slug = unaccent_string(replace(lower(p_name),' ','-')),
+	updated_at = CURRENT_TIMESTAMP
+	WHERE id_permission = p_id_permission;
+	RAISE NOTICE 'Updated permission success!';
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL update_permission(3,'Chỉnh sửa');
+
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Xóa permission.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE delete_permission
+(	
+	p_id_permission INT
+) AS
+$body$
+BEGIN
+	DELETE FROM "permission" WHERE id_permission = p_id_permission;
+	RAISE NOTICE 'Deleted permission success!';
+END;
+$body$
+LANGUAGE plpgsql
+
+CALL delete_permission(4);
+
+
+INSERT INTO user_role(user_id,role_id)
+		VALUES (7,1); 
+		
+INSERT INTO "user"(first_name, last_name, username, email, password)
+		VALUES('u_firstName', 'u_lastName', 'u_username', 'u_email', CRYPT('u_password', GEN_SALT('bf', 8)));
+
+
+--===========
+-- ===================================
+-- Author: Nguyễn Tuấn Kiệt
+-- Create date: 06/06/2023
+-- Description: Phân quyền them nhóm.
+-- Action: Khởi tạo
+-- ===================================
+CREATE OR REPLACE PROCEDURE phan_quyen
+(	
+	p_id_role INT,
+	p_id_permission INT,
+	p_id_function INT
+) AS
+$body$
+BEGIN
+	IF EXISTS(SELECT id_role_permission_function FROM "role_permission_function"
+			  WHERE role_id = p_id_role AND permission_id = p_id_permission AND function_id = p_id_function)
+		THEN
+		RAISE NOTICE 'Authorization erros!';
+	ELSE 
+		INSERT INTO "role_permission_function"(role_id, permission_id, function_id)
+		VALUES(p_id_role, p_id_permission, p_id_function);
+		RAISE NOTICE 'Authorization success!';
+	END IF;
+END;
+$body$
+LANGUAGE plpgsql
+
+SELECT * FROM role;
+SELECT * FROM permission;
+SELECT * FROM function;
+
+
+CALL phan_quyen(1, 1, 1);
+CALL phan_quyen(1, 2, 1);
+CALL phan_quyen(1, 3, 1);
+CALL phan_quyen(1, 1, 2);
+CALL phan_quyen(1, 2, 2);
+CALL phan_quyen(1, 3, 2);
+CALL phan_quyen(1, 1, 3);
+CALL phan_quyen(1, 2, 3);
+CALL phan_quyen(1, 3, 3);
+
+
+
+CALL phan_quyen(2, 1, 1);
+CALL phan_quyen(2, 2, 1);
+CALL phan_quyen(2, 3, 1);
+CALL phan_quyen(2, 1, 2);
+CALL phan_quyen(2, 2, 2);
+CALL phan_quyen(2, 3, 2);
+
+
+CALL phan_quyen(1, 5, 1);
+CALL phan_quyen(1, 6, 1);
+CALL phan_quyen(1, 5, 2);
+CALL phan_quyen(1, 6, 2);
+
+
+CALL phan_quyen(2, 5, 1);
+CALL phan_quyen(2, 6, 1);
+CALL phan_quyen(2, 5, 2);
+CALL phan_quyen(2, 6, 2);
+
+CALL phan_quyen(3, 5, 1);
+CALL phan_quyen(3, 6, 1);
+CALL phan_quyen(3, 5, 2);
+CALL phan_quyen(3, 6, 2);
+
+
+
+----- 
+CREATE OR REPLACE FUNCTION get_users(page_size int, page_number int) 
+RETURNS SETOF users AS
+$body$
+DECLARE
+	page INTEGER;
+	page_limit INTEGER;
+	page_offset INTEGER
+BEGIN
+	IF page_size = NULL
+		THEN page_limit = 0;
+	ELSE
+		IF page_number = NULL
+			THEN page_offset = 0;
+		ELSE
+	END IF;
+	page := (page_number - 1) * page_size;
+	RETURN QUERY
+	SELECT * FROM users 
+	LIMIT page_size
+	OFFSET page;
+END
+$body$
+LANGUAGE plpgsql
+
+
+CREATE OR REPLACE FUNCTION get_users() 
+RETURNS TABLE(user_id INT,user_first_name VARCHAR, user_last_name VARCHAR,
+			  user_phone VARCHAR, user_username VARCHAR, user_email VARCHAR)
+AS
+$body$
+BEGIN
+	RETURN QUERY 
+	SELECT id_user ,first_name, last_name, phone, username, email FROM "user";
+END
+$body$
+LANGUAGE plpgsql
+
+SELECT * From get_users();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChucVusTable extends Migration
+class AddIsUrlChiTietMinhChungs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateChucVusTable extends Migration
      */
     public function up()
     {
-        Schema::create('chuc_vus', function (Blueprint $table) {
-            $table->id();
-            $table->string('ten');
-            $table->timestamps();
-            $table->softDeletes();
-
+        Schema::table('chi_tiet_minh_chungs', function (Blueprint $table) {
+            $table->boolean('isUrl')->nullable()->after('link');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateChucVusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chuc_vus');
+        Schema::table('chi_tiet_minh_chungs', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -64,24 +64,27 @@ $action = (object) [
                         </div>
                     @endif
                 </div>
+                <div class="form-group">
+                    <label for="tieuChuan_id">Bộ tiêu chuẩn</label>
+                    <select class="form-select form-control {{ $errors->has('boTieuChuan_id') ? 'is-invalid' : '' }}"
+                            id="boTieuChuan_id" name="boTieuChuan_id"  aria-label="Chọn bộ tiêu chuẩn">
+                        <option value="0" selected>Chọn bộ tiêu chuẩn</option>
+                    </select>
+                </div>
                 <div class="form-row pl-1 wrap-select">
                     <div class="form-row pl-1 w-100">
                         <div class="form-group col-md-5">
                             <label>Quyền</label>
                             <select class="form-select form-control" id="select-1" data-name="quyenNhom_id[]" aria-label="Chọn quyền" disabled>
                                 <option value="" selected>Chọn quyền</option>
-                                @foreach ($quyenNhoms as $item)
-                                    <option value="{{ $item->id }}">{{ $item->ten }}</option>
-                                @endforeach
+
                             </select>
                         </div>
                         <div class="ml-3 form-group col-md-5">
                             <label>Tiêu chuẩn</label>
                             <select class="form-select form-control" id="select-2" data-name="tieuChuan_id[]" aria-label="Chọn tiêu chuẩn" disabled>
                                 <option value="" selected>Chọn tiêu chuẩn</option>
-                                @foreach ($tieuChuans as $item)
-                                    <option value="{{ $item->id }}">Tiêu chuẩn số {{ $item->stt }}</option>
-                                @endforeach
+
                             </select>
                         </div>
                         <div class="ml-3 mb-0 form-group col-md-1">
@@ -145,5 +148,5 @@ $action = (object) [
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="js/handleMultipleSelect.js"></script>
     <script src="js/handleTwoSelect.js"></script>
-    <script src="js/handleDataSelect.js"></script>
+    <script src="js/handleDataSelectNhom.js"></script>
 @endsection

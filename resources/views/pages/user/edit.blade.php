@@ -63,12 +63,19 @@ $action = (object) [
                     @endif
                 </div>
                 <div class="form-group">
-                    <label for="chucVu">Chức vụ</label>
-                    <input type="text" class="form-control {{ $errors->has('chucVu') ? 'is-invalid' : '' }}" id="chucVu"
-                        name="chucVu" value="{{ old('chucVu', $user->chucVu) }}">
-                    @if ($errors->has('chucVu'))
+                    <label for="chucVu_id">Đơn vị</label>
+                    <select class="form-select form-control {{ $errors->has('chucVu_id') ? 'is-invalid' : '' }}"
+                            id="donVi_id" name="chucVu_id" aria-label="Chọn chức vụ">
+                        <option {{ old('chucVu_id', $user->donVi_id) == '' ? 'selected' : '' }}>Chọn chức vụ</option>
+                        @foreach ($chucVus as $item)
+                            <option value="{{ $item->id }}"
+                                {{ old('chucVu_id', $user->donVi_id) == $item->id ? 'selected' : '' }}>
+                                {{ $item->ten }}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('donVi_id'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('chucVu') }}
+                            {{ $errors->first('donVi_id') }}
                         </div>
                     @endif
                 </div>
