@@ -48,10 +48,16 @@
             data: { _token: $('input[name="_token"]').val() },
             success: (data) => {
                 data.forEach((item) => {
+                    var url = ''
                     if (item.isMCGop) {
-                        $('#minhChung').append(`<option value="${window.location.origin}/minhchung/detailTP/${item.id}">${item.ten}</option>`)
+                        url = window.location.origin + '/minhchung/detailTP/' + item.id
+                        $('#minhChung').append(`<option value="${url}">${item.ten}</option>`)
+                    } else if (item.isUrl){
+                        url = item.link
+                        $('#minhChung').append(`<option value="${url}">${item.ten}</option>`)
                     } else {
-                        $('#minhChung').append(`<option value="${window.location.origin}${item.link}">${item.ten}</option>`)
+                        url = window.location.origin + '/minhchung/download/' + item.link
+                        $('#minhChung').append(`<option value="${url}">${item.ten}</option>`)
                     }
                 })
             },

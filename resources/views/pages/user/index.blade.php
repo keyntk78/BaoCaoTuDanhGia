@@ -55,11 +55,6 @@ $action = (object) [
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="chucVu">Chức vụ</label>
-                    <input type="text" class="form-control {{ $errors->has('chucVu') ? 'is-invalid' : '' }}" id="chucVu"
-                        name="chucVu" value="{{ $filterChucVu }}">
-                </div>
                 {{-- <div class="form-group">
                     <label for="vaiTroHT_id">Vai trò hệ thống</label>
                     <select class="form-select form-control {{ $errors->has('vaiTroHT_id') ? 'is-invalid' : '' }}"
@@ -70,6 +65,31 @@ $action = (object) [
                         @endforeach
                     </select>
                 </div> --}}
+
+                <div class="form-group">
+                    <label for="chucVu_id">Chức vụ</label>
+                    <select class="form-select form-control"
+                            id="chucVu_id" name="chucVu_id" aria-label="Chọn bộ chức vụ">
+                        <option {{ $filterChucVuId == '' ? 'selected' : '' }} value="">Chọn chức vụ</option>
+                        @foreach ($chucVus as $item)
+                            <option value="{{ $item->id }}" {{ $filterChucVuId == $item->id ? 'selected' : '' }}>{{ $item->ten }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="chucVu_id">Chương trình đào tạo</label>
+                    <select class="form-select form-control"
+                            id="dotDanhGia" name="dotDanhGia" aria-label="Chọn bộ chương trình đào tạo">
+                        <option   {{ $filterDotDanhGia == '' ? 'selected' : '' }} value="">Chọn chương trình đào tạo</option>
+                        @foreach ($dotDanhGias as $item)
+                            <option value="{{$item->nganhId}}-{{$item->namHoc}}" {{ $filterDotDanhGia == $item->id ? 'selected' : '' }}
+                            >CTĐT ngành {{ $item->tenNganh }} {{$item->namHoc}}</option>
+
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mx-2">Tìm kiếm</button>
                     <a href="{{ route('nguoidung.index') }}" class="btn btn-secondary mx-2">Làm mới</a>

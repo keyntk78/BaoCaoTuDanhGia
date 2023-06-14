@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\ChucVu;
 use App\Models\DonVi;
+use App\Models\DotDanhGia;
+use App\Models\Nganh;
+use App\Models\QuyenHT;
 use App\Models\User;
 use App\Models\VaiTroHT;
 
@@ -26,12 +29,24 @@ class UserController extends Controller
     private $donViModel;
     private $vaiTroHTModel;
     private  $chucVuModel;
-    public function __construct(User $userModel, DonVi $donViModel, VaiTroHT $vaiTroHTModel, ChucVu $chucVuModel)
+    private $nhomNguoiDungModel;
+    private  $nganhModel;
+
+    private $quyenHTModel;
+
+
+
+
+
+    public function __construct(User $userModel,DotDanhGia $dotDanhGiaModel,QuyenHT $quyenHTModel,Nganh $nganhModel,DonVi $donViModel, VaiTroHT $vaiTroHTModel, ChucVu $chucVuModel)
     {
         $this->userModel = $userModel;
         $this->donViModel = $donViModel;
         $this->vaiTroHTModel = $vaiTroHTModel;
         $this->chucVuModel = $chucVuModel;
+        $this->dotDanhGiaModel = $dotDanhGiaModel;
+        $this->nganhModel = $nganhModel;
+        $this->quyenHTModel = $quyenHTModel;
     }
 
     protected function callValidate(Request $request, $id = null)
@@ -92,7 +107,8 @@ class UserController extends Controller
     {
         $filterHoTen = $request->query('hoTen');
         $filterGioiTinh = $request->query('gioiTinh');
-        $filterChucVu = $request->query('chucVu');
+        $filterChucVuId = $request->query('chucVu_id');
+        $filterDotDanhGia = $request->query('dotDanhGia');
         $users = $this->userModel->sortable('hoTen');
         if (!empty($filterHoTen)) {
             $users->where('users.hoTen', 'like', '%'.$filterHoTen.'%');
@@ -100,12 +116,35 @@ class UserController extends Controller
         if ($filterGioiTinh != '') {
             $users->where('users.gioiTinh', $filterGioiTinh);
         }
-        if (!empty($filterChucVu)) {
-            $users->where('users.chucVu', 'like', '%'.$filterChucVu.'%');
+        if (!empty($filterChucVuId)) {
+            $users->where('users.chucVu_id', $filterChucVuId);
+        }
+
+        if (!empty($filterDotDanhGia)) {
+            $tachChuoi = explode("-", $filterDotDanhGia);
+            $nganhId = (int)$tachChuoi[0];
+            $namHoc = (int)$tachChuoi[1];
+
+            $users->Join('nhom_nguoi_dungs', 'nhom_nguoi_dungs.nguoiDung_id', '=', 'users.id')
+                ->join('nganhs', 'nhom_nguoi_dungs.nganh_id', '=', 'nganhs.id')
+                ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id')
+                ->join('dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+                ->where('dot_danh_gias.namHoc', $namHoc)
+                ->where('nhom_nguoi_dungs.nganh_id', $nganhId);
+
+//            $users->where('users.chucVu_id', $filterChucVuId);
         }
         $users = $users->paginate(10);
+        $chucVus = $this->chucVuModel->all();
+        $dotDanhGias = $this->dotDanhGiaModel
+                    ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+                    ->join('nganhs', 'nganh_dot_danh_gias.nganh_id', '=', 'nganhs.id')
+                    ->Select('nganhs.ten as tenNganh', 'dot_danh_gias.namHoc', 'nganhs.id as nganhId', 'dot_danh_gias.id')
+                    ->get();
+
         $trashCount = count($this->userModel->onlyTrashed()->get());
-        return view('pages.user.index', compact('users', 'trashCount', 'filterHoTen' ,'filterGioiTinh', 'filterChucVu'));
+        return view('pages.user.index', compact('users', 'trashCount',
+            'filterHoTen' ,'filterGioiTinh', 'filterChucVuId', 'chucVus', 'dotDanhGias', 'filterDotDanhGia'));
     }
 
     public function create()
@@ -118,10 +157,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
         $this->callValidate($request);
         try {
             DB::beginTransaction();
+
+
             $fileUploaded = HandleUploadImage::upload($request, 'hinhAnh', 'photos');
             if (empty($fileUploaded)) {
                 if ($request->gioiTinh == 1) {
@@ -163,13 +203,15 @@ class UserController extends Controller
         $donVis = $this->donViModel->all();
         $vaiTroHTs = $this->vaiTroHTModel->all();
         $chucVus = $this->chucVuModel->all();
-        return view('pages.user.edit', compact('user', 'donVis', 'vaiTroHTs', 'chucVus'));
+        $nganhs = $this->nganhModel->all();
+        return view('pages.user.edit', compact('user', 'donVis', 'vaiTroHTs', 'chucVus', 'nganhs'));
     }
 
     public function update(Request $request, $id)
     {
         $this->callValidateEdit($request, $id);
         try {
+
             DB::beginTransaction();
             $user = $this->userModel->find($id);
             $user->update([
@@ -181,6 +223,25 @@ class UserController extends Controller
                 'chucVu_id' => $request->chucVu_id,
             ]);
             $user->vaiTroHT()->sync($request->vaiTroHT);
+            $datas = array();
+            $slugTienDo = 'quan-ly-tien-do-bao-cao';
+            $quyenHt = $this->quyenHTModel->where('slug', $slugTienDo)->first();
+
+            if (!empty($request->nganh) && count($request->nganh) > 0) {
+                foreach ( $request->nganh as $value ){
+                    $nguoiDungQuyenHTs = array(
+                        'nguoiDung_id'  => $id,
+                        'quyenHT_id'  => $quyenHt->id,
+                        'nganh_id'    => $value
+                    );
+                    array_push($datas, $nguoiDungQuyenHTs);
+                }
+            }
+
+//            $data = array_merge($request->nganh, $datas);
+
+            $user->nganhNguoiDungQuyenHT()->sync($datas);
+
             DB::commit();
             return redirect()->route('nguoidung.show', ['id' => $id])->with('message', 'Sửa thành công!');
         } catch (\Exception $e) {

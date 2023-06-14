@@ -34,6 +34,7 @@ $action = (object) [
                 <div class="form-group">
                     <label for="nganh_id">Ngành</label>
                     <select class="form-select form-control" id="nganh_id" name="nganh_id" aria-label="Chọn ngành">
+                        <option value="" selected>Chọn ngành</option>
                         @foreach ($nganhs as $item)
                             <option value="{{ $item->id }}">{{ $item->ten }}</option>
                         @endforeach
@@ -42,26 +43,26 @@ $action = (object) [
                 <div class="form-group">
                     <label for="tieuChuan_id">Tiêu chuẩn</label>
                     <select class="form-select form-control" id="tieuChuan_id" name="tieuChuan_id"
-                        aria-label="Chọn tiêu chuẩn">
-                        @foreach ($tieuChuans as $item)
-                            <option value="{{ $item->id }}">Tiêu chuẩn số {{ $item->stt }}: {{ $item->ten }}
-                            </option>
-                        @endforeach
+                        aria-label="Chọn tiêu chuẩn" disabled>
+                        <option value="" selected>Chọn tiêu chuẩn</option>
+
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="tieuChi_id">Tiêu chí</label>
-                    <select class="form-select form-control" id="tieuChi_id" name="tieuChi_id" aria-label="Chọn tiêu chí">
-                        @foreach ($tieuChis as $item)
-                            @php
-                                if (strlen($item->ten) < 150) {
-                                    $ten = $item->ten;
-                                } else {
-                                    $ten = substr($item->ten, 0, strpos(wordwrap($item->ten, 150), "\n")) . '...';
-                                }
-                            @endphp
-                            <option value="{{ $item->id }}" data-stt="{{ $item->stt }}">Tiêu chí số {{ $item->tieuChuan->stt }}.{{ $item->stt }}: {{ $ten }}</option>
-                        @endforeach
+                    <select class="form-select form-control" disabled id="tieuChi_id" name="tieuChi_id" aria-label="Chọn tiêu chí">
+                        <option value="" selected>Chọn tiêu chí</option>
+
+                        {{--                        @foreach ($tieuChis as $item)--}}
+{{--                            @php--}}
+{{--                                if (strlen($item->ten) < 150) {--}}
+{{--                                    $ten = $item->ten;--}}
+{{--                                } else {--}}
+{{--                                    $ten = substr($item->ten, 0, strpos(wordwrap($item->ten, 150), "\n")) . '...';--}}
+{{--                                }--}}
+{{--                            @endphp--}}
+{{--                            <option value="{{ $item->id }}" data-stt="{{ $item->stt }}">Tiêu chí số {{ $item->tieuChuan->stt }}.{{ $item->stt }}: {{ $ten }}</option>--}}
+{{--                        @endforeach--}}
                     </select>
                 </div>
                 <div class="is-normal-tieuchi d-none">
@@ -109,6 +110,7 @@ $action = (object) [
 @section('scripts')
     <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <script src="js/callTinyMCE.js"></script>
-    <script src="js/handleDataSelectBaoCao.js"></script>
+{{--    <script src="js/handleDataSelectBaoCao.js"></script>--}}
+    <script src="js/baocao/hanldeSelectBaoCao.js"></script>
     <script src="js/handleSelectTieuChi.js"></script>
 @endsection

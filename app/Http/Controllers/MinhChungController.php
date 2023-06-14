@@ -279,4 +279,6 @@ class MinhChungController extends Controller
         $minhChung = $this->minhChungModel->find($request->id);
         return response()->json($minhChung->cTMinhChung, 200);
     }
+
+
 }

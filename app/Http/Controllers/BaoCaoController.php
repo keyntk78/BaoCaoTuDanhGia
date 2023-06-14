@@ -22,11 +22,13 @@ class BaoCaoController extends Controller
     private $tieuChuanModel;
     private $tieuChiModel;
     private $baoCaoSLModel;
+
+    private $dotDanhGiaModel;
     private $nhomNguoiDungModel;
     private $nguoiDungQuyenModel;
     private $nhomQuyenModel;
     private $nhomModel;
-    public function __construct(BaoCao $baoCaoModel, Nganh $nganhModel, TieuChuan $tieuChuanModel, TieuChi $tieuChiModel, BaoCaoSaoLuu $baoCaoSLModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel, NhomQuyen $nhomQuyenModel, Nhom $nhomModel)
+    public function __construct(BaoCao $baoCaoModel,DotDanhGia $dotDanhGiaModel, Nganh $nganhModel, TieuChuan $tieuChuanModel, TieuChi $tieuChiModel, BaoCaoSaoLuu $baoCaoSLModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel, NhomQuyen $nhomQuyenModel, Nhom $nhomModel)
     {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $this->baoCaoModel = $baoCaoModel;
@@ -38,6 +40,7 @@ class BaoCaoController extends Controller
         $this->nguoiDungQuyenModel = $nguoiDungQuyenModel;
         $this->nhomQuyenModel = $nhomQuyenModel;
         $this->nhomModel = $nhomModel;
+        $this->dotDanhGiaModel = $dotDanhGiaModel;
     }
 
     public function index(Request $request)
@@ -101,35 +104,7 @@ class BaoCaoController extends Controller
             ->Select('nganhs.id', 'nganhs.ten')
             ->get();
 
-
-        $nhomNguoiDungs = $this->nhomNguoiDungModel
-            ->where('nguoiDung_id', auth()->user()->id)
-            ->where('nganh_id', $nganhs[0]->id)
-            ->whereYear('created_at', '=', $dateNow->year)
-            ->whereIn('vaiTro_id', [2, 3])->get();
-
-        $tieuChuanIds = [];
-        if ($nhomNguoiDungs) {
-            foreach ($nhomNguoiDungs as $nhomNguoiDung) {
-                $nhomQuyens = $this->nhomQuyenModel->where('nhom_id', $nhomNguoiDung->nhom_id)->where('quyenNhom_id', 1)->get();
-                foreach ($nhomQuyens as $nhomQuyen) {
-                    array_push($tieuChuanIds, $nhomQuyen->tieuChuan_id);
-                }
-            }
-        }
-
-        $tieuChuans = $this->tieuChuanModel->whereIn('id', $tieuChuanIds)->get();
-        if (!empty($tieuChuans[0])) {
-            $tieuChis = $this->tieuChiModel->where('tieuChuan_id', $tieuChuans[0]->id)->get()->sortBy('stt');
-
-        } else {
-            $tieuChis = [];
-        }
-
-
-
-
-        return view('pages.baocao.create', compact('nganhs', 'tieuChuans', 'tieuChis'));
+        return view('pages.baocao.create', compact('nganhs'));
     }
 
     public function store(Request $request)
@@ -424,19 +399,49 @@ class BaoCaoController extends Controller
             }
         }
         $tieuChuans = $this->tieuChuanModel->whereIn('id', $tieuChuanIds)->get();
-        $tieuChis = $this->tieuChiModel->with('tieuChuan')->where('tieuChuan_id', $tieuChuans[0]->id)->get();
-        
+//        $tieuChis = $this->tieuChiModel->with('tieuChuan')->where('tieuChuan_id', $tieuChuans[0]->id)->get();
+
         return response()->json([
-            'tieuChuans' => $tieuChuans,
-            'tieuChis' => $tieuChis
+            'data' => $tieuChuans,
         ], 200);
     }
 
     public function handleSelectTieuChuan(Request $request) {
         $tieuChis = $this->tieuChiModel->with('tieuChuan')
                             ->where('tieuChuan_id', $request->tieuChuanId)->get();
+
+        $dateNow = Carbon::now();
+
+        $dotDanhGia = $this->dotDanhGiaModel
+            ->join('nganh_dot_danh_gias', 'nganh_dot_danh_gias.dotDanhGia_id', '=', 'dot_danh_gias.id')
+            ->join('nganhs', 'nganhs.id', '=', 'nganh_dot_danh_gias.nganh_id')
+            ->where('nganhs.id', '=', $request->nganhId)
+            ->where('dot_danh_gias.namHoc', '=', $dateNow->year)
+            ->Select('dot_danh_gias.id')
+            ->first();
+
+        $baoCaos = $this->baoCaoModel
+            ->where('dotDanhGia_id', $dotDanhGia->id)
+            ->where('nganh_id', $request->nganhId)
+            ->where('tieuChuan_id', $request->tieuChuanId)
+
+            ->get();
+
+        $baCaoTieuChiId = [];
+        foreach ($baoCaos as $baoCao) {
+            array_push($baCaoTieuChiId, $baoCao->tieuChi_id);
+        }
+
+        $tieuChiFinal = [];
+
+        foreach ($tieuChis as $element) {
+            if (!in_array($element->id, $baCaoTieuChiId)) {
+                $tieuChiFinal[] = $element;
+            }
+        }
+
         return response()->json([
-            'tieuChis' => $tieuChis
+            'data' => $tieuChiFinal
         ], 200);
     }
 }

@@ -128,6 +128,25 @@ $action = (object) [
                         @endforeach
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="vaiTroHT">Phân quyền tiến độ báo cáo</label>
+                    <select class="form-control tags-select"
+                            multiple="multiple" name="nganh[]">
+                        @php
+                            $nganhIds = [];
+                            foreach ($user->nganhNguoiDungQuyenHT as $item) {
+                                $nganhIds[] = $item->id;
+                            }
+                            $nganh = old('nganh', $nganhIds) != '' ? old('nganh', $nganhIds) : [];
+                        @endphp
+                        @foreach ($nganhs as $item)
+                            <option value="{{ $item->id }}" {{ in_array($item->id, $nganhIds) ? 'selected' : '' }}>
+                                {{ $item->ten }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Xác nhận</button>
             </form>
         </div>

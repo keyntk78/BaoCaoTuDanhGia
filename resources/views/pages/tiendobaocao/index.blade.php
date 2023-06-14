@@ -47,6 +47,13 @@ $action = (object) [
                         @php
                             $canExport = true;
                             $isPublished = false;
+
+                            foreach ($baoCaos as $baoCao) {
+                                if($nganh->dotDanhGia_id == $baoCao->dotDanhGia_id){
+                                    $tieuChuanBaoCao = $baoCao;
+                                }
+                            }
+                            $boTieuChuanId = $tieuChuanBaoCao->tieuChuan->boTieuChuan_id;
                             foreach ($tieuChuans as $key => $tieuChuan) {
                                 foreach ($tieuChuan->tieuChi as $key => $tieuChi) {
                                     $baoCao = $tieuChi->baoCao->where('nganh_id', $nganh->id)->where('dotDanhGia_id', $nganh->dotDanhGia_id)->first();
@@ -102,7 +109,7 @@ $action = (object) [
                                         <tbody>
                                             @foreach($botieuchuans as $boTieuChuan)
                                                 @php
-                                                    $tieuChuanGDDT = $boTieuChuan->tieuChuan->where('boTieuChuan_id', 2)
+                                                    $tieuChuanGDDT = $boTieuChuan->tieuChuan->where('boTieuChuan_id', $boTieuChuanId)
                                                 @endphp
                                                 @foreach ($tieuChuanGDDT as $key => $tieuChuan)
                                                     @php

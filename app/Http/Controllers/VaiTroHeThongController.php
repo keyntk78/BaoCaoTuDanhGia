@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nganh;
+use App\Models\NguoiDungQuyenHTS;
 use App\Models\QuyenHT;
+use App\Models\User;
 use App\Models\VaiTroHT;
 use App\Models\VaiTroHTQuyenHT;
 use Illuminate\Http\Request;
@@ -16,13 +18,18 @@ class VaiTroHeThongController extends Controller
     private $vaiTroHTModel;
     private $quyenHTModel;
     private $nganhModel;
+    private $userModel;
+    private $nguoiDungQuyenHTModel;
+
     private $vaiTroHTQuyenHTModel;
-    public function __construct(VaiTroHT $vaiTroHTModel, QuyenHT $quyenHTModel, Nganh $nganhModel, VaiTroHTQuyenHT $vaiTroHTQuyenHTModel)
+    public function __construct(VaiTroHT $vaiTroHTModel,NguoiDungQuyenHTS $nguoiDungQuyenHTModel,User $userModel,QuyenHT $quyenHTModel, Nganh $nganhModel, VaiTroHTQuyenHT $vaiTroHTQuyenHTModel)
     {
         $this->vaiTroHTModel = $vaiTroHTModel;
         $this->quyenHTModel = $quyenHTModel;
         $this->nganhModel = $nganhModel;
         $this->vaiTroHTQuyenHTModel = $vaiTroHTQuyenHTModel;
+        $this->userModel = $userModel;
+        $this->nguoiDungQuyenHTModel = $nguoiDungQuyenHTModel;
     }
 
     protected function callValidate(Request $request, $id = null)
@@ -205,4 +212,51 @@ class VaiTroHeThongController extends Controller
             ], 500);
         }
     }
+
+    public function permission()
+    {
+        $users = $this->userModel
+            ->Join('nguoi_dung_quyen_h_t_s', 'users.id', '=','nguoi_dung_quyen_h_t_s.nguoiDung_id')
+            ->Select('users.id', 'users.hoTen')
+            ->groupBy('users.id', 'users.hoTen')
+            ->get();
+        $nganhs = $this->nganhModel
+            ->Join('nguoi_dung_quyen_h_t_s', 'nganhs.id', '=','nguoi_dung_quyen_h_t_s.nganh_id')->get();
+        dd($users);
+        return ;
+    }
+
+    public function permissionUser()
+    {
+        $users = $this->userModel
+                ->join('nguoi_dung_vai_tro_h_t_s', 'users.id', '=', 'nguoi_dung_vai_tro_h_t_s.nguoiDung_id')
+                ->join('vai_tro_h_t_s', 'vai_tro_h_t_s.id', '=', 'nguoi_dung_vai_tro_h_t_s.vaiTroHT_id')
+                ->where('vai_tro_h_t_s.id','=', 2)
+                ->get();
+
+        $nganhs = $this->nganhModel->all();
+
+        $nguoiDungQuyenHT = $this->nguoiDungQuyenHTModel
+                                    ->Join('users', 'users.id', '=','nguoi_dung_quyen_h_t_s.nguoiDung_id')
+                                    ->get();
+
+//        dd($nguoiDungQuyenHT);
+
+        return view('pages.vaitrohethong.permissionUser', compact('users', 'nganhs', 'nguoiDungQuyenHT'));
+    }
+
+    public function createPermissionUser(Request $request){
+        $slugTienDo = 'quan-ly-tien-do-bao-cao';
+        $quyenHt = $this->quyenHTModel->where('slug', $slugTienDo)->first();
+
+        foreach ($request->nganh as $item) {
+            $this->nguoiDungQuyenHTModel->create([
+                    'nguoiDung_id' => $request->nguoiDung_id,
+                    'quyenHT_id' => $quyenHt->id,
+                    'nganh_id' => $item
+                ]);
+        }
+        return redirect()->route('vaitrohethong.create-permission-user')->with('message', 'Sửa thành công!');
+    }
+
 }
