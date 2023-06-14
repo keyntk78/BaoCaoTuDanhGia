@@ -72,6 +72,7 @@ $childAction = (object) [
                         <div class="form-group col-md-5">
                             <label>Quyền</label>
                             <select class="form-select form-control" id="select-1" data-name="quyenNguoiDung_id[]" aria-label="Chọn quyền">
+                                <option value="" selected>Chọn quyền</option>
                                 @foreach ($quyenNguoiDungs as $item)
                                     <option value="{{ $item->id }}">{{ $item->ten }}</option>
                                 @endforeach
@@ -79,10 +80,11 @@ $childAction = (object) [
                         </div>
                         <div class="ml-3 form-group col-md-5">
                             <label>Báo cáo</label>
-                            <select class="form-select form-control" id="select-2" data-name="baoCao_id[]" aria-label="Chọn quyền">
-                                @foreach ($baoCaos as $item)
-                                    <option value="{{ $item->id }}">Báo cáo số {{$item->tieuChi->tieuChuan->stt}}.{{$item->tieuChi->stt}}</option>
-                                @endforeach
+                            <select class="form-select form-control" disabled id="select-2" data-name="baoCao_id[]" aria-label="Chọn quyền">
+                                <option value="" selected>Chọn báo cáo</option>
+{{--                                @foreach ($baoCaos as $item)--}}
+{{--                                    <option value="{{ $item->id }}">Báo cáo số {{$item->tieuChi->tieuChuan->stt}}.{{$item->tieuChi->stt}}</option>--}}
+{{--                                @endforeach--}}
                             </select>
                         </div>
                         <div class="ml-3 mb-0 form-group col-md-1">
@@ -140,5 +142,7 @@ $childAction = (object) [
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="js/handleMultipleSelect.js"></script>
     <script src="js/handleTwoSelect.js"></script>
-    <script src="js/handleDataSelectQuyen.js"></script>
+    <script src="js/quanlynhom/handelSelectQuyenNguoiDung.js"></script>
+
+{{--    <script src="js/handleDataSelectQuyen.js"></script>--}}
 @endsection

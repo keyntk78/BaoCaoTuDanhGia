@@ -8,6 +8,7 @@ use App\Models\BoTieuChuan;
 use App\Models\DotDanhGia;
 use App\Models\Nganh;
 use App\Models\NguoiDungQuyen;
+use App\Models\NguoiDungQuyenHTS;
 use App\Models\Nhom;
 use App\Models\NhomNguoiDung;
 use App\Models\NhomQuyen;
@@ -28,11 +29,13 @@ class TienDoBaoCaoController extends Controller
     private $nhomNguoiDungModel;
     private $nguoiDungQuyenModel;
     private $nhomQuyenModel;
+
+    private $nguoiDungQuyenHTModel;
     private $boTieuChuanModel;
     private $nhomModel;
     private $userModel;
     private $minhChungModel;
-    public function __construct(User $userModel, BaoCao $baoCaoModel, Nganh $nganhModel, TieuChuan $tieuChuanModel, TieuChi $tieuChiModel, BaoCaoSaoLuu $baoCaoSLModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel,BoTieuChuan $boTieuChuanModel, NhomQuyen $nhomQuyenModel, Nhom $nhomModel, MinhChung $minhChungModel)
+    public function __construct(User $userModel,NguoiDungQuyenHTS $nguoiDungQuyenHTModel, BaoCao $baoCaoModel, Nganh $nganhModel, TieuChuan $tieuChuanModel, TieuChi $tieuChiModel, BaoCaoSaoLuu $baoCaoSLModel, NhomNguoiDung $nhomNguoiDungModel, NguoiDungQuyen $nguoiDungQuyenModel,BoTieuChuan $boTieuChuanModel, NhomQuyen $nhomQuyenModel, Nhom $nhomModel, MinhChung $minhChungModel)
     {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $this->baoCaoModel = $baoCaoModel;
@@ -47,11 +50,13 @@ class TienDoBaoCaoController extends Controller
         $this->userModel = $userModel;
         $this->minhChungModel = $minhChungModel;
         $this->boTieuChuanModel = $boTieuChuanModel;
+        $this->nguoiDungQuyenHTModel = $nguoiDungQuyenHTModel;
     }
 
     public function index()
     {
         $vaiTroHTs = auth()->user()->vaiTroHT;
+        $user = auth()->user();
         $check = false;
         foreach ($vaiTroHTs as $vaiTroHT) {
             if($vaiTroHT->slug === 'quan-tri-he-thong'){
@@ -65,12 +70,11 @@ class TienDoBaoCaoController extends Controller
                 ->join('nganhs', 'nganhs.id', '=', 'nganh_dot_danh_gias.nganh_id')->get();
         } else {
             $nganhIds = [];
-            foreach ($vaiTroHTs as $vaiTroHT) {
-                foreach ($vaiTroHT->quyenHT as $quyenHT) {
-                    if (!empty($quyenHT->pivot->nganh_id)) {
-                        $nganhIds[] = $quyenHT->pivot->nganh_id;
-                    }
-                }
+            $nguoiDungQuyenHT = $this->nguoiDungQuyenHTModel->all();
+            foreach ($nguoiDungQuyenHT as $item) {
+               if($item->nguoiDung_id == $user->id){
+                   $nganhIds[] = $item->nganh_id;
+               }
             }
             $nganhs = [];
             foreach ($nganhIds as $nganhId) {
@@ -84,7 +88,9 @@ class TienDoBaoCaoController extends Controller
         $botieuchuans = $this->boTieuChuanModel->all();
         $tieuChuans = $this->tieuChuanModel->all();
 
-        return view('pages.tiendobaocao.index', compact('nganhs', 'tieuChuans', 'botieuchuans'));
+        $baoCaos = $this->baoCaoModel->all();
+
+        return view('pages.tiendobaocao.index', compact('nganhs', 'tieuChuans', 'botieuchuans', 'baoCaos'));
     }
 
     public function wordAll($id) {
@@ -93,9 +99,9 @@ class TienDoBaoCaoController extends Controller
                         ->join('nganhs', 'nganhs.id', '=', 'nganh_dot_danh_gias.nganh_id')
                         ->where('nganh_dot_danh_gias.nganh_id', $id)->first();
 
+        $baoCaoFirst = $this->baoCaoModel->where('nganh_id', $id)->where('dotDanhGia_id',  $nganh->dotDanhGia_id)->first();
 
-        $tieuChuans = $this->tieuChuanModel->all();
-
+        $tieuChuans = $this->tieuChuanModel->where('boTieuChuan_id',$baoCaoFirst->tieuChuan->boTieuChuan_id )->get();
         $needle = '<a class="is-minhchung" style="color: #000; font-weight: bold; text-decoration: none;"';
 
         $from = 'target="_blank" rel="nofollow noopener">';
@@ -166,6 +172,7 @@ class TienDoBaoCaoController extends Controller
                 $baoCao->minhChung()->sync($datas);
             }
         }
+
         return view('pages.tiendobaocao.word-all', compact('nganh', 'tieuChuans', 'hopMCs'));
     }
 
@@ -224,6 +231,8 @@ class TienDoBaoCaoController extends Controller
                 }
             }
         }
+
+
         return view('pages.tiendobaocao.word-dsmc', compact('nganh', 'tieuChuans', 'hopMCs'));
     }
 

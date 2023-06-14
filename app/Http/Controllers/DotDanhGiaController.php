@@ -119,9 +119,11 @@ class DotDanhGiaController extends Controller
 
     public function show($id)
     {
-        $tieuChuans = $this->tieuChuanModel->all();
+
+        $tieuChuans = $this->tieuChuanModel->where('boTieuChuan_id', 1)->get();
         $dotDanhGia = $this->dotDanhGiaModel->find($id);
         $nganhs = $dotDanhGia->nganh;
+
         $nganhCongKhais = [];
         foreach ($nganhs as $nganh) {
             $baoCaos = $this->baoCaoModel->where('nganh_id', $nganh->id)

@@ -6,7 +6,7 @@ header('Content-Type: application/vnd.msword');
 header('Content-Disposition: attachment; filename="'.$fileName.'.doc"');
 header('Cache-Control: private, max-age=0, must-revalidate');
 @endphp
-
+<html>
 <head>
     <title>Export HTML to WORD</title>
     <style>

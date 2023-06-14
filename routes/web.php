@@ -43,6 +43,9 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('minhchung/download/{file_name}', [MinhChungController::class, 'download'])->name('minhchung.download');
+
+
 Route::group(['middleware' => ['auth']], function () {
     Route::prefix('capdanhgia')->group(function () {
         Route::get('/', [CapDanhGiaController::class, 'index'])->name('capdanhgia.index')->middleware('can:capdanhgia-danhsach');
@@ -213,10 +216,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('dotdanhgiagiuaky')->group(function () {
         Route::get('/create/{id}', [DotDanhGiaGiuaKyController::class, 'create'])->name('dotdanhgiagiuaky.create')->middleware('can:dotdanhgiagk-xemvathem');
         Route::post('/store/{id}', [DotDanhGiaGiuaKyController::class, 'store'])->name('dotdanhgiagiuaky.store')->middleware('can:dotdanhgiagk-xemvathem');
-        Route::get('/edit/{id}', [DotDanhGiaGiuaKyController::class, 'edit'])->name('dotdanhgiagiuaky.edit')->middleware('dotdanhgiagk-sua');
-        Route::post('/update/{id}', [DotDanhGiaGiuaKyController::class, 'update'])->name('dotdanhgiagiuaky.update')->middleware('dotdanhgiagk-sua');
-        Route::post('/finish', [DotDanhGiaGiuaKyController::class, 'finish'])->name('dotdanhgiagiuaky.finish')->middleware('dotdanhgiagk-sua');
-        Route::post('/reopen', [DotDanhGiaGiuaKyController::class, 'reopen'])->name('dotdanhgiagiuaky.reopen')->middleware('dotdanhgiagk-sua');
+        Route::get('/edit/{id}', [DotDanhGiaGiuaKyController::class, 'edit'])->name('dotdanhgiagiuaky.edit')->middleware('can:dotdanhgiagk-sua');
+        Route::post('/update/{id}', [DotDanhGiaGiuaKyController::class, 'update'])->name('dotdanhgiagiuaky.update')->middleware('can:dotdanhgiagk-sua');
+        Route::post('/finish', [DotDanhGiaGiuaKyController::class, 'finish'])->name('dotdanhgiagiuaky.finish')->middleware('can:dotdanhgiagk-sua');
+        Route::post('/reopen', [DotDanhGiaGiuaKyController::class, 'reopen'])->name('dotdanhgiagiuaky.reopen')->middleware('can:dotdanhgiagk-sua');
     });
 
     Route::prefix('baocao')->group(function () {
@@ -350,8 +353,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/getall', [MinhChungController::class, 'getAll'])->name('minhchung.get-all');
         Route::post('/gettp', [MinhChungController::class, 'getTp'])->name('minhchung.get-tp');
         Route::get('/add-detail/{id}', [MinhChungController::class, 'addDetail'])->name('minhchung.add-detail')->middleware('can:minhchung-them');
-        Route::get('/download/{file_name}', [MinhChungController::class, 'download'])->name('minhchung.download')->middleware('can:minhchung-danhsach');
-
     });
 
 
@@ -379,6 +380,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/restore-all', [VaiTroHeThongController::class, 'restoreAll'])->name('vaitrohethong.restore-all')->middleware('can:vaitrohethong-xoa');
         Route::post('/force-destroy', [VaiTroHeThongController::class, 'forceDestroy'])->name('vaitrohethong.force-destroy')->middleware('can:vaitrohethong-xoa');
         Route::post('/force-destroy-all', [VaiTroHeThongController::class, 'forceDestroyAll'])->name('vaitrohethong.force-destroy-all')->middleware('can:vaitrohethong-xoa');
+        Route::get('/permission-user', [VaiTroHeThongController::class, 'permissionUser'])->name('vaitrohethong.permission-user')->middleware('can:vaitrohethong-sua');
+        Route::post('/create-permission-user', [VaiTroHeThongController::class, 'createPermissionUser'])->name('vaitrohethong.create-permission-user');//->middleware('can:vaitrohethong-sua');
+        Route::get('/permission', [VaiTroHeThongController::class, 'permission'])->name('vaitrohethong.permission')->middleware('can:vaitrohethong-sua');
+
     });
 
     Route::prefix('quanlynhom')->group(function () {

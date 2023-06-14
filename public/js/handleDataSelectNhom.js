@@ -17,8 +17,6 @@ $('#nganh_id').on('change', (e) => {
             },
         })
 
-
-
     }
     else {
         $('#boTieuChuan_id').empty()
@@ -88,10 +86,9 @@ $('#select-1').on('change', (e) => {
             data: { nganhId, boTieuChuanId, quyenId, nhomId, _token },
             url: 'nhom/getTieuChuans',
             success: function (res) {
-
                 var tieuChuan = res.data;
                 tieuChuan.forEach(element => {
-                    $('#select-2').append(`<option value="${element.id}" >Tiêu chẩn số ${element.stt}</option>--}}`);
+                    $('#select-2').append(`<option value="${element.id}" >Tiêu chuẩn số ${element.stt}</option>--}}`);
                 })
             },
         })

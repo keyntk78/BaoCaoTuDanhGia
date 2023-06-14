@@ -31,14 +31,26 @@ $action = (object) [
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            @can('vaitrohethong-them')
-            <a href="{{ route('vaitrohethong.create') }}" class="btn btn-primary btn-icon-split">
+            <div>
+                @can('vaitrohethong-them')
+                    <a href="{{ route('vaitrohethong.create') }}" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="text">Thêm mới</span>
-            </a>
-            @endcan
+                        <span class="text">Thêm mới</span>
+                    </a>
+                @endcan
+
+                @can('vaitrohethong-sua')
+                    <a href="{{ route('vaitrohethong.permission') }}" class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-user"></i>
+                </span>
+                        <span class="text">Phân quyền tiến độ</span>
+                    </a>
+                @endcan
+            </div>
+
             @can('vaitrohethong-xoa')
             <a href="{{ route('vaitrohethong.trash') }}" class="btn btn-dark btn-icon-split">
                 <span class="icon text-white-50">

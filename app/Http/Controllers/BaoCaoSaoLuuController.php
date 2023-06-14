@@ -51,6 +51,8 @@ class BaoCaoSaoLuuController extends Controller
             $baocaoSL->baoCao->update([
                 'moTa' => $baocaoSL->moTa,
                 'diemManh' => $baocaoSL->diemManh,
+                'moDau' => $baocaoSL->moDau,
+                'ketLuan' => $baocaoSL->ketLuan,
                 'diemTonTai' => $baocaoSL->diemTonTai,
                 'keHoachHanhDong' => $baocaoSL->keHoachHanhDong,
                 'diemTDG' => $baocaoSL->diemTDG,
@@ -62,6 +64,7 @@ class BaoCaoSaoLuuController extends Controller
             return response()->json([
                 'code' => 200,
                 'message' => 'success',
+                'data' =>$baocaoSL
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

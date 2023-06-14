@@ -101,6 +101,9 @@ class QuanLyNhomController extends Controller
         }
         return view('pages.quanlynhom.edit', compact('nhomNguoiDung', 'vaiTros', 'quyenNguoiDungs', 'baoCaos', 'baoCaoAlls', 'current_quyenNguoiDungs', 'current_baoCaos'));
     }
+
+
+
     public function update(Request $request, $id)
     {
         $nhomNguoiDung = $this->nhomNguoiDungModel->find($id);
@@ -133,7 +136,7 @@ class QuanLyNhomController extends Controller
         $nhomQuyens = $this->nhomQuyenModel->where('nhom_id', $nhomNguoiDung->nhom_id)->get();
         $tieuChuanIds = [];
         foreach ($nhomQuyens as $nhomQuyen) {
-            if ($nhomQuyen->quyenNhom_id == $request->quyen_id && !in_array($nhomQuyen->quyenNhom_id, $tieuChuanIds, true)) {
+            if ($nhomQuyen->quyenNhom_id == $request->quyen_id) {
                 array_push($tieuChuanIds, $nhomQuyen->tieuChuan_id);
             }
         }
@@ -150,8 +153,32 @@ class QuanLyNhomController extends Controller
             ->whereYear('created_at', '=', $dateNow->year)
             ->get();
 
+        //            ->where('nguoi_dung_quyens.nhomNguoiDung_id', '=', $request->nhomNguoiDung_id)
+
+        $nhomCurent = $this->nhomNguoiDungModel->find($request->nhomNguoiDung_id);
+
+        $baoCaoQuyenND = $this->nguoiDungQuyenModel
+            ->join('nhom_nguoi_dungs', 'nhom_nguoi_dungs.id', '=', 'nguoi_dung_quyens.nhomNguoiDung_id')
+            ->where('nhom_nguoi_dungs.nhom_id', '=', $nhomCurent->nhom_id)
+            ->where('nguoi_dung_quyens.quyenNguoiDung_id', '=', $request->quyen_id)
+            ->get();
+
+        $baoCaoIds = [];
+
+        foreach ($baoCaoQuyenND as $item) {
+            array_push($baoCaoIds, $item->baoCao_id);
+        }
+
+        $baoCaoFinal = [];
+
+        foreach ($baoCaos as $element) {
+            if (!in_array($element->id, $baoCaoIds)) {
+                $baoCaoFinal[] = $element;
+            }
+        }
+
         return response()->json([
-            'baoCaos' => $baoCaos
+            'data' => $baoCaoFinal,
         ], 200);
     }
 }

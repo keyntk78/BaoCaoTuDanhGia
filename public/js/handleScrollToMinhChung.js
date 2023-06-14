@@ -47,12 +47,17 @@ $("#deleteCatModal").on("show.bs.modal", (e) => {
         success: (datas) => {
             $(".modal-body").find(".content").html("");
             for (data of datas) {
-                console.log(data);
+                var link = "";
+                if(data.isUrl){
+                    link = data.link
+                } else {
+                    link = window.location.origin + '/minhchung/download/' + data.link
+                }
                 $(".modal-body")
                     .find(".content")
                     .append(
                         `<li>
-                                <a href="${data.link}" target="_blank" rel="noopener nofollower">${data.ten}</a>
+                                <a href="${link}" target="_blank" rel="noopener nofollower">${data.ten}</a>
                             </li>`
                     );
             }

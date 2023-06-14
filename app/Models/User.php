@@ -78,6 +78,15 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+
+    public function nganhNguoiDungQuyenHT()
+    {
+        return $this
+            ->belongsToMany(Nganh::class, 'nguoi_dung_quyen_h_t_s', 'nguoiDung_id', 'nganh_id')
+            ->withPivot('quyenHT_id')
+            ->withTimestamps();
+    }
+
     public function checkPermissionAccess($quyenCheck)
     {
 
